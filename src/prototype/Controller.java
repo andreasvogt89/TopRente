@@ -7,9 +7,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.Date;
+import static prototype.Main.databaseManager;
 
 
 public class Controller {
@@ -19,14 +18,18 @@ public class Controller {
     @FXML private TextField inputCredit;
     @FXML private ChoiceBox inputLevel;
 
+
 public Controller(){
 
 }
 
-public void actionSaveButton () throws SQLException {
-    DatabaseManager databaseManager = new DatabaseManager();
-    databaseManager.create(databaseManager.getStatement(), createNewPerson());
+public void actionViewButton () {
 
+}
+
+
+public void actionSaveButton () throws SQLException {
+    databaseManager.createPerson(databaseManager.getStatement(), createNewPerson());
 }
 
 
@@ -41,7 +44,8 @@ private boolean isInt(TextField input, String message) {
         }
     }
 
-    public ContractPerson createNewPerson (){
+
+public ContractPerson createNewPerson (){
         String name = inputName.getText();
         Date birthdate = java.sql.Date.valueOf(inputBirthDate.getValue());
         Integer salary = Integer.valueOf(inputSalary.getText());

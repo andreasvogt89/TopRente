@@ -12,7 +12,8 @@
 <?import javafx.scene.control.DatePicker?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prototype.Controller">
    <children>
-      <Button fx:id="SavePerson" layoutX="73.0" layoutY="300.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
+      <Button fx:id="ViewPerson" layoutX="73.0" layoutY="300.0" mnemonicParsing="false" onAction="#actionViewButton" prefHeight="38.0" prefWidth="227.0" text="Vorschau" />
+      <Button fx:id="SavePerson" layoutX="73.0" layoutY="350.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
       <Label layoutX="14.0" prefHeight="59.0" prefWidth="162.0" text="Name" />
       <Label layoutX="14.0" layoutY="59.0" prefHeight="59.0" prefWidth="162.0" text="Alter" />
       <Label layoutX="14.0" layoutY="118.0" prefHeight="59.0" prefWidth="162.0" text="Jahreslohn" />

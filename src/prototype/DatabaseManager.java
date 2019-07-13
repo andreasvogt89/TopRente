@@ -12,7 +12,6 @@ public class DatabaseManager {
     public static final String COLUMN_BIRTHDATE  = "Birthdate";
     public static final String COLUMN_EMPLOYMENDLEVEL  = "Employmend_Level";
     public static final String COLUMN_CREDIT  = "Credit";
-    private static Connection connection;
     private static Statement statement;
 
 
@@ -42,9 +41,8 @@ public class DatabaseManager {
         }
     }
 
-    public static void create (Statement statement, ContractPerson contractPerson)throws SQLException {
-            System.out.println(contractPerson);
-            statement.executeUpdate("INSERT INTO " + TABLES_CUSTUMER +
+    public static void createPerson(Statement statement, ContractPerson contractPerson)throws SQLException {
+            statement.execute("INSERT INTO " + TABLES_CUSTUMER +
                     " VALUES " + "('" + contractPerson.getName() + "', " +
                     "'" + contractPerson.getAnnualSalary() + "', " +
                     "'" + contractPerson.getBirthdate() + "', " +
@@ -53,12 +51,10 @@ public class DatabaseManager {
     }
     public static void update (){}
     public static void read (){}
-    public static void delet (){}
+    public static void deletePerson (Statement statement, ContractPerson contractPerson)throws SQLException{
 
-
-    public Connection getConnection() {
-        return connection;
     }
+
 
     public Statement getStatement() {
         return statement;
