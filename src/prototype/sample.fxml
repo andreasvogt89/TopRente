@@ -19,11 +19,12 @@
       <Label layoutX="14.0" layoutY="118.0" prefHeight="59.0" prefWidth="162.0" text="Jahreslohn" />
       <Label layoutX="14.0" layoutY="171.0" prefHeight="59.0" prefWidth="162.0" text="Guthaben" />
       <Label layoutX="14.0" layoutY="230.0" prefHeight="59.0" prefWidth="162.0" text="Beschäftigungsgrad" />
-      <TextField fx:id="inputName" layoutX="175.0" layoutY="11.0" prefHeight="38.0" prefWidth="199.0" />
-      <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="70.0" prefHeight="38.0" prefWidth="199.0" />
-      <TextField fx:id="inputSalary" layoutX="175.0" layoutY="129.0" prefHeight="38.0" prefWidth="199.0" />
-      <TextField fx:id="inputCredit" layoutX="175.0" layoutY="188.0" prefHeight="38.0" prefWidth="199.0" />
-      <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="250.0" prefHeight="25.0" prefWidth="199.0" >
+      <TextField fx:id="inputLastName" layoutX="175.0" layoutY="11.0" prefHeight="38.0" prefWidth="199.0" />
+      <TextField fx:id="inputName" layoutX="175.0" layoutY="70.0" prefHeight="38.0" prefWidth="199.0" />
+      <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="129.0" prefHeight="38.0" prefWidth="199.0" />
+      <TextField fx:id="inputSalary" layoutX="175.0" layoutY="188.0" prefHeight="38.0" prefWidth="199.0" />
+      <TextField fx:id="inputCredit" layoutX="175.0" layoutY="250.0" prefHeight="38.0" prefWidth="199.0" />
+      <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="290.0" prefHeight="25.0" prefWidth="199.0" >
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="60%" />

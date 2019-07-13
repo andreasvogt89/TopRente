@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ContractPerson {
 
+    private String lastName;
     private String name;
     private Date birthdate;
     private Integer annualSalary;
@@ -13,7 +14,8 @@ public class ContractPerson {
     private Integer coordinationDeduction = 24885;
 
 
-    public ContractPerson(String name, Date birthdate, Integer annualSalary, String employmentLevel, Integer credit) {
+    public ContractPerson(String lastName, String name, Date birthdate, Integer annualSalary, String employmentLevel, Integer credit) {
+        this.lastName = lastName;
         this.name = name;
         this.credit = credit;
         this.birthdate = birthdate;
@@ -25,6 +27,10 @@ public class ContractPerson {
     private Integer calculateCoordinatedSalary(Integer annualSalary){
         coordinatedSalary = annualSalary - coordinationDeduction;
         return coordinatedSalary;
+    }
+
+    public String getLastName(){
+        return lastName;
     }
 
     public String getName() {

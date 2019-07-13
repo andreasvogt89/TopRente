@@ -12,6 +12,7 @@ import static prototype.Main.databaseManager;
 
 
 public class Controller {
+    @FXML private TextField inputLastName;
     @FXML private TextField inputName;
     @FXML private DatePicker inputBirthDate;
     @FXML private TextField inputSalary;
@@ -46,6 +47,7 @@ private boolean isInt(TextField input, String message) {
 
 
 public ContractPerson createNewPerson (){
+        String lastName = inputLastName.getText();
         String name = inputName.getText();
         Date birthdate = java.sql.Date.valueOf(inputBirthDate.getValue());
         Integer salary = Integer.valueOf(inputSalary.getText());
@@ -54,7 +56,7 @@ public ContractPerson createNewPerson (){
         isInt(inputSalary, inputSalary.getText());
         isInt(inputCredit, inputCredit.getText());
 
-        ContractPerson newContractPerson = new ContractPerson(name,birthdate,salary,level,credit);
+        ContractPerson newContractPerson = new ContractPerson(lastName,name,birthdate,salary,level,credit);
         System.out.println(newContractPerson.getBirthdate());
         return newContractPerson;
     }
