@@ -1,36 +1,32 @@
 package prototype;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.Date;
 
-public class Controller implements Observer {
+
+public class Controller {
     @FXML private TextField inputName;
-    @FXML private TextField inputAge;
+    @FXML private DatePicker inputBirthDate;
     @FXML private TextField inputSalary;
+    @FXML private TextField inputCredit;
     @FXML private ChoiceBox inputLevel;
 
 public Controller(){
 
 }
 
-public void actionSaveButton () {
-    String name = inputName.getText();
-    Integer age = Integer.valueOf(inputAge.getText());
-    Integer salary = Integer.valueOf(inputSalary.getText());
-    String level = String.valueOf(inputLevel.getValue());
-    isInt(inputSalary, inputSalary.getText());
+public void actionSaveButton () throws SQLException {
+    DatabaseManager databaseManager = new DatabaseManager();
+    databaseManager.create(databaseManager.getStatement(), createNewPerson());
 
-    contractPerson contractPerson = new contractPerson(name,age,salary,level);
-    System.out.println("Person:");
-    System.out.println(contractPerson.getName());
-    System.out.println(contractPerson.getAge());
-    System.out.println(contractPerson.getEmploymentLevel());
-    System.out.println(contractPerson.getAnnualSalary());
-    System.out.println(contractPerson.getCoordinatedSalary());
 }
 
 
@@ -45,11 +41,20 @@ private boolean isInt(TextField input, String message) {
         }
     }
 
+    public ContractPerson createNewPerson (){
+        String name = inputName.getText();
+        Date birthdate = java.sql.Date.valueOf(inputBirthDate.getValue());
+        Integer salary = Integer.valueOf(inputSalary.getText());
+        String level = String.valueOf(inputLevel.getValue());
+        Integer credit = Integer.valueOf(inputCredit.getText());
+        isInt(inputSalary, inputSalary.getText());
+        isInt(inputCredit, inputCredit.getText());
 
-
-    @Override
-    public void update() {
-
+        ContractPerson newContractPerson = new ContractPerson(name,birthdate,salary,level,credit);
+        System.out.println(newContractPerson.getBirthdate());
+        return newContractPerson;
     }
+
+
 }
 

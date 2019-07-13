@@ -9,17 +9,20 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import javafx.scene.control.DatePicker?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prototype.Controller">
    <children>
-      <Button fx:id="SavePerson" layoutX="73.0" layoutY="246.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
+      <Button fx:id="SavePerson" layoutX="73.0" layoutY="300.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
       <Label layoutX="14.0" prefHeight="59.0" prefWidth="162.0" text="Name" />
       <Label layoutX="14.0" layoutY="59.0" prefHeight="59.0" prefWidth="162.0" text="Alter" />
       <Label layoutX="14.0" layoutY="118.0" prefHeight="59.0" prefWidth="162.0" text="Jahreslohn" />
-      <Label layoutX="14.0" layoutY="171.0" prefHeight="59.0" prefWidth="162.0" text="Beschäftigungsgrad" />
+      <Label layoutX="14.0" layoutY="171.0" prefHeight="59.0" prefWidth="162.0" text="Guthaben" />
+      <Label layoutX="14.0" layoutY="230.0" prefHeight="59.0" prefWidth="162.0" text="Beschäftigungsgrad" />
       <TextField fx:id="inputName" layoutX="175.0" layoutY="11.0" prefHeight="38.0" prefWidth="199.0" />
-      <TextField fx:id="inputAge" layoutX="175.0" layoutY="70.0" prefHeight="38.0" prefWidth="199.0" />
+      <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="70.0" prefHeight="38.0" prefWidth="199.0" />
       <TextField fx:id="inputSalary" layoutX="175.0" layoutY="129.0" prefHeight="38.0" prefWidth="199.0" />
-      <ChoiceBox fx:id="inputLevel" layoutX="176.0" layoutY="188.0" prefHeight="25.0" prefWidth="199.0" >
+      <TextField fx:id="inputCredit" layoutX="175.0" layoutY="188.0" prefHeight="38.0" prefWidth="199.0" />
+      <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="250.0" prefHeight="25.0" prefWidth="199.0" >
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="60%" />

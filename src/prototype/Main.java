@@ -14,8 +14,6 @@ public class Main extends Application {
         primaryStage.setTitle("Top Rente");
         primaryStage.setScene(new Scene(root, 500, 500));
         primaryStage.show();
-
-
     }
 
 
