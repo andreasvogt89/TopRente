@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+
+<TabPane prefHeight="588.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prototype.Controller">
+   <tabs>
+      <Tab text="Kunden">
+         <content>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1049.0">
+               <children>
+                  <Button fx:id="ViewPerson" layoutX="73.0" layoutY="400.0" mnemonicParsing="false" onAction="#actionViewButton" prefHeight="38.0" prefWidth="227.0" text="Vorschau" />
+                  <Button fx:id="SavePerson" layoutX="73.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
+                  <Label layoutX="444.0" layoutY="-10.0" prefHeight="59.0" prefWidth="116.0" text="Datanbank" />
+                  <Label layoutX="14.0" layoutY="1.0" prefHeight="59.0" prefWidth="162.0" text="Nachname" />
+                  <Label layoutX="14.0" layoutY="118.0" prefHeight="59.0" prefWidth="162.0" text="Geburtsdatum" />
+                  <Label layoutX="14.0" layoutY="177.0" prefHeight="59.0" prefWidth="162.0" text="Jahreslohn" />
+                  <Label layoutX="14.0" layoutY="235.0" prefHeight="59.0" prefWidth="162.0" text="Guthaben" />
+                  <Label layoutX="14.0" layoutY="290.0" prefHeight="59.0" prefWidth="162.0" text="Beschäftigungsgrad" />
+                  <TextField fx:id="inputLastName" layoutX="175.0" layoutY="11.0" prefHeight="38.0" prefWidth="199.0" />
+                  <TextField fx:id="inputName" layoutX="175.0" layoutY="70.0" prefHeight="38.0" prefWidth="199.0" />
+                  <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="129.0" prefHeight="38.0" prefWidth="199.0" />
+                  <TextField fx:id="inputSalary" layoutX="175.0" layoutY="188.0" prefHeight="38.0" prefWidth="199.0" />
+                  <TextField fx:id="inputCredit" layoutX="175.0" layoutY="250.0" prefHeight="38.0" prefWidth="199.0" />
+                  <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="310.0" prefHeight="25.0" prefWidth="199.0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="10%" />
+                           <String fx:value="20%" />
+                           <String fx:value="30%" />
+                           <String fx:value="40%" />
+                           <String fx:value="50%" />
+                           <String fx:value="60%" />
+                           <String fx:value="70%" />
+                           <String fx:value="80%" />
+                           <String fx:value="90%" />
+                           <String fx:value="100%" />
+                        </FXCollections>
+                     </items>
+                  </ChoiceBox>
+                  <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="518.0" prefWidth="581.0" />
+                  <Circle fill="#47ff1f" layoutX="519.0" layoutY="20.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label layoutX="14.0" layoutY="60.0" prefHeight="59.0" prefWidth="162.0" text="Vorname" />
+               </children>
+            </Pane>
+         </content>
+      </Tab>
+      <Tab text="Datenbank">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="databaseTyp" layoutX="180.0" layoutY="40.0" prefWidth="150.0" />
+                  <Label layoutX="31.0" layoutY="29.0" prefHeight="48.0" prefWidth="129.0" text="Datenbank Typ" />
+                  <Label layoutX="31.0" layoutY="77.0" prefHeight="48.0" prefWidth="129.0" text="Datenbank URL" />
+                  <TextField fx:id="databaseURL" layoutX="181.0" layoutY="89.0" prefHeight="25.0" prefWidth="403.0" />
+                  <Label layoutX="31.0" layoutY="135.0" prefHeight="59.0" prefWidth="116.0" text="Datanbank" />
+                  <Circle fill="#47ff1f" layoutX="109.0" layoutY="164.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button layoutX="181.0" layoutY="145.0" mnemonicParsing="false" onAction="#connectDB" prefHeight="38.0" prefWidth="227.0" text="Verbinden" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</TabPane>
