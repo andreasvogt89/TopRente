@@ -1,6 +1,7 @@
 package prototype;
 
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ public class Controller implements Initializable {
     @FXML private ChoiceBox inputLevel;
     @FXML public TextField databaseURL;
     @FXML public ComboBox<String> databaseTyp;
+    @FXML public TableView CostumerTable;
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
     final static DatabaseManager databaseManager = new DatabaseManager();
 
@@ -33,21 +35,21 @@ public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-public void connectDB (){
+public void exitOnClick() { databaseManager.exit(); }
+
+public void connectDB(){
         String url = String.valueOf(databaseURL.getText());
         String typ = String.valueOf(databaseTyp.getValue());
-        databaseManager.connect(typ,url);
+        databaseManager.connect(typ,url,CostumerTable);
     }
 
-public void actionViewButton () {
+public void actionViewButton() {
 
 }
 
-
-public void actionSaveButton () throws SQLException {
+public void actionSaveButton() throws SQLException {
     databaseManager.createPerson(databaseManager.getStatement(), createNewPerson());
 }
-
 
 private boolean isInt(TextField input, String message) {
         try{
@@ -60,7 +62,7 @@ private boolean isInt(TextField input, String message) {
         }
     }
 
-private ContractPerson createNewPerson (){
+private ContractPerson createNewPerson(){
         String lastName = inputLastName.getText();
         String name = inputName.getText();
         Date birthdate = java.sql.Date.valueOf(inputBirthDate.getValue());
@@ -73,7 +75,6 @@ private ContractPerson createNewPerson (){
         ContractPerson newContractPerson = new ContractPerson(lastName,name,birthdate,salary,level,credit);
         return newContractPerson;
     }
-
 
 }
 

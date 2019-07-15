@@ -19,7 +19,7 @@
    <tabs>
       <Tab text="Kunden">
          <content>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1049.0">
+            <Pane fx:id="Custumer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1049.0">
                <children>
                   <Button fx:id="ViewPerson" layoutX="73.0" layoutY="400.0" mnemonicParsing="false" onAction="#actionViewButton" prefHeight="38.0" prefWidth="227.0" text="Vorschau" />
                   <Button fx:id="SavePerson" layoutX="73.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
