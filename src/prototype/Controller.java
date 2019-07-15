@@ -55,7 +55,7 @@ public class Controller implements Initializable {
     private TableColumn<ContractPerson, String> level;
 
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
-    private static ObservableList<ContractPerson> persons;
+    private ObservableList<ContractPerson> persons;
     final static DatabaseManager databaseManager = new DatabaseManager();
 
     @Override
@@ -111,9 +111,7 @@ public class Controller implements Initializable {
         Integer credit = Integer.valueOf(inputCredit.getText());
         isInt(inputSalary, inputSalary.getText());
         isInt(inputCredit, inputCredit.getText());
-
         ContractPerson newContractPerson = new ContractPerson(lastName, name, birthdate, salary, level, credit);
-        persons.add(newContractPerson);
         return newContractPerson;
     }
 
@@ -130,17 +128,17 @@ public class Controller implements Initializable {
 
     public void loadContent() {
         try {
-            databaseManager.loadPersons(databaseManager.getStatement(),persons);
+            databaseManager.loadPersons(persons);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         name.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("name"));
-        //lastname.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("lastname"));
-        //salary.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("salary"));
-        //birthdate.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("birtdate"));
-        //credit.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("credit"));
-        //level.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("level"));
+        lastname.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("lastname"));
+        salary.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("salary"));
+        birthdate.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("birtdate"));
+        credit.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("credit"));
+        level.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("level"));
 
         CostumerTable.setItems(persons);
 

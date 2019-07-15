@@ -21,7 +21,6 @@ public class DatabaseManager {
     private static Statement statement;
     private static Connection connected;
 
-
     public static void connect(String databaseTyp, String databaseURL) {
         connected = null;
         if (databaseTyp == null) {
@@ -46,12 +45,9 @@ public class DatabaseManager {
         }
     }
 
-
-
-    public ObservableList<ContractPerson> loadPersons(Statement statement, ObservableList<ContractPerson> list) throws SQLException {
-
-        list = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM " + DATABASE_NAME;
+    public ObservableList<ContractPerson> loadPersons(ObservableList<ContractPerson> persons) throws SQLException {
+        persons = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM " + TABLES_CUSTUMER;
         ResultSet resultSet = statement.executeQuery(sql);
 
         while(resultSet.next()) {
@@ -61,13 +57,12 @@ public class DatabaseManager {
             Integer annualSalary = resultSet.getInt(4);
             String employmentLevel = resultSet.getString(5);
             Integer credit = resultSet.getInt(6);
-            list.add(new ContractPerson(lastName,name,birthdate,annualSalary,employmentLevel,credit));
+            persons.add(new ContractPerson(lastName,name,birthdate,annualSalary,employmentLevel,credit));
 
         }
         statement.close();
-        return list;
+        return persons;
     }
-
 
     public void exit() {
         new Alert(Alert.AlertType.CONFIRMATION, "Wollen sie die Verbindung zu " + DATABASE_NAME +" wirklich trennen? ").showAndWait();
