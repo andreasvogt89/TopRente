@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -50,9 +51,18 @@
                         </FXCollections>
                      </items>
                   </ChoiceBox>
-                  <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="518.0" prefWidth="581.0" />
-                  <Circle fill="#47ff1f" layoutX="519.0" layoutY="20.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="518.0" prefWidth="581.0">
+                     <columns>
+                        <TableColumn fx:id="name" prefWidth="99.0" text="Vorname" />
+                        <TableColumn fx:id="lastname" prefWidth="99.0" text="Nachname" />
+                        <TableColumn fx:id="birthdate" prefWidth="99.0" text="Geburtstag" />
+                        <TableColumn fx:id="salary" prefWidth="99.0" text="Jahreslohn" />
+                        <TableColumn fx:id="credit" prefWidth="99.0" text="Altersguthaben" />
+                        <TableColumn fx:id="level" prefWidth="99.0" text="Beschäftigungsgrad" />
+                     </columns></TableView>
+                  <Circle fx:id="DBLamp" fill="#ff3421" layoutX="519.0" layoutY="20.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
                   <Label layoutX="14.0" layoutY="60.0" prefHeight="59.0" prefWidth="162.0" text="Vorname" />
+                  <Button layoutX="534.0" layoutY="8.0" mnemonicParsing="false" onAction="#refreshDatabase" text="Refresh" />
                </children>
             </Pane>
          </content>
@@ -61,13 +71,15 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ComboBox fx:id="databaseTyp" layoutX="180.0" layoutY="40.0" prefWidth="150.0" />
+                  <ComboBox fx:id="databaseTyp" layoutX="180.0" layoutY="40.0" prefHeight="25.0" prefWidth="96.0" />
                   <Label layoutX="31.0" layoutY="29.0" prefHeight="48.0" prefWidth="129.0" text="Datenbank Typ" />
                   <Label layoutX="31.0" layoutY="77.0" prefHeight="48.0" prefWidth="129.0" text="Datenbank URL" />
-                  <TextField fx:id="databaseURL" layoutX="181.0" layoutY="89.0" prefHeight="25.0" prefWidth="403.0" />
+                  <TextField fx:id="databaseURL" layoutX="181.0" layoutY="89.0" prefHeight="25.0" prefWidth="316.0" />
                   <Label layoutX="31.0" layoutY="135.0" prefHeight="59.0" prefWidth="116.0" text="Datanbank" />
-                  <Circle fill="#47ff1f" layoutX="109.0" layoutY="164.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button layoutX="181.0" layoutY="145.0" mnemonicParsing="false" onAction="#connectDB" prefHeight="38.0" prefWidth="227.0" text="Verbinden" />
+                  <Circle fx:id="DBLamp1" fill="#ff3421" layoutX="110.0" layoutY="165.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button layoutX="181.0" layoutY="145.0" mnemonicParsing="false" onAction="#connectDB" prefHeight="38.0" prefWidth="146.0" text="Verbinden" />
+                  <Button layoutX="350.0" layoutY="145.0" mnemonicParsing="false" onAction="#disconnectDB" prefHeight="38.0" prefWidth="146.0" text="Trennen" />
+
                </children>
             </AnchorPane>
         </content>

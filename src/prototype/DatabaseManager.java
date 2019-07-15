@@ -1,26 +1,29 @@
 package prototype;
-import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
-
 import java.sql.*;
+import java.util.Date;
 
 
 public class DatabaseManager {
 
     public static final String DATABASE_NAME = "Custumer_Database";
     public static final String TABLES_CUSTUMER = "Custumer_Table";
-    public static final String COLUMN_LASTNAME = "Name";
+    public static final String COLUMN_LASTNAME = "Nachname";
     public static final String COLUMN_NAME = "Vorname";
-    public static final String COLUMN_ANUALSALARY = "Anual Salary";
-    public static final String COLUMN_BIRTHDATE = "Birthdate";
-    public static final String COLUMN_EMPLOYMENDLEVEL = "Employmend Level";
-    public static final String COLUMN_CREDIT = "Credit";
+    public static final String COLUMN_ANUALSALARY = "Jahreslohn";
+    public static final String COLUMN_BIRTHDATE = "Geburtsdatum";
+    public static final String COLUMN_EMPLOYMENDLEVEL = "Beschäftigungsgrad";
+    public static final String COLUMN_CREDIT = "Alterguthaben";
     private static Statement statement;
-    private static Connection connectet;
+    private static Connection connected;
 
-    public static void connect(String databaseTyp, String databaseURL, TableView CustumerTable) {
-        connectet = null;
+
+    public static void connect(String databaseTyp, String databaseURL) {
+        connected = null;
         if (databaseTyp == null) {
             new Alert(Alert.AlertType.ERROR, "Database type must be selected.").showAndWait();
         } else if (databaseURL.isEmpty()) {
@@ -33,60 +36,43 @@ public class DatabaseManager {
             try {
                 Connection connection = DriverManager.getConnection(url);
                 createDatabase(connection);
-                connectet = connection;
+                connected = connection;
                 System.out.println("Successfully connected to the database");
-            } catch (SQLException e) {
-                System.err.println(e.toString());
+            } catch (SQLException connectionException) {
+                System.err.println(connectionException.toString());
+                new Alert(Alert.AlertType.ERROR, "Datenbank konnte nicht Verbunden werden. Bitte Prüfen Sie den URL Pfad.").showAndWait();
             }
+
         }
-        String tableQuery = "SELECT * FROM sqlite_master WHERE type='table' ORDER BY name";
-        try (PreparedStatement tableQueryPS = connectet.prepareStatement(tableQuery)) {
-            ResultSet tableNames = tableQueryPS.executeQuery();
-            System.out.println("Table query successful.");
-
-            while (tableNames.next()) {
-
-
-                String columnQuery = "PRAGMA table_info(" + tableNames.getString("name") + ")";
-
-                try (PreparedStatement columnQueryPS = connectet.prepareStatement(columnQuery)) {
-                    ResultSet columnNames = columnQueryPS.executeQuery();
-
-                    while (columnNames.next()) {
-                        TableColumn column = new TableColumn(columnNames.getString("name"));
-                        CustumerTable.getColumns().add(column);
-
-                        String dataQuery = "SELECT " + columnNames.getString("name") + " FROM " + tableNames.getString("name");
-
-                        try (PreparedStatement dataQueryPS = connectet.prepareStatement(dataQuery)) {
-                            ResultSet columnData = dataQueryPS.executeQuery();
-
-                            while (columnData.next()) {
-                                TableRow row = new TableRow();
-                                CustumerTable.getItems().add(row);
-                                // populate the table!!!
-                                // I am here!!!
-                            }
-                        } catch (SQLException dataQueryException) {
-                            System.err.println(dataQueryException.toString());
-                        }
-                    }
-                    System.out.println("Added TableColumns to the TableView");
-                } catch (SQLException columnQueryException) {
-                    System.err.println(columnQueryException.toString());
-                }
-            }
-            System.out.println("Added Tabs to the TabPane");
-        } catch (SQLException tableQueryException) {
-            System.err.println(tableQueryException.toString());
-        }
-
     }
 
+
+
+    public ObservableList<ContractPerson> loadPersons(Statement statement, ObservableList<ContractPerson> list) throws SQLException {
+
+        list = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM " + DATABASE_NAME;
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while(resultSet.next()) {
+            String lastName = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            Date birthdate = resultSet.getDate(3);
+            Integer annualSalary = resultSet.getInt(4);
+            String employmentLevel = resultSet.getString(5);
+            Integer credit = resultSet.getInt(6);
+            list.add(new ContractPerson(lastName,name,birthdate,annualSalary,employmentLevel,credit));
+
+        }
+        statement.close();
+        return list;
+    }
+
+
     public void exit() {
-        new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit?").showAndWait();
-         connectet = null;
-        Platform.exit();
+        new Alert(Alert.AlertType.CONFIRMATION, "Wollen sie die Verbindung zu " + DATABASE_NAME +" wirklich trennen? ").showAndWait();
+         connected = null;
+         System.out.println("Database disconnected");
     }
 
     public static void createDatabase(Connection connection){
@@ -119,6 +105,5 @@ public class DatabaseManager {
     public Statement getStatement () {
             return statement;
         }
-
 
 }
