@@ -45,8 +45,8 @@ public class DatabaseManager {
         }
     }
 
-    public ObservableList<ContractPerson> loadPersons(ObservableList<ContractPerson> persons) throws SQLException {
-        persons = FXCollections.observableArrayList();
+    public ObservableList<ContractPerson> loadPersons(ObservableList<ContractPerson> list) throws SQLException {
+        list = FXCollections.observableArrayList();
         String sql = "SELECT * FROM " + TABLES_CUSTUMER;
         ResultSet resultSet = statement.executeQuery(sql);
 
@@ -57,11 +57,11 @@ public class DatabaseManager {
             Integer annualSalary = resultSet.getInt(4);
             String employmentLevel = resultSet.getString(5);
             Integer credit = resultSet.getInt(6);
-            persons.add(new ContractPerson(lastName,name,birthdate,annualSalary,employmentLevel,credit));
+            list.add(new ContractPerson(lastName,name,birthdate,annualSalary,employmentLevel,credit));
 
         }
         statement.close();
-        return persons;
+        return list;
     }
 
     public void exit() {
