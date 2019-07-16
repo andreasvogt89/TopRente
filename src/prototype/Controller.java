@@ -103,13 +103,13 @@ public class Controller implements Initializable {
     private ContractPerson createNewPerson() {
         String lastName = inputLastName.getText();
         String name = inputName.getText();
-        Date birthdate = java.sql.Date.valueOf(inputBirthDate.getValue());
+        String birthday = String.valueOf(inputBirthDate.getValue());
         Integer salary = Integer.valueOf(inputSalary.getText());
         String level = String.valueOf(inputLevel.getValue());
         Integer credit = Integer.valueOf(inputCredit.getText());
         isInt(inputSalary, inputSalary.getText());
         isInt(inputCredit, inputCredit.getText());
-        ContractPerson newContractPerson = new ContractPerson(lastName, name, birthdate, salary, level, credit);
+        ContractPerson newContractPerson = new ContractPerson(lastName, name, birthday, salary, level, credit);
         return newContractPerson;
     }
 
@@ -133,7 +133,7 @@ public class Controller implements Initializable {
         lastname.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("lastname"));
         name.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("name"));
         salary.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("salary"));
-        birthday.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("birtday"));
+        birthday.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("birthday"));
         credit.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("credit"));
         level.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("level"));
 

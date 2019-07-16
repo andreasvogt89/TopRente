@@ -53,12 +53,12 @@
                   </ChoiceBox>
                   <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="518.0" prefWidth="581.0">
                      <columns>
-                        <TableColumn fx:id="name" prefWidth="99.0" text="Vorname" />
-                        <TableColumn fx:id="lastname" prefWidth="99.0" text="Nachname" />
-                        <TableColumn fx:id="birthday" prefWidth="99.0" text="Geburtstag" />
-                        <TableColumn fx:id="salary" prefWidth="99.0" text="Jahreslohn" />
-                        <TableColumn fx:id="credit" prefWidth="99.0" text="Altersguthaben" />
-                        <TableColumn fx:id="level" prefWidth="99.0" text="Beschäftigungsgrad" />
+                        <TableColumn id="name" fx:id="name" prefWidth="99.0" text="Vorname" />
+                        <TableColumn id="lastname" fx:id="lastname" prefWidth="99.0" text="Nachname" />
+                        <TableColumn id="birthday" fx:id="birthday" prefWidth="99.0" text="Geburtstag" />
+                        <TableColumn id="salary" fx:id="salary" prefWidth="99.0" text="Jahreslohn" />
+                        <TableColumn id="credit" fx:id="credit" prefWidth="99.0" text="Altersguthaben" />
+                        <TableColumn id="level" fx:id="level" prefWidth="99.0" text="Beschäftigungsgrad" />
                      </columns></TableView>
                   <Circle fx:id="DBLamp" fill="#ff3421" layoutX="519.0" layoutY="20.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
                   <Label layoutX="14.0" layoutY="60.0" prefHeight="59.0" prefWidth="162.0" text="Vorname" />

@@ -9,7 +9,7 @@ public class ContractPerson {
 
     private SimpleStringProperty lastname;
     private SimpleStringProperty name;
-    private Date birthday;
+    private SimpleStringProperty birthday;
     private SimpleIntegerProperty salary;
     private SimpleStringProperty level;
     private SimpleIntegerProperty  credit;
@@ -18,11 +18,11 @@ public class ContractPerson {
 
 
 
-    public ContractPerson(String lastname, String name, Date birthday, Integer salary, String level, Integer credit) {
+    public ContractPerson(String lastname, String name, String birthday, Integer salary, String level, Integer credit) {
         this.lastname = new SimpleStringProperty(lastname);
         this.name = new SimpleStringProperty(name);
         this.credit = new SimpleIntegerProperty(credit);
-        this.birthday = birthday;
+        this.birthday = new SimpleStringProperty(birthday);
         this.salary = new SimpleIntegerProperty(salary);
         this.level = new SimpleStringProperty(level);
         calculateCoordinatedSalary(salary);
@@ -35,15 +35,15 @@ public class ContractPerson {
     }
 
     public String getLastname(){
-        return lastname.getName();
+        return lastname.getValue();
     }
 
     public String getName() {
-        return name.getName();
+        return name.getValue();
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public String getBirthday() {
+        return birthday.getValue();
     }
 
     public Integer getSalary() {
@@ -51,7 +51,7 @@ public class ContractPerson {
     }
 
     public String getLevel() {
-        return level.getName();
+        return level.getValue();
     }
 
     public Integer getCoordinatedSalary() {
