@@ -3,7 +3,10 @@ package prototype;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import static java.time.temporal.ChronoUnit.YEARS;
 
 public class ContractPerson {
 
@@ -64,6 +67,12 @@ public class ContractPerson {
 
     public Integer getCredit(){
         return credit.getValue();
+    }
+
+    public Integer calculateAge (){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate birthday = LocalDate.parse(getBirthday());
+        return Integer.valueOf((int) YEARS.between(birthday, currentDate));
     }
 }
 
