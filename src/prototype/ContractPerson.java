@@ -7,25 +7,25 @@ import java.util.Date;
 
 public class ContractPerson {
 
-    private SimpleStringProperty lastName;
+    private SimpleStringProperty lastname;
     private SimpleStringProperty name;
-    private Date birthdate;
-    private SimpleIntegerProperty annualSalary;
-    private SimpleStringProperty  employmentLevel;
+    private Date birthday;
+    private SimpleIntegerProperty salary;
+    private SimpleStringProperty level;
     private SimpleIntegerProperty  credit;
     private Integer coordinatedSalary;
     private Integer coordinationDeduction = 24885;
 
 
 
-    public ContractPerson(String lastName, String name, Date birthdate, Integer annualSalary, String employmentLevel, Integer credit) {
-        this.lastName = new SimpleStringProperty(lastName);
+    public ContractPerson(String lastname, String name, Date birthday, Integer salary, String level, Integer credit) {
+        this.lastname = new SimpleStringProperty(lastname);
         this.name = new SimpleStringProperty(name);
         this.credit = new SimpleIntegerProperty(credit);
-        this.birthdate = birthdate;
-        this.annualSalary = new SimpleIntegerProperty(annualSalary);
-        this.employmentLevel = new SimpleStringProperty(employmentLevel);
-        calculateCoordinatedSalary(annualSalary);
+        this.birthday = birthday;
+        this.salary = new SimpleIntegerProperty(salary);
+        this.level = new SimpleStringProperty(level);
+        calculateCoordinatedSalary(salary);
     }
 
 
@@ -34,24 +34,24 @@ public class ContractPerson {
         return coordinatedSalary;
     }
 
-    public String getLastName(){
-        return lastName.getName();
+    public String getLastname(){
+        return lastname.getName();
     }
 
     public String getName() {
         return name.getName();
     }
 
-    public Date getBirthdate() {
-        return birthdate;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public Integer getAnnualSalary() {
-        return annualSalary.getValue();
+    public Integer getSalary() {
+        return salary.getValue();
     }
 
-    public String getEmploymentLevel() {
-        return employmentLevel.getName();
+    public String getLevel() {
+        return level.getName();
     }
 
     public Integer getCoordinatedSalary() {

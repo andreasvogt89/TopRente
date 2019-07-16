@@ -11,8 +11,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import java.net.URL;
 import java.sql.SQLException;
-
-import java.sql.Statement;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -46,7 +44,7 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<ContractPerson, String> lastname;
     @FXML
-    private TableColumn<ContractPerson, String> birthdate;
+    private TableColumn<ContractPerson, String> birthday;
     @FXML
     private TableColumn<ContractPerson, String> salary;
     @FXML
@@ -63,7 +61,6 @@ public class Controller implements Initializable {
         databaseTyp.setItems(dbTypeList);
         databaseTyp.setValue(dbTypeList.get(0));
         databaseURL.setText("jdbc:sqlite:C:\\Users\\admin\\IdeaProjects\\TopRente\\src\\");
-
     }
 
     public void disconnectDB() {
@@ -79,6 +76,7 @@ public class Controller implements Initializable {
     }
 
     public void refreshDatabase() {
+        databaseManager.isDatabaseConnected();
         loadContent();
     }
 
@@ -125,18 +123,17 @@ public class Controller implements Initializable {
         DBLamp1.setFill(Color.PALEVIOLETRED);
     }
 
-
-    public void loadContent() {
+    private void loadContent() {
         try {
-            databaseManager.loadPersons(persons);
+           persons = databaseManager.loadPersons(databaseManager.getStatement(), persons);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        name.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("name"));
         lastname.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("lastname"));
+        name.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("name"));
         salary.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("salary"));
-        birthdate.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("birtdate"));
+        birthday.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("birtday"));
         credit.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("credit"));
         level.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("level"));
 

@@ -55,7 +55,7 @@
                      <columns>
                         <TableColumn fx:id="name" prefWidth="99.0" text="Vorname" />
                         <TableColumn fx:id="lastname" prefWidth="99.0" text="Nachname" />
-                        <TableColumn fx:id="birthdate" prefWidth="99.0" text="Geburtstag" />
+                        <TableColumn fx:id="birthday" prefWidth="99.0" text="Geburtstag" />
                         <TableColumn fx:id="salary" prefWidth="99.0" text="Jahreslohn" />
                         <TableColumn fx:id="credit" prefWidth="99.0" text="Altersguthaben" />
                         <TableColumn fx:id="level" prefWidth="99.0" text="Beschäftigungsgrad" />

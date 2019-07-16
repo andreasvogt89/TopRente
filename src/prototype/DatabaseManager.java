@@ -1,6 +1,4 @@
 package prototype;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -19,10 +17,10 @@ public class DatabaseManager {
     public static final String COLUMN_EMPLOYMENDLEVEL = "Beschäftigungsgrad";
     public static final String COLUMN_CREDIT = "Alterguthaben";
     private static Statement statement;
-    private static Connection connected;
+    private static Connection connection;
 
-    public static void connect(String databaseTyp, String databaseURL) {
-        connected = null;
+    static void connect(String databaseTyp, String databaseURL) {
+        connection = null;
         if (databaseTyp == null) {
             new Alert(Alert.AlertType.ERROR, "Database type must be selected.").showAndWait();
         } else if (databaseURL.isEmpty()) {
@@ -35,8 +33,8 @@ public class DatabaseManager {
             try {
                 Connection connection = DriverManager.getConnection(url);
                 createDatabase(connection);
-                connected = connection;
-                System.out.println("Successfully connected to the database");
+                DatabaseManager.connection = connection;
+                System.out.println("Successfully connection to the database");
             } catch (SQLException connectionException) {
                 System.err.println(connectionException.toString());
                 new Alert(Alert.AlertType.ERROR, "Datenbank konnte nicht Verbunden werden. Bitte Prüfen Sie den URL Pfad.").showAndWait();
@@ -45,32 +43,34 @@ public class DatabaseManager {
         }
     }
 
-    public ObservableList<ContractPerson> loadPersons(ObservableList<ContractPerson> list) throws SQLException {
+    ObservableList<ContractPerson> loadPersons(Statement statement, ObservableList<ContractPerson> list) throws SQLException {
         list = FXCollections.observableArrayList();
         String sql = "SELECT * FROM " + TABLES_CUSTUMER;
         ResultSet resultSet = statement.executeQuery(sql);
 
         while(resultSet.next()) {
-            String lastName = resultSet.getString(1);
+            String lastname = resultSet.getString(1);
             String name = resultSet.getString(2);
-            Date birthdate = resultSet.getDate(3);
-            Integer annualSalary = resultSet.getInt(4);
-            String employmentLevel = resultSet.getString(5);
+            Date birthday = resultSet.getDate(3);
+            Integer salary = resultSet.getInt(4);
+            String level = resultSet.getString(5);
             Integer credit = resultSet.getInt(6);
-            list.add(new ContractPerson(lastName,name,birthdate,annualSalary,employmentLevel,credit));
+            list.add(new ContractPerson(lastname,name,birthday,salary,level,credit));
 
         }
         statement.close();
         return list;
     }
 
-    public void exit() {
+    void exit() {
         new Alert(Alert.AlertType.CONFIRMATION, "Wollen sie die Verbindung zu " + DATABASE_NAME +" wirklich trennen? ").showAndWait();
-         connected = null;
+         connection = null;
          System.out.println("Database disconnected");
     }
 
-    public static void createDatabase(Connection connection){
+
+
+    static void createDatabase(Connection connection){
             try {
                 statement = connection.createStatement();
                 statement.execute("CREATE TABLE IF NOT EXISTS " +
@@ -87,18 +87,26 @@ public class DatabaseManager {
             }
         }
 
-    public static void createPerson (Statement statement, ContractPerson contractPerson)throws SQLException {
+    static void createPerson (Statement statement, ContractPerson contractPerson)throws SQLException {
             statement.execute("INSERT INTO " + TABLES_CUSTUMER +
-                    " VALUES " + "('" + contractPerson.getLastName() + "', " +
+                    " VALUES " + "('" + contractPerson.getLastname() + "', " +
                     "'" + contractPerson.getName() + "', " +
-                    "'" + contractPerson.getAnnualSalary() + "', " +
-                    "'" + contractPerson.getBirthdate() + "', " +
-                    "'" + contractPerson.getEmploymentLevel() + "', " +
+                    "'" + contractPerson.getSalary() + "', " +
+                    "'" + contractPerson.getBirthday() + "', " +
+                    "'" + contractPerson.getLevel() + "', " +
                     "'" + contractPerson.getCredit() + "');");
         }
 
-    public Statement getStatement () {
+    Statement getStatement () {
             return statement;
         }
+
+    Connection getConnection (){return connection;}
+
+    void isDatabaseConnected (){
+        if (connection == null)
+            new Alert(Alert.AlertType.CONFIRMATION, "Bitte erstellen Sie eine Verbindung zu einer Datenbank").showAndWait();
+        System.out.println("no database connected");
+    }
 
 }
