@@ -110,6 +110,7 @@ public class Controller implements Initializable {
         isInt(inputSalary, inputSalary.getText());
         isInt(inputCredit, inputCredit.getText());
         ContractPerson newContractPerson = new ContractPerson(lastName, name, birthday, salary, level, credit);
+        newContractPerson.calculateAge(birthday);
         return newContractPerson;
     }
 

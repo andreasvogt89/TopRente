@@ -2,9 +2,12 @@ package prototype;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Alert;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.FormatterClosedException;
 
 import static java.time.temporal.ChronoUnit.YEARS;
 
@@ -67,10 +70,14 @@ public class ContractPerson {
         return credit.getValue();
     }
 
-    public Integer calculateAge (){
+    public Integer calculateAge (String birthday) {
         LocalDate currentDate = LocalDate.now();
-        LocalDate birthday = LocalDate.parse(getBirthday());
-        return Integer.valueOf((int) YEARS.between(birthday, currentDate));
+        LocalDate birthdayDate = LocalDate.parse(birthday);
+        Integer age = Integer.valueOf((int) YEARS.between(birthdayDate, currentDate));
+        try{
+        if (age >= 24) ;}catch (FormatterClosedException e){
+        new Alert(Alert.AlertType.ERROR, "Person ist nicht 24").showAndWait();}
+        return age;
     }
 }
 
