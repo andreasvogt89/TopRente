@@ -19,8 +19,6 @@ public class ContractPerson {
     private Integer coordinatedSalary;
     private Integer coordinationDeduction = 24885;
 
-
-
     public ContractPerson(String lastname, String name, String birthday, Integer salary, String level, Integer credit) {
         this.lastname = new SimpleStringProperty(lastname);
         this.name = new SimpleStringProperty(name);
