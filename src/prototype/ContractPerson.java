@@ -75,7 +75,7 @@ public class ContractPerson {
         LocalDate birthdayDate = LocalDate.parse(birthday);
         Integer age = Integer.valueOf((int) YEARS.between(birthdayDate, currentDate));
         try{
-        if (age >= 24) ;}catch (FormatterClosedException e){
+        if (age >= 24) ;}catch (Exception e){
         new Alert(Alert.AlertType.ERROR, "Person ist nicht 24").showAndWait();}
         return age;
     }
