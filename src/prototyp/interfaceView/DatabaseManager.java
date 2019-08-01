@@ -1,12 +1,11 @@
-package prototype;
+package interfaceView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import java.sql.*;
-import java.util.Date;
 
 
- class DatabaseManager {
+class DatabaseManager {
 
     private static final String DATABASE_NAME = "Custumer_Database";
     private static final String TABLES_CUSTUMER = "Custumer_Table";
@@ -22,9 +21,9 @@ import java.util.Date;
     static void connect(String databaseTyp, String databaseURL) {
         connection = null;
         if (databaseTyp == null) {
-            new Alert(Alert.AlertType.ERROR, "Database type must be selected.").showAndWait();
+            new Alert(Alert.AlertType.ERROR, "Datenbank auswählen.").showAndWait();
         } else if (databaseURL.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "Database url must be specified.").showAndWait();
+            new Alert(Alert.AlertType.ERROR, "URL eintragen.").showAndWait();
         } else {
 
             String url = databaseURL + DATABASE_NAME;
@@ -37,7 +36,7 @@ import java.util.Date;
                 System.out.println("Successfully connection to the database");
             } catch (SQLException connectionException) {
                 System.err.println(connectionException.toString());
-                new Alert(Alert.AlertType.ERROR, "Datenbank konnte nicht Verbunden werden. Bitte Prüfen Sie den URL Pfad.").showAndWait();
+                new Alert(Alert.AlertType.ERROR, "Datenbank konnte nicht Verbunden werden.\nBitte Prüfen Sie den URL Pfad.").showAndWait();
             }
 
         }
@@ -63,7 +62,7 @@ import java.util.Date;
     }
 
     void exit() {
-        new Alert(Alert.AlertType.CONFIRMATION, "Wollen sie die Verbindung zu " + DATABASE_NAME +" wirklich trennen? ").showAndWait();
+        new Alert(Alert.AlertType.CONFIRMATION, "Wollen sie die Verbindung\nzu " + DATABASE_NAME +" wirklich trennen? ").showAndWait();
          connection = null;
          System.out.println("Database disconnected");
     }
@@ -104,10 +103,11 @@ import java.util.Date;
 
     Connection getConnection (){return connection;}
 
-    void isDatabaseConnected () {
+     boolean isDatabaseConnected() {
         if (connection == null) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Bitte erstellen Sie eine Verbindung zu einer Datenbank").showAndWait();
+            new Alert(Alert.AlertType.CONFIRMATION, "Bitte erstellen Sie erst\neine Verbindung zu einer Datenbank").showAndWait();
             System.out.println("no database connected");
-        }
+            return false;
+        }else return true;
     }
 }
