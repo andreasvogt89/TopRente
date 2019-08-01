@@ -1,6 +1,8 @@
 package interfaceView;
 
 
+import Database.DatabaseManager;
+import contractPerson.ContractPerson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -15,13 +17,12 @@ import javafx.scene.shape.Circle;
 
 
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
-public class Controller implements Initializable {
+public class ControllerInterfaceView implements Initializable {
 
     @FXML
     private TextField inputLastName;

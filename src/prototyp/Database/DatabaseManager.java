@@ -1,11 +1,12 @@
-package interfaceView;
+package Database;
+import contractPerson.ContractPerson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import java.sql.*;
 
 
-class DatabaseManager {
+public class DatabaseManager {
 
     private static final String DATABASE_NAME = "Custumer_Database";
     private static final String TABLES_CUSTUMER = "Custumer_Table";
@@ -18,7 +19,7 @@ class DatabaseManager {
     private static Statement statement;
     private static Connection connection;
 
-    static void connect(String databaseTyp, String databaseURL) {
+    public static void connect(String databaseTyp, String databaseURL) {
         connection = null;
         if (databaseTyp == null) {
             new Alert(Alert.AlertType.ERROR, "Datenbank auswählen.").showAndWait();
@@ -42,7 +43,7 @@ class DatabaseManager {
         }
     }
 
-    ObservableList<ContractPerson> loadPersons(Statement statement, ObservableList<ContractPerson> list) throws SQLException {
+    public ObservableList<ContractPerson> loadPersons(Statement statement, ObservableList<ContractPerson> list) throws SQLException {
         list = FXCollections.observableArrayList();
         String sql = "SELECT * FROM " + TABLES_CUSTUMER;
         ResultSet resultSet = statement.executeQuery(sql);
@@ -61,7 +62,7 @@ class DatabaseManager {
         return list;
     }
 
-    void exit() {
+    public void exit() {
         new Alert(Alert.AlertType.CONFIRMATION, "Wollen sie die Verbindung\nzu " + DATABASE_NAME +" wirklich trennen? ").showAndWait();
          connection = null;
          System.out.println("Database disconnected");
@@ -84,7 +85,7 @@ class DatabaseManager {
             }
         }
 
-    static void createPerson (Statement statement, ContractPerson contractPerson)throws SQLException {
+    public static void createPerson (Statement statement, ContractPerson contractPerson)throws SQLException {
            String sqlLocalStatemant =  "INSERT INTO " + TABLES_CUSTUMER +
                    " VALUES " + "('" + contractPerson.getLastname() + "', " +
                    "'" + contractPerson.getName() + "', " +
@@ -97,13 +98,13 @@ class DatabaseManager {
 
         }
 
-    Statement getStatement () {
+    public Statement getStatement () {
             return statement;
         }
 
-    Connection getConnection (){return connection;}
+    public Connection getConnection (){return connection;}
 
-     boolean isDatabaseConnected() {
+    public boolean isDatabaseConnected() {
         if (connection == null) {
             new Alert(Alert.AlertType.CONFIRMATION, "Bitte erstellen Sie erst\neine Verbindung zu einer Datenbank").showAndWait();
             System.out.println("no database connected");
