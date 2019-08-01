@@ -1,12 +1,10 @@
-package prototype;
+package interfaceView;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Alert;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.FormatterClosedException;
 
 import static java.time.temporal.ChronoUnit.YEARS;

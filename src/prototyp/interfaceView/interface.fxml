@@ -16,13 +16,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 
-<TabPane prefHeight="588.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prototype.Controller">
+<TabPane prefHeight="588.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceView.Controller">
    <tabs>
       <Tab text="Kunden">
          <content>
             <Pane fx:id="Custumer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1049.0">
                <children>
-                  <Button fx:id="ViewPerson" layoutX="73.0" layoutY="400.0" mnemonicParsing="false" onAction="#actionViewButton" prefHeight="38.0" prefWidth="227.0" text="Vorschau" />
+                  <Button fx:id="CanclePerson" layoutX="73.0" layoutY="400.0" mnemonicParsing="false" onAction="#actionCancleButton" prefHeight="38.0" prefWidth="227.0" text="Abrechen" />
                   <Button fx:id="SavePerson" layoutX="73.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
                   <Label layoutX="444.0" layoutY="-10.0" prefHeight="59.0" prefWidth="116.0" text="Datanbank" />
                   <Label layoutX="14.0" layoutY="1.0" prefHeight="59.0" prefWidth="162.0" text="Nachname" />
@@ -30,12 +30,12 @@
                   <Label layoutX="14.0" layoutY="177.0" prefHeight="59.0" prefWidth="162.0" text="Jahreslohn" />
                   <Label layoutX="14.0" layoutY="235.0" prefHeight="59.0" prefWidth="162.0" text="Guthaben" />
                   <Label layoutX="14.0" layoutY="290.0" prefHeight="59.0" prefWidth="162.0" text="Beschäftigungsgrad" />
-                  <TextField fx:id="inputLastName" layoutX="175.0" layoutY="11.0" prefHeight="38.0" prefWidth="199.0" />
-                  <TextField fx:id="inputName" layoutX="175.0" layoutY="70.0" prefHeight="38.0" prefWidth="199.0" />
-                  <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="129.0" prefHeight="38.0" prefWidth="199.0" />
-                  <TextField fx:id="inputSalary" layoutX="175.0" layoutY="188.0" prefHeight="38.0" prefWidth="199.0" />
-                  <TextField fx:id="inputCredit" layoutX="175.0" layoutY="250.0" prefHeight="38.0" prefWidth="199.0" />
-                  <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="310.0" prefHeight="25.0" prefWidth="199.0">
+                  <TextField fx:id="inputLastName" layoutX="175.0" layoutY="11.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
+                  <TextField fx:id="inputName" layoutX="175.0" layoutY="70.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
+                  <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="129.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
+                  <TextField fx:id="inputSalary" layoutX="175.0" layoutY="188.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
+                  <TextField fx:id="inputCredit" layoutX="175.0" layoutY="250.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
+                  <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="310.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="10%" />
