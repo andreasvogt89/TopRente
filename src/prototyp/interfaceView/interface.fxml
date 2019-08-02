@@ -22,20 +22,30 @@
          <content>
             <Pane fx:id="Custumer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1049.0">
                <children>
-                  <Button fx:id="CanclePerson" layoutX="73.0" layoutY="400.0" mnemonicParsing="false" onAction="#actionCancleButton" prefHeight="38.0" prefWidth="227.0" text="Abrechen" />
-                  <Button fx:id="SavePerson" layoutX="73.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
+                  <Button fx:id="CanclePerson" layoutX="73.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionCancleButton" prefHeight="38.0" prefWidth="227.0" text="Abrechen" />
+                  <Button fx:id="SavePerson" layoutX="73.0" layoutY="500.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
                   <Label layoutX="444.0" layoutY="-10.0" prefHeight="59.0" prefWidth="116.0" text="Datanbank" />
-                  <Label layoutX="14.0" layoutY="1.0" prefHeight="59.0" prefWidth="162.0" text="Nachname" />
-                  <Label layoutX="14.0" layoutY="118.0" prefHeight="59.0" prefWidth="162.0" text="Geburtsdatum" />
-                  <Label layoutX="14.0" layoutY="177.0" prefHeight="59.0" prefWidth="162.0" text="Jahreslohn" />
-                  <Label layoutX="14.0" layoutY="235.0" prefHeight="59.0" prefWidth="162.0" text="Guthaben" />
-                  <Label layoutX="14.0" layoutY="290.0" prefHeight="59.0" prefWidth="162.0" text="Beschäftigungsgrad" />
-                  <TextField fx:id="inputLastName" layoutX="175.0" layoutY="11.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
+                  <Label layoutX="14.0" layoutY="0.0" prefHeight="59.0" prefWidth="162.0" text="Nachname" />
+                  <Label layoutX="14.0" layoutY="60.0" prefHeight="59.0" prefWidth="162.0" text="Vorname" />
+                  <Label layoutX="14.0" layoutY="120.0" prefHeight="59.0" prefWidth="162.0" text="Geburtsdatum" />
+                  <Label layoutX="14.0" layoutY="180.0" prefHeight="59.0" prefWidth="162.0" text="Geschlächt" />
+                  <Label layoutX="14.0" layoutY="240.0" prefHeight="59.0" prefWidth="162.0" text="Jahreslohn" />
+                  <Label layoutX="14.0" layoutY="300.0" prefHeight="59.0" prefWidth="162.0" text="Altersguthaben" />
+                  <Label layoutX="14.0" layoutY="360.0" prefHeight="59.0" prefWidth="162.0" text="Beschäftigungsgrad" />
+                  <TextField fx:id="inputLastName" layoutX="175.0" layoutY="10.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                   <TextField fx:id="inputName" layoutX="175.0" layoutY="70.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
-                  <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="129.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
-                  <TextField fx:id="inputSalary" layoutX="175.0" layoutY="188.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
-                  <TextField fx:id="inputCredit" layoutX="175.0" layoutY="250.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
-                  <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="310.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0">
+                  <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="130.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
+                  <ChoiceBox fx:id="inputSex" layoutX="175.0" layoutY="190.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Männlich" />
+                           <String fx:value="Weiblich" />
+                        </FXCollections>
+                     </items>
+                  </ChoiceBox>
+                  <TextField fx:id="inputSalary" layoutX="175.0" layoutY="250.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
+                  <TextField fx:id="inputCredit" layoutX="175.0" layoutY="310.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
+                  <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="370.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="10%" />
@@ -51,17 +61,17 @@
                         </FXCollections>
                      </items>
                   </ChoiceBox>
-                  <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="518.0" prefWidth="581.0">
+                  <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="518.0" prefWidth="599.0">
                      <columns>
-                        <TableColumn id="name" fx:id="name" prefWidth="99.0" text="Vorname" />
-                        <TableColumn id="lastname" fx:id="lastname" prefWidth="99.0" text="Nachname" />
-                        <TableColumn id="birthday" fx:id="birthday" prefWidth="99.0" text="Geburtstag" />
-                        <TableColumn id="salary" fx:id="salary" prefWidth="99.0" text="Jahreslohn" />
-                        <TableColumn id="credit" fx:id="credit" prefWidth="99.0" text="Altersguthaben" />
-                        <TableColumn id="level" fx:id="level" prefWidth="99.0" text="Beschäftigungsgrad" />
+                        <TableColumn id="name" fx:id="name" prefWidth="86.0" text="Vorname" />
+                        <TableColumn id="lastname" fx:id="lastname" prefWidth="93.0" text="Nachname" />
+                        <TableColumn id="birthday" fx:id="birthday" prefWidth="92.0" text="Geburtstag" />
+                        <TableColumn id="salary" fx:id="salary" prefWidth="102.0" text="Jahreslohn" />
+                        <TableColumn id="credit" fx:id="credit" prefWidth="104.0" text="Altersguthaben" />
+                        <TableColumn id="level" fx:id="level" prefWidth="121.0" text="Beschäftigungsgrad" />
                      </columns></TableView>
                   <Circle fx:id="DBLamp" fill="#ff3421" layoutX="519.0" layoutY="20.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Label layoutX="14.0" layoutY="60.0" prefHeight="59.0" prefWidth="162.0" text="Vorname" />
+
                   <Button layoutX="534.0" layoutY="8.0" mnemonicParsing="false" onAction="#refreshDatabase" text="Refresh" />
                </children>
             </Pane>

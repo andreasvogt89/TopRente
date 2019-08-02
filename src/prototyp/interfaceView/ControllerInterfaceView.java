@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -19,6 +20,7 @@ import javafx.scene.shape.Circle;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 
@@ -30,6 +32,8 @@ public class ControllerInterfaceView implements Initializable {
     private TextField inputName;
     @FXML
     private DatePicker inputBirthDate;
+    @FXML
+    private ChoiceBox inputSex;
     @FXML
     private TextField inputSalary;
     @FXML
@@ -59,11 +63,12 @@ public class ControllerInterfaceView implements Initializable {
     @FXML
     private TableColumn<ContractPerson, String> level;
     @FXML
-    private Button CanclePerson;
+    private Button SavePerson;
 
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
     private ObservableList<ContractPerson> persons;
     final static DatabaseManager databaseManager = new DatabaseManager();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,6 +76,7 @@ public class ControllerInterfaceView implements Initializable {
         databaseTyp.setValue(dbTypeList.get(0));
         databaseURL.setText("jdbc:sqlite:C:\\Users\\%User%\\IdeaProjects\\TopRente\\src\\");
         cancleInput();
+        SavePerson.setDisable(true);
 
         CostumerTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -82,16 +88,17 @@ public class ControllerInterfaceView implements Initializable {
     }
 
     public void disconnectDB() {
-        databaseManager.exit();
+        databaseManager.disconnectDatabase();
         setControlLampsRed();
     }
 
     public void connectDB() {
         String url = String.valueOf(databaseURL.getText());
         String typ = String.valueOf(databaseTyp.getValue());
-        databaseManager.connect(typ, url);
+        databaseManager.connectDatabase(typ, url);
        if (databaseManager.isDatabaseConnected()){
         setControlLampsGreen();}
+        loadContent();
     }
 
     public void refreshDatabase() {
@@ -166,40 +173,32 @@ public class ControllerInterfaceView implements Initializable {
 
         inputLastName.setPromptText("Nachname");
         inputName.setPromptText("Vorname");
-        inputSalary.setPromptText("0000");
-        inputCredit.setPromptText("0000");
-        String zero =  "1990-01-01";
-        inputBirthDate.setValue(LocalDate.parse(zero));
+        inputSalary.setPromptText("Jahreslohn");
+        inputCredit.setPromptText("Altersguthaben");
+        inputBirthDate.setPromptText("Geburtsdatum");
+
     }
 
     @FXML
-    void keyReleasedProperty(KeyEvent event) {
+    public void  keyReleasedProperty(KeyEvent event) {
         String fString = inputLastName.getText();
         String sString = inputName.getText();
         String saString = inputCredit.getText();
         String wString = inputSalary.getText();
         String eString = inputBirthDate.toString();
+        String gString = String.valueOf(inputLevel.getValue());
+        String lString = String.valueOf(inputSex.getValue());
 
         boolean createButtonDisable = (fString.isEmpty() || fString.trim().isEmpty())||
         (sString.isEmpty() || sString.trim().isEmpty()) || (saString.isEmpty() || saString.trim().isEmpty()) ||
-        (eString.isEmpty() || eString.trim().isEmpty()) || wString.trim().isEmpty();
-
-        boolean cancelButtonDisable = (fString.isEmpty() || fString.trim().isEmpty())
-                    && (sString.isEmpty() || sString.trim().isEmpty()) && (saString.isEmpty() || saString.trim().isEmpty())
-                    && (eString.isEmpty() || eString.trim().isEmpty())|| wString.trim().isEmpty();
-
-        if (!cancelButtonDisable) {
-            CanclePerson.setDisable(false);
-        } else {
-            CanclePerson.setDisable(true);
-        }
+        (eString.isEmpty() || eString.trim().isEmpty()) || (wString.isEmpty() || wString.trim().isEmpty()) ||
+                gString.matches("null") || lString.matches("null");
 
         if (!createButtonDisable) {
-            CanclePerson.setDisable(false);
+            SavePerson.setDisable(false);
         } else {
-            CanclePerson.setDisable(true);
+            SavePerson.setDisable(true);
         }
-
     }
 
 }
