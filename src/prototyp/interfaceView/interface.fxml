@@ -35,32 +35,10 @@
                   <TextField fx:id="inputLastName" layoutX="175.0" layoutY="10.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                   <TextField fx:id="inputName" layoutX="175.0" layoutY="70.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                   <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="130.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
-                  <ChoiceBox fx:id="inputSex" layoutX="175.0" layoutY="190.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="Männlich" />
-                           <String fx:value="Weiblich" />
-                        </FXCollections>
-                     </items>
-                  </ChoiceBox>
+                  <ChoiceBox fx:id="inputSex" layoutX="175.0" layoutY="190.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0"/>
                   <TextField fx:id="inputSalary" layoutX="175.0" layoutY="250.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                   <TextField fx:id="inputCredit" layoutX="175.0" layoutY="310.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
-                  <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="370.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0">
-                     <items>
-                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="10%" />
-                           <String fx:value="20%" />
-                           <String fx:value="30%" />
-                           <String fx:value="40%" />
-                           <String fx:value="50%" />
-                           <String fx:value="60%" />
-                           <String fx:value="70%" />
-                           <String fx:value="80%" />
-                           <String fx:value="90%" />
-                           <String fx:value="100%" />
-                        </FXCollections>
-                     </items>
-                  </ChoiceBox>
+                  <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="370.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0"/>
                   <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="518.0" prefWidth="599.0">
                      <columns>
                         <TableColumn id="name" fx:id="name" prefWidth="86.0" text="Vorname" />
@@ -71,7 +49,6 @@
                         <TableColumn id="level" fx:id="level" prefWidth="121.0" text="Beschäftigungsgrad" />
                      </columns></TableView>
                   <Circle fx:id="DBLamp" fill="#ff3421" layoutX="519.0" layoutY="20.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
-
                   <Button layoutX="534.0" layoutY="8.0" mnemonicParsing="false" onAction="#refreshDatabase" text="Refresh" />
                </children>
             </Pane>

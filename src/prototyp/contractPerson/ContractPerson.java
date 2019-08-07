@@ -17,8 +17,6 @@ public class ContractPerson {
     private SimpleIntegerProperty salary;
     private SimpleStringProperty level;
     private SimpleIntegerProperty  credit;
-    private Integer coordinatedSalary;
-    private Integer coordinationDeduction = 24885;
 
     public ContractPerson(String lastname, String name, String birthday, Integer salary, String level, Integer credit) {
         this.lastname = new SimpleStringProperty(lastname);
@@ -27,13 +25,7 @@ public class ContractPerson {
         this.birthday = new SimpleStringProperty(birthday);
         this.salary = new SimpleIntegerProperty(salary);
         this.level = new SimpleStringProperty(level);
-        calculateCoordinatedSalary(salary);
-    }
 
-
-    private Integer calculateCoordinatedSalary(Integer annualSalary){
-        coordinatedSalary = coordinationDeduction - annualSalary;
-        return coordinatedSalary;
     }
 
     public String getLastname(){
@@ -56,26 +48,18 @@ public class ContractPerson {
         return level.getValue();
     }
 
-    public Integer getCoordinatedSalary() {
-        return coordinatedSalary;
-    }
-
-    public Integer getCoordinationDeduction() {
-        return coordinationDeduction;
-    }
-
     public Integer getCredit(){
         return credit.getValue();
     }
 
-    public Integer calculateAge (String birthday) {
+    public boolean checkAge(String birthday) {
         LocalDate currentDate = LocalDate.now();
         LocalDate birthdayDate = LocalDate.parse(birthday);
         Integer age = Integer.valueOf((int) YEARS.between(birthdayDate, currentDate));
-        try{
-        if (age >= 24) ;}catch (Exception e){
-        new Alert(Alert.AlertType.ERROR, "Person ist nicht 24").showAndWait();}
-        return age;
+        if (age <= 23) {
+        new Alert(Alert.AlertType.ERROR, "Person ist nicht 24").showAndWait();
+        return false;}
+        else return true;
     }
 }
 

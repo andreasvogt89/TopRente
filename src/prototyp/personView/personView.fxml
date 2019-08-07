@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="personView.ControllerPersonView"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane id="personView" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="nameView" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="131.0" text="Name" />
+      <Label fx:id="salaryView" layoutX="14.0" layoutY="59.0" prefHeight="35.0" prefWidth="131.0" text="Name" />
+      <Label fx:id="koordSalaryView" layoutX="14.0" layoutY="105.0" prefHeight="35.0" prefWidth="131.0" text="Name" />
+   </children>
 </AnchorPane>

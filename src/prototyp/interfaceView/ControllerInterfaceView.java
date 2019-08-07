@@ -11,16 +11,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import personView.ControllerPersonView;
+import personView.PersonViewModel;
 
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 
@@ -64,25 +63,33 @@ public class ControllerInterfaceView implements Initializable {
     private TableColumn<ContractPerson, String> level;
     @FXML
     private Button SavePerson;
-
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
+    private String SqlLiteURL = "jdbc:sqlite:C:\\Users\\admin\\IdeaProjects\\TopRente\\src\\";
     private ObservableList<ContractPerson> persons;
     final static DatabaseManager databaseManager = new DatabaseManager();
+    ObservableList<String> inputSexList = FXCollections.observableArrayList("Männlich","Weiblich");
+    ObservableList<String> inputLevelList = FXCollections.observableArrayList("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%");
+
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         databaseTyp.setItems(dbTypeList);
         databaseTyp.setValue(dbTypeList.get(0));
-        databaseURL.setText("jdbc:sqlite:C:\\Users\\%User%\\IdeaProjects\\TopRente\\src\\");
+        databaseURL.setText(SqlLiteURL);
+        inputSex.setItems(inputSexList);
+        inputLevel.setItems(inputLevelList);
         cancleInput();
-        SavePerson.setDisable(true);
-
         CostumerTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
                 System.out.println(person.getName());
+                PersonViewModel personViewModel = new PersonViewModel(person);
+                ControllerPersonView controllerPersonView = new ControllerPersonView(personViewModel);
+
+
             }
         });
     }
@@ -111,9 +118,9 @@ public class ControllerInterfaceView implements Initializable {
     }
 
     public void actionSaveButton() throws SQLException {
-
+        if (createNewPerson().checkAge(createNewPerson().getBirthday())){
         databaseManager.createPerson(databaseManager.getStatement(), createNewPerson());
-        loadContent();
+        loadContent();}
     }
 
     private boolean isInt(TextField input, String message) {
@@ -137,7 +144,6 @@ public class ControllerInterfaceView implements Initializable {
         isInt(inputSalary, inputSalary.getText());
         isInt(inputCredit, inputCredit.getText());
         ContractPerson newContractPerson = new ContractPerson(lastName, name, birthday, salary, level, credit);
-        newContractPerson.calculateAge(birthday);
         return newContractPerson;
     }
 
@@ -170,12 +176,13 @@ public class ControllerInterfaceView implements Initializable {
     }
 
     private void cancleInput(){
-
         inputLastName.setPromptText("Nachname");
         inputName.setPromptText("Vorname");
         inputSalary.setPromptText("Jahreslohn");
         inputCredit.setPromptText("Altersguthaben");
         inputBirthDate.setPromptText("Geburtsdatum");
+        inputSex.setValue(inputSexList.get(0));
+        inputLevel.setValue(inputLevelList.get(9));
 
     }
 
