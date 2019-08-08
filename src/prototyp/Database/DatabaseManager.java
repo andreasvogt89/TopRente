@@ -8,8 +8,8 @@ import java.sql.*;
 
 public class DatabaseManager {
 
-    private static final String DATABASE_NAME = "Custumer_Database";
-    private static final String TABLES_CUSTUMER = "Custumer_Table";
+    private static final String DATABASE_NAME = "Datenbank";
+    private static final String TABLES_CUSTUMER = "Kundentabelle";
     private static final String COLUMN_LASTNAME = "Nachname";
     private static final String COLUMN_NAME = "Vorname";
     private static final String COLUMN_ANUALSALARY = "Jahreslohn";
@@ -27,7 +27,7 @@ public class DatabaseManager {
         if (databaseTyp == null) {
             new Alert(Alert.AlertType.ERROR, "Datenbank auswählen.").showAndWait();
         } else if (databaseURL.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "URL eintragen.").showAndWait();
+            new Alert(Alert.AlertType.ERROR, "Datenbank URL eintragen.").showAndWait();
         } else {
 
             String url = databaseURL + DATABASE_NAME;
@@ -55,17 +55,18 @@ public class DatabaseManager {
     private static void createDatabase(Connection connection){
             try {
                 statement = connection.createStatement();
-                statement.execute("CREATE TABLE IF NOT EXISTS " +
+                String SQLstring = "CREATE TABLE IF NOT EXISTS " +
                         TABLES_CUSTUMER + "(" +
                         COLUMN_LASTNAME + " VARCHAR, " +
                         COLUMN_NAME + " VARCHAR, " +
                         COLUMN_ANUALSALARY + " INTEGER, " +
                         COLUMN_BIRTHDATE + " VARCHAR, " +
                         COLUMN_EMPLOYMENDLEVEL + " VARCHAR, " +
-                        COLUMN_CREDIT + " INTEGER " +
-                        COLUMN_INSURNCE + " INTEGER " +
-                        COLUMN_SEX + " VARCHAR " + ")"
-                );
+                        COLUMN_CREDIT + " INTEGER, " +
+                        COLUMN_INSURNCE + " INTEGER, " +
+                        COLUMN_SEX + " VARCHAR " + ")";
+                statement.execute(SQLstring);
+                System.out.println(SQLstring);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

@@ -86,6 +86,7 @@ public class ControllerInterfaceView implements Initializable {
         databaseURL.setText(SqlLiteURL);
         inputSex.setItems(inputSexList);
         inputLevel.setItems(inputLevelList);
+
         cancleInput();
         CostumerTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -94,7 +95,6 @@ public class ControllerInterfaceView implements Initializable {
                 System.out.println(person.getName());
                 PersonViewModel personViewModel = new PersonViewModel(person);
                 ControllerPersonView controllerPersonView = new ControllerPersonView(personViewModel);
-
 
             }
         });
@@ -181,13 +181,13 @@ public class ControllerInterfaceView implements Initializable {
         level.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("level"));
         insurance.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("insurance"));
         sex.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("sex"));
-
-
         CostumerTable.setItems(persons);
+        cancleInput();
 
     }
 
-    private void cancleInput(){
+     void cancleInput(){
+
         inputLastName.setPromptText("Nachname");
         inputName.setPromptText("Vorname");
         inputSalary.setPromptText("Jahreslohn");
@@ -208,7 +208,7 @@ public class ControllerInterfaceView implements Initializable {
         String eString = inputBirthDate.toString();
         String gString = String.valueOf(inputLevel.getValue());
         String lString = String.valueOf(inputSex.getValue());
-        String xString = inputInsuranceNumber.toString();
+        String xString = inputInsuranceNumber.getText();
 
 
         boolean createButtonDisable = (fString.isEmpty() || fString.trim().isEmpty())||
