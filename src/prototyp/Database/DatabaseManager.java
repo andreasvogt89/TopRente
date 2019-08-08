@@ -71,6 +71,7 @@ public class DatabaseManager {
             }
         }
 
+
     public Statement getStatement () {
             return statement;
         }
