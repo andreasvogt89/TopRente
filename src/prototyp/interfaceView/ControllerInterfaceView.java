@@ -40,6 +40,8 @@ public class ControllerInterfaceView implements Initializable {
     @FXML
     private ChoiceBox inputLevel;
     @FXML
+    private TextField inputInsuranceNumber;
+    @FXML
     public TextField databaseURL;
     @FXML
     public ComboBox<String> databaseTyp;
@@ -61,6 +63,10 @@ public class ControllerInterfaceView implements Initializable {
     private TableColumn<ContractPerson, String> credit;
     @FXML
     private TableColumn<ContractPerson, String> level;
+    @FXML
+    private TableColumn<ContractPerson, String> insurance;
+    @FXML
+    private TableColumn<ContractPerson, String> sex;
     @FXML
     private Button SavePerson;
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
@@ -141,9 +147,12 @@ public class ControllerInterfaceView implements Initializable {
         Integer salary = Integer.valueOf(inputSalary.getText());
         String level = String.valueOf(inputLevel.getValue());
         Integer credit = Integer.valueOf(inputCredit.getText());
+        Integer insurance = Integer.valueOf(inputInsuranceNumber.getText());
+        String sex = String.valueOf(inputSex.getValue());
         isInt(inputSalary, inputSalary.getText());
         isInt(inputCredit, inputCredit.getText());
-        ContractPerson newContractPerson = new ContractPerson(lastName, name, birthday, salary, level, credit);
+        isInt(inputInsuranceNumber,inputInsuranceNumber.getText());
+        ContractPerson newContractPerson = new ContractPerson(lastName, name, birthday, salary, level, credit,insurance,sex);
         return newContractPerson;
     }
 
@@ -170,6 +179,9 @@ public class ControllerInterfaceView implements Initializable {
         birthday.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("birthday"));
         credit.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("credit"));
         level.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("level"));
+        insurance.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("insurance"));
+        sex.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("sex"));
+
 
         CostumerTable.setItems(persons);
 
@@ -181,6 +193,7 @@ public class ControllerInterfaceView implements Initializable {
         inputSalary.setPromptText("Jahreslohn");
         inputCredit.setPromptText("Altersguthaben");
         inputBirthDate.setPromptText("Geburtsdatum");
+        inputInsuranceNumber.setPromptText("Versicherungsnummer");
         inputSex.setValue(inputSexList.get(0));
         inputLevel.setValue(inputLevelList.get(9));
 
@@ -195,11 +208,13 @@ public class ControllerInterfaceView implements Initializable {
         String eString = inputBirthDate.toString();
         String gString = String.valueOf(inputLevel.getValue());
         String lString = String.valueOf(inputSex.getValue());
+        String xString = inputInsuranceNumber.toString();
+
 
         boolean createButtonDisable = (fString.isEmpty() || fString.trim().isEmpty())||
         (sString.isEmpty() || sString.trim().isEmpty()) || (saString.isEmpty() || saString.trim().isEmpty()) ||
         (eString.isEmpty() || eString.trim().isEmpty()) || (wString.isEmpty() || wString.trim().isEmpty()) ||
-                gString.matches("null") || lString.matches("null");
+        (xString.isEmpty() || xString.trim().isEmpty()) || gString.matches("null") || lString.matches("null");
 
         if (!createButtonDisable) {
             SavePerson.setDisable(false);

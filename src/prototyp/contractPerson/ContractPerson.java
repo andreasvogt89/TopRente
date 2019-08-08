@@ -17,15 +17,18 @@ public class ContractPerson {
     private SimpleIntegerProperty salary;
     private SimpleStringProperty level;
     private SimpleIntegerProperty  credit;
+    private SimpleStringProperty  sex;
+    private SimpleIntegerProperty  insurance;
 
-    public ContractPerson(String lastname, String name, String birthday, Integer salary, String level, Integer credit) {
+    public ContractPerson(String lastname, String name, String birthday, Integer salary, String level, Integer credit,Integer insurance,String sex) {
         this.lastname = new SimpleStringProperty(lastname);
         this.name = new SimpleStringProperty(name);
         this.credit = new SimpleIntegerProperty(credit);
         this.birthday = new SimpleStringProperty(birthday);
         this.salary = new SimpleIntegerProperty(salary);
         this.level = new SimpleStringProperty(level);
-
+        this.insurance = new SimpleIntegerProperty(insurance);
+        this.sex = new SimpleStringProperty(sex);
     }
 
     public String getLastname(){
@@ -50,6 +53,14 @@ public class ContractPerson {
 
     public Integer getCredit(){
         return credit.getValue();
+    }
+
+    public String getSex() {
+        return sex.getValue();
+    }
+
+    public Integer getInsurance() {
+        return insurance.getValue();
     }
 
     public boolean checkAge(String birthday) {

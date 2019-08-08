@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -16,14 +14,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 
-<TabPane prefHeight="588.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceView.ControllerInterfaceView">
+<TabPane prefHeight="611.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceView.ControllerInterfaceView">
    <tabs>
       <Tab text="Kunden">
          <content>
-            <Pane fx:id="Custumer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="1049.0">
+            <Pane fx:id="Custumer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="1318.0">
                <children>
-                  <Button fx:id="CanclePerson" layoutX="73.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionCancleButton" prefHeight="38.0" prefWidth="227.0" text="Abrechen" />
-                  <Button fx:id="SavePerson" layoutX="73.0" layoutY="500.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="38.0" prefWidth="227.0" text="Speichern" />
+                  <Button fx:id="CanclePerson" layoutX="14.0" layoutY="497.0" mnemonicParsing="false" onAction="#actionCancleButton" prefHeight="30.0" prefWidth="160.0" text="Abrechen" />
+                  <Button fx:id="SavePerson" layoutX="206.0" layoutY="496.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="32.0" prefWidth="168.0" text="Speichern" />
                   <Label layoutX="444.0" layoutY="-10.0" prefHeight="59.0" prefWidth="116.0" text="Datanbank" />
                   <Label layoutX="14.0" layoutY="0.0" prefHeight="59.0" prefWidth="162.0" text="Nachname" />
                   <Label layoutX="14.0" layoutY="60.0" prefHeight="59.0" prefWidth="162.0" text="Vorname" />
@@ -35,11 +33,11 @@
                   <TextField fx:id="inputLastName" layoutX="175.0" layoutY="10.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                   <TextField fx:id="inputName" layoutX="175.0" layoutY="70.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                   <DatePicker fx:id="inputBirthDate" layoutX="175.0" layoutY="130.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
-                  <ChoiceBox fx:id="inputSex" layoutX="175.0" layoutY="190.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0"/>
+                  <ChoiceBox fx:id="inputSex" layoutX="175.0" layoutY="197.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0" />
                   <TextField fx:id="inputSalary" layoutX="175.0" layoutY="250.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                   <TextField fx:id="inputCredit" layoutX="175.0" layoutY="310.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
-                  <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="370.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0"/>
-                  <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="518.0" prefWidth="599.0">
+                  <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="377.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0" />
+                  <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="531.0" prefWidth="837.0">
                      <columns>
                         <TableColumn id="name" fx:id="name" prefWidth="86.0" text="Vorname" />
                         <TableColumn id="lastname" fx:id="lastname" prefWidth="93.0" text="Nachname" />
@@ -47,9 +45,13 @@
                         <TableColumn id="salary" fx:id="salary" prefWidth="102.0" text="Jahreslohn" />
                         <TableColumn id="credit" fx:id="credit" prefWidth="104.0" text="Altersguthaben" />
                         <TableColumn id="level" fx:id="level" prefWidth="121.0" text="Beschäftigungsgrad" />
+                        <TableColumn id="insurance" fx:id="insurance" prefWidth="145.0" text="Versicherungsnummer" />
+                        <TableColumn id="sex" fx:id="sex" prefWidth="93.0" text="Geschlächt" />
                      </columns></TableView>
                   <Circle fx:id="DBLamp" fill="#ff3421" layoutX="519.0" layoutY="20.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
                   <Button layoutX="534.0" layoutY="8.0" mnemonicParsing="false" onAction="#refreshDatabase" text="Refresh" />
+                  <Label layoutX="13.0" layoutY="419.0" prefHeight="59.0" prefWidth="162.0" text="Versicherungsnummer" />
+                  <TextField fx:id="inputInsuranceNumber" layoutX="175.0" layoutY="430.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                </children>
             </Pane>
          </content>

@@ -16,6 +16,9 @@ public class DatabaseManager {
     private static final String COLUMN_BIRTHDATE = "Geburtsdatum";
     private static final String COLUMN_EMPLOYMENDLEVEL = "Beschäftigungsgrad";
     private static final String COLUMN_CREDIT = "Alterguthaben";
+    private static final String COLUMN_INSURNCE = "Versicherungsnummer";
+    private static final String COLUMN_SEX = "Geschlächt";
+
     private static Statement statement;
     private static Connection connection;
 
@@ -59,7 +62,9 @@ public class DatabaseManager {
                         COLUMN_ANUALSALARY + " INTEGER, " +
                         COLUMN_BIRTHDATE + " VARCHAR, " +
                         COLUMN_EMPLOYMENDLEVEL + " VARCHAR, " +
-                        COLUMN_CREDIT + " INTEGER " + ")"
+                        COLUMN_CREDIT + " INTEGER " +
+                        COLUMN_INSURNCE + " INTEGER " +
+                        COLUMN_SEX + " VARCHAR " + ")"
                 );
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -87,7 +92,9 @@ public class DatabaseManager {
                 "'" + contractPerson.getSalary() + "', " +
                 "'" + contractPerson.getBirthday() + "', " +
                 "'" + contractPerson.getLevel() + "', " +
-                "'" + contractPerson.getCredit() + "');";
+                "'" + contractPerson.getCredit() + "', " +
+                "'" + contractPerson.getInsurance() + "', " +
+                "'" + contractPerson.getSex() + "');";
         statement.execute(sqlLocalStatemant);
         System.out.println(sqlLocalStatemant);
 
@@ -105,7 +112,9 @@ public class DatabaseManager {
             Integer salary = resultSet.getInt(3);
             String level = resultSet.getString(5);
             Integer credit = resultSet.getInt(6);
-            list.add(new ContractPerson(lastname,name,birthday,salary,level,credit));
+            Integer insurance = resultSet.getInt(7);
+            String sex = resultSet.getString(8);
+            list.add(new ContractPerson(lastname,name,birthday,salary,level,credit,insurance,sex));
 
         }
         statement.close();
