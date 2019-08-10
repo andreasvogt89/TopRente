@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
 <TabPane prefHeight="611.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceView.ControllerInterfaceView">
    <tabs>
@@ -20,8 +21,6 @@
          <content>
             <Pane fx:id="Custumer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="1318.0">
                <children>
-                  <Button fx:id="CanclePerson" layoutX="14.0" layoutY="497.0" mnemonicParsing="false" onAction="#actionCancleButton" prefHeight="30.0" prefWidth="160.0" text="Abrechen" />
-                  <Button fx:id="SavePerson" layoutX="206.0" layoutY="496.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="32.0" prefWidth="168.0" text="Speichern" />
                   <Label layoutX="444.0" layoutY="-10.0" prefHeight="59.0" prefWidth="116.0" text="Datanbank" />
                   <Label layoutX="14.0" layoutY="0.0" prefHeight="59.0" prefWidth="162.0" text="Nachname" />
                   <Label layoutX="14.0" layoutY="60.0" prefHeight="59.0" prefWidth="162.0" text="Vorname" />
@@ -37,6 +36,8 @@
                   <TextField fx:id="inputSalary" layoutX="175.0" layoutY="250.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                   <TextField fx:id="inputCredit" layoutX="175.0" layoutY="310.0" onKeyReleased="#keyReleasedProperty" prefHeight="38.0" prefWidth="199.0" />
                   <ChoiceBox fx:id="inputLevel" layoutX="175.0" layoutY="377.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="199.0" />
+                  <Button fx:id="CanclePerson" layoutX="14.0" layoutY="497.0" mnemonicParsing="false" onAction="#actionCancleButton" prefHeight="30.0" prefWidth="160.0" text="Abrechen" />
+                  <Button fx:id="SavePerson" layoutX="206.0" layoutY="496.0" mnemonicParsing="false" onAction="#actionSaveButton" prefHeight="32.0" prefWidth="168.0" text="Speichern" />
                   <TableView fx:id="CostumerTable" layoutX="442.0" layoutY="35.0" prefHeight="531.0" prefWidth="837.0">
                      <columns>
                         <TableColumn id="name" fx:id="name" prefWidth="86.0" text="Vorname" />
@@ -69,6 +70,105 @@
                   <Button layoutX="181.0" layoutY="145.0" mnemonicParsing="false" onAction="#connectDB" prefHeight="38.0" prefWidth="146.0" text="Verbinden" />
                   <Button layoutX="350.0" layoutY="145.0" mnemonicParsing="false" onAction="#disconnectDB" prefHeight="38.0" prefWidth="146.0" text="Trennen" />
 
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Beitrag- und Umwandlunsssätze">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="9.0" layoutY="21.0" prefHeight="21.0" prefWidth="427.0" text="Überobligatorische Beitragssätze" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="84.0" layoutY="58.0" prefHeight="21.0" prefWidth="102.0" text="Sparbeitrag AN" />
+                  <Label layoutX="186.0" layoutY="58.0" prefHeight="21.0" prefWidth="102.0" text="Sparbeitrag AG" />
+                  <Label layoutX="288.0" layoutY="58.0" prefHeight="21.0" prefWidth="102.0" text="Risikobeitrag AN" />
+                  <Label layoutX="393.0" layoutY="58.0" prefHeight="21.0" prefWidth="102.0" text="Risikobeitrag AG" />
+                  <Label layoutX="14.0" layoutY="60.0" prefHeight="21.0" prefWidth="70.0" text="Alter" />
+                  <Label layoutX="14.0" layoutY="80.0" prefHeight="19.0" prefWidth="70.0" text="22-34" />
+                  <Label layoutX="14.0" layoutY="110.0" prefHeight="19.0" prefWidth="70.0" text="35-44" />
+                  <Label layoutX="14.0" layoutY="140.0" prefHeight="19.0" prefWidth="70.0" text="45-54" />
+                  <Label layoutX="14.0" layoutY="170.0" prefHeight="19.0" prefWidth="70.0" text="55-65" />
+                  <TextField fx:id="InputSavingContributionANGroup1" layoutX="84.0" layoutY="80.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputSavingContributionAGGroup1" layoutX="186.0" layoutY="80.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputRiskContributionANGroup1" layoutX="288.0" layoutY="80.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputRiskContributionAGGroup1" layoutX="393.0" layoutY="80.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputSavingContributionANGroup2" layoutX="84.0" layoutY="110.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputSavingContributionAGGroup2" layoutX="186.0" layoutY="110.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputRiskContributionANGroup2" layoutX="288.0" layoutY="110.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputRiskContributionAGGroup2" layoutX="393.0" layoutY="110.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputSavingContributionANGroup3" layoutX="84.0" layoutY="140.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputSavingContributionAGGroup3" layoutX="186.0" layoutY="140.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputRiskContributionANGroup3" layoutX="288.0" layoutY="140.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputRiskContributionAGGroup3" layoutX="393.0" layoutY="140.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputSavingContributionANGroup4" layoutX="84.0" layoutY="170.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputSavingContributionAGGroup4" layoutX="186.0" layoutY="170.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputRiskContributionANGroup4" layoutX="288.0" layoutY="170.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputRiskContributionAGGroup4" layoutX="393.0" layoutY="170.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <Label layoutX="16.0" layoutY="271.0" prefHeight="21.0" prefWidth="443.0" text="Beitragssätze nach BVG" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="85.0" layoutY="302.0" prefHeight="21.0" prefWidth="102.0" text="Sparbeitrag AN" />
+                  <Label layoutX="187.0" layoutY="302.0" prefHeight="21.0" prefWidth="102.0" text="Sparbeitrag AG" />
+                  <Label layoutX="289.0" layoutY="302.0" prefHeight="21.0" prefWidth="102.0" text="Risikobeitrag AN" />
+                  <Label layoutX="394.0" layoutY="302.0" prefHeight="21.0" prefWidth="102.0" text="Risikobeitrag AG" />
+                  <Label layoutX="14.0" layoutY="300.0" prefHeight="21.0" prefWidth="70.0" text="Alter" />
+                  <Label layoutX="14.0" layoutY="330.0" prefHeight="19.0" prefWidth="70.0" text="22-34" />
+                  <Label layoutX="14.0" layoutY="360.0" prefHeight="19.0" prefWidth="70.0" text="35-44" />
+                  <Label layoutX="14.0" layoutY="390.0" prefHeight="19.0" prefWidth="70.0" text="45-54" />
+                  <Label layoutX="14.0" layoutY="420.0" prefHeight="19.0" prefWidth="70.0" text="55-65" />
+                  <Label fx:id="InputSavingContributionANGroup1BVG" layoutX="84.0" layoutY="330.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputSavingContributionAGGroup1BVG" layoutX="186.0" layoutY="330.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputRiskContributionANGroup1BVG" layoutX="288.0" layoutY="330.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputRiskContributionAGGroup1BVG" layoutX="393.0" layoutY="330.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputSavingContributionANGroup2BVG" layoutX="84.0" layoutY="360.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputSavingContributionAGGroup2BVG" layoutX="186.0" layoutY="360.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputRiskContributionANGroup2BVG" layoutX="288.0" layoutY="360.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputRiskContributionAGGroup2BVG" layoutX="393.0" layoutY="360.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputSavingContributionANGroup3BVG" layoutX="84.0" layoutY="390.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputSavingContributionAGGroup3BVG" layoutX="186.0" layoutY="390.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputRiskContributionANGroup3BVG" layoutX="288.0" layoutY="390.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputRiskContributionAGGroup3BVG" layoutX="393.0" layoutY="390.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputSavingContributionANGroup4BVG" layoutX="84.0" layoutY="420.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputSavingContributionAGGroup4BVG" layoutX="186.0" layoutY="420.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputRiskContributionANGroup4BVG" layoutX="288.0" layoutY="420.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label fx:id="InputRiskContributionAGGroup4BVG" layoutX="393.0" layoutY="420.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
+                  <Label layoutX="16.0" layoutY="534.0" prefHeight="21.0" prefWidth="276.0" text="Alle Angaben in %" />
+                  <Label layoutX="736.0" layoutY="22.0" prefHeight="21.0" prefWidth="427.0" text="Überobligatorische Umwandlungssätze" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="806.0" layoutY="62.0" prefHeight="21.0" prefWidth="102.0" text="Männer" />
+                  <Label layoutX="908.0" layoutY="62.0" prefHeight="21.0" prefWidth="102.0" text="Frauen" />
+                  <Label layoutX="736.0" layoutY="64.0" prefHeight="21.0" prefWidth="70.0" text="Alter" />
+                  <Label layoutX="736.0" layoutY="84.0" prefHeight="19.0" prefWidth="70.0" text="60" />
+                  <Label layoutX="736.0" layoutY="114.0" prefHeight="19.0" prefWidth="70.0" text="61" />
+                  <Label layoutX="736.0" layoutY="144.0" prefHeight="19.0" prefWidth="70.0" text="62" />
+                  <Label layoutX="736.0" layoutY="174.0" prefHeight="19.0" prefWidth="70.0" text="63" />
+                  <Label layoutX="736.0" layoutY="206.0" prefHeight="19.0" prefWidth="70.0" text="64" />
+                  <Label layoutX="736.0" layoutY="240.0" prefHeight="19.0" prefWidth="70.0" text="65" />
+                  <TextField fx:id="InputConversionRateManGroup60" layoutX="806.0" layoutY="84.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateWomanGroup60" layoutX="908.0" layoutY="84.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateManGroup61" layoutX="806.0" layoutY="114.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateWomanGroup61" layoutX="908.0" layoutY="114.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateManGroup62" layoutX="806.0" layoutY="144.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateWomanGroup62" layoutX="908.0" layoutY="144.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateManGroup63" layoutX="806.0" layoutY="174.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateWomanGroup63" layoutX="908.0" layoutY="174.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateManGroup64" layoutX="806.0" layoutY="206.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateWomanGroup64" layoutX="908.0" layoutY="206.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateManGroup65" layoutX="806.0" layoutY="240.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="InputConversionRateWomanGroup65" layoutX="908.0" layoutY="240.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <Label layoutX="743.0" layoutY="330.0" prefHeight="27.0" prefWidth="158.0" text="Umwandlungssatz nach BVG" textAlignment="CENTER" />
+                  <Label fx:id="InputConversionRateMin" layoutX="902.0" layoutY="334.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label layoutX="743.0" layoutY="356.0" prefHeight="27.0" prefWidth="158.0" text="Koordinierter Lohn BVG" textAlignment="CENTER" />
+                  <Label fx:id="InputCoordinatedSalaryBVG" layoutX="902.0" layoutY="360.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label layoutX="736.0" layoutY="282.0" prefHeight="19.0" prefWidth="158.0" text="Koordinierter Lohn" />
+                  <TextField fx:id="InputCoordinatedSalary" layoutX="854.0" layoutY="279.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
                </children>
             </AnchorPane>
         </content>

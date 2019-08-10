@@ -1,6 +1,7 @@
 package interfaceView;
 
 
+import ContributionRates.ContributionRates;
 import Database.DatabaseManager;
 import contractPerson.ContractPerson;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
 
 
 public class ControllerInterfaceView implements Initializable {
+
 
     @FXML
     private TextField inputLastName;
@@ -69,6 +71,103 @@ public class ControllerInterfaceView implements Initializable {
     private TableColumn<ContractPerson, String> sex;
     @FXML
     private Button SavePerson;
+    @FXML
+    private TextField InputSavingContributionANGroup1;
+    @FXML
+    private TextField InputSavingContributionAGGroup1;
+    @FXML
+    private TextField InputRiskContributionANGroup1;
+    @FXML
+    private TextField InputRiskContributionAGGroup1;
+    @FXML
+    private TextField InputSavingContributionANGroup2;
+    @FXML
+    private TextField InputSavingContributionAGGroup2;
+    @FXML
+    private TextField InputRiskContributionANGroup2;
+    @FXML
+    private TextField InputRiskContributionAGGroup2;
+    @FXML
+    private TextField InputSavingContributionANGroup3;
+    @FXML
+    private TextField InputSavingContributionAGGroup3;
+    @FXML
+    private TextField InputRiskContributionANGroup3;
+    @FXML
+    private TextField InputRiskContributionAGGroup3;
+    @FXML
+    private TextField InputSavingContributionANGroup4;
+    @FXML
+    private TextField InputSavingContributionAGGroup4;
+    @FXML
+    private TextField InputRiskContributionANGroup4;
+    @FXML
+    private TextField InputRiskContributionAGGroup4;
+    @FXML
+    private Label InputSavingContributionANGroup1BVG;
+    @FXML
+    private Label InputSavingContributionAGGroup1BVG;
+    @FXML
+    private Label InputRiskContributionANGroup1BVG;
+    @FXML
+    private Label InputRiskContributionAGGroup1BVG;
+    @FXML
+    private Label InputSavingContributionANGroup2BVG;
+    @FXML
+    private Label InputSavingContributionAGGroup2BVG;
+    @FXML
+    private Label InputRiskContributionANGroup2BVG;
+    @FXML
+    private Label InputRiskContributionAGGroup2BVG;
+    @FXML
+    private Label InputSavingContributionANGroup3BVG;
+    @FXML
+    private Label InputSavingContributionAGGroup3BVG;
+    @FXML
+    private Label InputRiskContributionANGroup3BVG;
+    @FXML
+    private Label InputRiskContributionAGGroup3BVG;
+    @FXML
+    private Label InputSavingContributionANGroup4BVG;
+    @FXML
+    private Label InputSavingContributionAGGroup4BVG;
+    @FXML
+    private Label InputRiskContributionANGroup4BVG;
+    @FXML
+    private Label InputRiskContributionAGGroup4BVG;
+    @FXML
+    private TextField InputConversionRateManGroup60;
+    @FXML
+    private TextField InputConversionRateWomanGroup60;
+    @FXML
+    private TextField InputConversionRateManGroup61;
+    @FXML
+    private TextField InputConversionRateWomanGroup61;
+    @FXML
+    private TextField InputConversionRateManGroup62;
+    @FXML
+    private TextField InputConversionRateWomanGroup62;
+    @FXML
+    private TextField InputConversionRateManGroup63;
+    @FXML
+    private TextField InputConversionRateWomanGroup63;
+    @FXML
+    private TextField InputConversionRateManGroup64;
+    @FXML
+    private TextField InputConversionRateWomanGroup64;
+    @FXML
+    private TextField InputConversionRateManGroup65;
+    @FXML
+    private TextField InputConversionRateWomanGroup65;
+    @FXML
+    private Label InputConversionRateMin;
+    @FXML
+    private Label InputCoordinatedSalaryBVG;
+    @FXML
+    private TextField InputCoordinatedSalary;
+
+
+
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
     private String SqlLiteURL = "jdbc:sqlite:C:\\Users\\admin\\IdeaProjects\\TopRente\\src\\";
     private ObservableList<ContractPerson> persons;
@@ -86,6 +185,19 @@ public class ControllerInterfaceView implements Initializable {
         databaseURL.setText(SqlLiteURL);
         inputSex.setItems(inputSexList);
         inputLevel.setItems(inputLevelList);
+        InputCoordinatedSalaryBVG.setText("24885");
+
+        ContributionRates contributionRatesBVG22until34 = new ContributionRates(3.5,3.5,0.5,0.75,6.8,"22-34");
+        InputSavingContributionANGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getSavingContributionAN()));
+        InputSavingContributionAGGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getSavingContributionAG()));
+        InputRiskContributionANGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getRiskContributionAN()));
+        InputRiskContributionAGGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getRiskContributionAG()));
+        ContributionRates contributionRatesBVG34until44 = new ContributionRates(3.5,3.5,0.5,0.75,6.8,"22-34");
+        InputSavingContributionANGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getSavingContributionAN()));
+        InputSavingContributionAGGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getSavingContributionAG()));
+        InputRiskContributionANGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getRiskContributionAN()));
+        InputRiskContributionAGGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getRiskContributionAG()));
+
 
         cancleInput();
         CostumerTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
