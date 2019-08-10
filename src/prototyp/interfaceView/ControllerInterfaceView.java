@@ -8,17 +8,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import personView.ControllerPersonView;
 import personView.PersonViewModel;
 
-
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -175,9 +179,6 @@ public class ControllerInterfaceView implements Initializable {
     ObservableList<String> inputSexList = FXCollections.observableArrayList("Männlich","Weiblich");
     ObservableList<String> inputLevelList = FXCollections.observableArrayList("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%");
 
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         databaseTyp.setItems(dbTypeList);
@@ -207,8 +208,30 @@ public class ControllerInterfaceView implements Initializable {
                 System.out.println(person.getName());
                 PersonViewModel personViewModel = new PersonViewModel(person);
                 ControllerPersonView controllerPersonView = new ControllerPersonView(personViewModel);
+                try {
+                    Stage stage = new Stage();
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    Pane root = fxmlLoader.load(getClass().getResource("/personView/personView.fxml"));
+                    fxmlLoader.setController(controllerPersonView);
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.setTitle(person.getName() + " " + person.getLastname());
+                    stage.show();
+
+                    try {
+                        fxmlLoader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                } catch (Exception e) {
+
+                }
 
             }
+
+
         });
     }
 

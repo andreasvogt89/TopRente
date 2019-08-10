@@ -4,7 +4,8 @@ import contractPerson.ContractPerson;
 
 public class CalculateContributions {
 
-    private Integer coordinatedSalary;
+    private Integer coordinatedSalaryBVG;
+    private Double coordinatedSalary;
     private Integer salary;
     private Integer coordinationDeduction;
     private Integer savingContributionAN;
@@ -12,13 +13,23 @@ public class CalculateContributions {
     private Integer riskContributionAN;
     private Integer riskContributionAG;
 
-    public CalculateContributions (ContractPerson contractPerson){
-        this.salary = contractPerson.getSalary();
-    }
 
-public Integer calculateCoordinatedSalary(Integer coordinationDeduction){
-    coordinatedSalary = salary - coordinationDeduction;
-    return coordinatedSalary;
+public Integer calculateCoordinatedSalaryBVG(Integer coordinationDeduction, Integer salary){
+    coordinatedSalaryBVG = salary - coordinationDeduction;
+    return coordinatedSalaryBVG;
 }
+
+public Double calculateCoordinatedSalary(Double coordinationContribution, Integer salary){
+       Double calc = coordinationContribution * salary;
+       Double calcCo = Double.valueOf(coordinationDeduction);
+       if (calc > coordinationDeduction){
+           return coordinatedSalary = calcCo;
+       }else {
+           return coordinatedSalary = calc;
+       }
+
+
+}
+
 
 }
