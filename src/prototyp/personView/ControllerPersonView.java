@@ -27,7 +27,7 @@ public class ControllerPersonView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("INI DONE");
+
         CalculateContributions calculateContributions = new CalculateContributions();
         // fullNameView.setText(person.getName() + " " + person.getLastname());
         //salaryView.setText(String.valueOf(person.getSalary()));

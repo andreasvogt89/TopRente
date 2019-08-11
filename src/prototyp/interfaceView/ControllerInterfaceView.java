@@ -10,11 +10,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -28,7 +30,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
-public class ControllerInterfaceView implements Initializable {
+public class ControllerInterfaceView extends BorderPane implements Initializable {
 
 
     @FXML
@@ -178,6 +180,20 @@ public class ControllerInterfaceView implements Initializable {
     final static DatabaseManager databaseManager = new DatabaseManager();
     ObservableList<String> inputSexList = FXCollections.observableArrayList("Männlich","Weiblich");
     ObservableList<String> inputLevelList = FXCollections.observableArrayList("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%");
+
+    public ControllerInterfaceView (){
+        FXMLLoader mainInterfaceLoader = new FXMLLoader(getClass().getResource("interfaceView/interface.fxml"));
+        mainInterfaceLoader.setRoot(this);
+        mainInterfaceLoader.setController(this);
+
+        try {
+            mainInterfaceLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
