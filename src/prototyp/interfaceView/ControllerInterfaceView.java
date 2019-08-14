@@ -3,6 +3,7 @@ package interfaceView;
 
 import ContributionRates.ContributionRates;
 import Database.DatabaseManager;
+import calculate.CalculateContributions;
 import contractPerson.ContractPerson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -188,7 +189,9 @@ public class ControllerInterfaceView implements Initializable {
         databaseURL.setText(SqlLiteURL);
         inputSex.setItems(inputSexList);
         inputLevel.setItems(inputLevelList);
+        SavePerson.setDisable(true);
         InputCoordinatedSalaryBVG.setText("24885");
+
 
         ContributionRates contributionRatesBVG22until34 = new ContributionRates(3.5,3.5,0.5,0.75,6.8,"22-34");
         InputSavingContributionANGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getSavingContributionAN()));
@@ -207,11 +210,9 @@ public class ControllerInterfaceView implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
-                System.out.println(person.getName());
-                PersonViewModel personViewModel = new PersonViewModel(person);
-                ControllerPersonView controllerPersonView = new ControllerPersonView(person,personViewModel);
-                controllerPersonView.loadView(controllerPersonView);
-
+                PersonViewModel personViewModel = new PersonViewModel(person,contributionRatesBVG22until34,contributionRatesBVG34until44);
+                ControllerPersonView controllerPersonView = new ControllerPersonView();
+                controllerPersonView.loadView(controllerPersonView,personViewModel);
             }
 
 
@@ -229,8 +230,8 @@ public class ControllerInterfaceView implements Initializable {
         String url = String.valueOf(databaseURL.getText());
         String typ = String.valueOf(databaseTyp.getValue());
         databaseManager.connectDatabase(typ, url);
-       if (databaseManager.isDatabaseConnected()){
-        setControlLampsGreen();}
+        if (databaseManager.isDatabaseConnected()){
+            setControlLampsGreen();}
         loadContent();
     }
 
@@ -245,8 +246,8 @@ public class ControllerInterfaceView implements Initializable {
 
     public void actionSaveButton() throws SQLException {
         if (createNewPerson().checkAge(createNewPerson().getBirthday())){
-        databaseManager.createPerson(databaseManager.getStatement(), createNewPerson());
-        loadContent();}
+            databaseManager.createPerson(databaseManager.getStatement(), createNewPerson());
+            loadContent();}
     }
 
     private boolean isInt(TextField input, String message) {
@@ -288,7 +289,7 @@ public class ControllerInterfaceView implements Initializable {
 
     private void loadContent() {
         try {
-           persons = databaseManager.loadPersons(databaseManager.getStatement(), persons);
+            persons = databaseManager.loadPersons(databaseManager.getStatement(), persons);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -306,7 +307,7 @@ public class ControllerInterfaceView implements Initializable {
 
     }
 
-     private void cancleInput(){
+    private void cancleInput(){
 
         inputLastName.setPromptText("Nachname");
         inputName.setPromptText("Vorname");
@@ -332,9 +333,9 @@ public class ControllerInterfaceView implements Initializable {
 
 
         boolean createButtonDisable = (fString.isEmpty() || fString.trim().isEmpty())||
-        (sString.isEmpty() || sString.trim().isEmpty()) || (saString.isEmpty() || saString.trim().isEmpty()) ||
-        (eString.isEmpty() || eString.trim().isEmpty()) || (wString.isEmpty() || wString.trim().isEmpty()) ||
-        (xString.isEmpty() || xString.trim().isEmpty()) || gString.matches("null") || lString.matches("null");
+                (sString.isEmpty() || sString.trim().isEmpty()) || (saString.isEmpty() || saString.trim().isEmpty()) ||
+                (eString.isEmpty() || eString.trim().isEmpty()) || (wString.isEmpty() || wString.trim().isEmpty()) ||
+                (xString.isEmpty() || xString.trim().isEmpty()) || gString.matches("null") || lString.matches("null");
 
         if (!createButtonDisable) {
             SavePerson.setDisable(false);

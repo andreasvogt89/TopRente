@@ -24,37 +24,32 @@ public class ControllerPersonView implements Initializable {
 
 
     PersonViewModel personViewModel;
-    ContractPerson person;
 
-    public ControllerPersonView (ContractPerson contractPerson, PersonViewModel personViewModel){
-        this.person = contractPerson;
+
+
+
+    public void loadView (ControllerPersonView controllerPersonView, PersonViewModel personViewModel){
         this.personViewModel = personViewModel;
-
-    }
-
-    public void loadView (ControllerPersonView controllerPersonView){
 
         try {
             Stage stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Pane root = fxmlLoader.load(getClass().getResource("/personView/personView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/personView/personView.fxml"));
             fxmlLoader.setController(controllerPersonView);
+            Pane root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle(person.getName() + " " + person.getLastname());
+            stage.setTitle(personViewModel.getPerson().getName() + " " + personViewModel.getPerson().getLastname());
             stage.show();
-
 
 
         } catch (Exception e) {
 
         }
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("sdsd");
-        CalculateContributions calculateContributions = new CalculateContributions();
 
 
     }

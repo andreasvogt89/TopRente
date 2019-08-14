@@ -72,6 +72,13 @@ public class ContractPerson {
         return false;}
         else return true;
     }
+
+    public Integer getAge (){
+        LocalDate currentDate = LocalDate.now();
+        LocalDate birthdayDate = LocalDate.parse(getBirthday());
+        Integer age = Integer.valueOf((int) YEARS.between(birthdayDate, currentDate));
+        return age;
+    }
 }
 
 
