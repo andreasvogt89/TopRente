@@ -3,7 +3,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="personView" prefHeight="612.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane id="personView" prefHeight="612.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <Label fx:id="fullNameView" layoutX="130.0" layoutY="110.0" prefHeight="140.0" prefWidth="171.0" text="Name" />
    </children>

@@ -10,16 +10,16 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import personView.ControllerPersonView;
 import personView.PersonViewModel;
@@ -30,7 +30,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
-public class ControllerInterfaceView extends BorderPane implements Initializable {
+public class ControllerInterfaceView implements Initializable {
 
 
     @FXML
@@ -181,20 +181,6 @@ public class ControllerInterfaceView extends BorderPane implements Initializable
     ObservableList<String> inputSexList = FXCollections.observableArrayList("Männlich","Weiblich");
     ObservableList<String> inputLevelList = FXCollections.observableArrayList("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%");
 
-    public ControllerInterfaceView (){
-        FXMLLoader mainInterfaceLoader = new FXMLLoader(getClass().getResource("interfaceView/interface.fxml"));
-        mainInterfaceLoader.setRoot(this);
-        mainInterfaceLoader.setController(this);
-
-        try {
-            mainInterfaceLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         databaseTyp.setItems(dbTypeList);
@@ -223,29 +209,12 @@ public class ControllerInterfaceView extends BorderPane implements Initializable
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
                 System.out.println(person.getName());
                 PersonViewModel personViewModel = new PersonViewModel(person);
-                ControllerPersonView controllerPersonView = new ControllerPersonView(personViewModel);
-                try {
-                    Stage stage = new Stage();
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    Pane root = fxmlLoader.load(getClass().getResource("/personView/personView.fxml"));
-                    fxmlLoader.setController(controllerPersonView);
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.setTitle(person.getName() + " " + person.getLastname());
-                    stage.show();
-
-                    try {
-                        fxmlLoader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                } catch (Exception e) {
-
-                }
+                ControllerPersonView controllerPersonView = new ControllerPersonView(person,personViewModel);
+                controllerPersonView.loadView(controllerPersonView);
 
             }
+
+
 
 
         });
@@ -337,7 +306,7 @@ public class ControllerInterfaceView extends BorderPane implements Initializable
 
     }
 
-     void cancleInput(){
+     private void cancleInput(){
 
         inputLastName.setPromptText("Nachname");
         inputName.setPromptText("Vorname");
