@@ -47,7 +47,7 @@
                         <TableColumn id="credit" fx:id="credit" prefWidth="104.0" text="Altersguthaben" />
                         <TableColumn id="level" fx:id="level" prefWidth="121.0" text="Beschäftigungsgrad" />
                         <TableColumn id="insurance" fx:id="insurance" prefWidth="145.0" text="Versicherungsnummer" />
-                        <TableColumn id="sex" fx:id="sex" prefWidth="93.0" text="Geschlächt" />
+                        <TableColumn id="sex" fx:id="sex" prefWidth="93.0" text="Geschlecht" />
                      </columns></TableView>
                   <Circle fx:id="DBLamp" fill="#ff3421" layoutX="519.0" layoutY="20.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
                   <Button layoutX="534.0" layoutY="8.0" mnemonicParsing="false" onAction="#refreshDatabase" text="Refresh" />

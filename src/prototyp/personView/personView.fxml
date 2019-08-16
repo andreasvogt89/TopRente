@@ -6,6 +6,11 @@
 
 <AnchorPane id="personView" prefHeight="612.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="fullNameView" layoutX="130.0" layoutY="110.0" prefHeight="140.0" prefWidth="171.0" text="Name" />
+      <Label fx:id="fullNameView" layoutX="130.0" layoutY="110.0" prefHeight="140.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="coordinatedSalaryBVG" layoutX="130.0" layoutY="150.0" prefHeight="140.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="contributionANBVG" layoutX="130.0" layoutY="190.0" prefHeight="140.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="contributionAGBVG" layoutX="130.0" layoutY="230.0" prefHeight="140.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="riskContributionANBVG" layoutX="130.0" layoutY="270.0" prefHeight="140.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="riskContributionGNBVG" layoutX="130.0" layoutY="310.0" prefHeight="140.0" prefWidth="171.0" text="Spare" />
    </children>
 </AnchorPane>

@@ -20,12 +20,20 @@ public class ControllerPersonView implements Initializable {
 
     @FXML
     private Label fullNameView;
+    @FXML
+    private Label coordinatedSalaryBVG;
+    @FXML
+    private Label contributionANBVG;
+    @FXML
+    private Label contributionAGBVG;
+    @FXML
+    private Label riskContributionANBVG;
+    @FXML
+    private Label riskContributionAGBVG;
 
 
 
     PersonViewModel personViewModel;
-
-
 
 
     public void loadView (ControllerPersonView controllerPersonView, PersonViewModel personViewModel){
@@ -46,10 +54,15 @@ public class ControllerPersonView implements Initializable {
 
         }
 
+        fullNameView.setText(personViewModel.getPerson().getName() + " " + personViewModel.getPerson().getLastname());
+        coordinatedSalaryBVG.setText(personViewModel.setCoordinatedSalaryBVG());
+
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 
 
     }

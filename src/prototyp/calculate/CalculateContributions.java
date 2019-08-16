@@ -32,4 +32,11 @@ public Double calculateCoordinatedSalary(Double coordinationContribution, Intege
 }
 
 
+public Double calculatesavingContributionAN(Double savingContributionANRate, Integer salary){
+   Double savingContributionAN = (salary * (savingContributionANRate / 100)) / 12;
+
+    return savingContributionAN;
+}
+
+
 }

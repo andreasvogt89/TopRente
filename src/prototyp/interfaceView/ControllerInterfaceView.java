@@ -3,31 +3,25 @@ package interfaceView;
 
 import ContributionRates.ContributionRates;
 import Database.DatabaseManager;
-import calculate.CalculateContributions;
 import contractPerson.ContractPerson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import personView.ControllerPersonView;
 import personView.PersonViewModel;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -179,38 +173,19 @@ public class ControllerInterfaceView implements Initializable {
     private String SqlLiteURL = "jdbc:sqlite:C:\\Users\\admin\\IdeaProjects\\TopRente\\src\\";
     private ObservableList<ContractPerson> persons;
     final static DatabaseManager databaseManager = new DatabaseManager();
-    ObservableList<String> inputSexList = FXCollections.observableArrayList("Männlich","Weiblich");
-    ObservableList<String> inputLevelList = FXCollections.observableArrayList("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%");
+    private ObservableList<String> inputSexList = FXCollections.observableArrayList("Männlich","Weiblich");
+    private ObservableList<String> inputLevelList = FXCollections.observableArrayList("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%");
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        databaseTyp.setItems(dbTypeList);
-        databaseTyp.setValue(dbTypeList.get(0));
-        databaseURL.setText(SqlLiteURL);
-        inputSex.setItems(inputSexList);
-        inputLevel.setItems(inputLevelList);
-        SavePerson.setDisable(true);
-        InputCoordinatedSalaryBVG.setText("24885");
-
-
-        ContributionRates contributionRatesBVG22until34 = new ContributionRates(3.5,3.5,0.5,0.75,6.8,"22-34");
-        InputSavingContributionANGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getSavingContributionAN()));
-        InputSavingContributionAGGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getSavingContributionAG()));
-        InputRiskContributionANGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getRiskContributionAN()));
-        InputRiskContributionAGGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getRiskContributionAG()));
-        ContributionRates contributionRatesBVG34until44 = new ContributionRates(3.5,3.5,0.5,0.75,6.8,"22-34");
-        InputSavingContributionANGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getSavingContributionAN()));
-        InputSavingContributionAGGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getSavingContributionAG()));
-        InputRiskContributionANGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getRiskContributionAN()));
-        InputRiskContributionAGGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getRiskContributionAG()));
-
-
-        cancleInput();
+        setContributionRatesBVG();
+        InitializeInput();
         CostumerTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
-                PersonViewModel personViewModel = new PersonViewModel(person,contributionRatesBVG22until34,contributionRatesBVG34until44);
+                PersonViewModel personViewModel = new PersonViewModel(person,setContributionRatesBVG(),setContributionRatesBVG());
                 ControllerPersonView controllerPersonView = new ControllerPersonView();
                 controllerPersonView.loadView(controllerPersonView,personViewModel);
             }
@@ -241,7 +216,7 @@ public class ControllerInterfaceView implements Initializable {
     }
 
     public void actionCancleButton() {
-        cancleInput();
+        InitializeInput();
     }
 
     public void actionSaveButton() throws SQLException {
@@ -303,12 +278,12 @@ public class ControllerInterfaceView implements Initializable {
         insurance.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("insurance"));
         sex.setCellValueFactory(new PropertyValueFactory<ContractPerson, String>("sex"));
         CostumerTable.setItems(persons);
-        cancleInput();
+        InitializeInput();
 
     }
 
-    private void cancleInput(){
-
+    private void InitializeInput(){
+        SavePerson.setDisable(true);
         inputLastName.setPromptText("Nachname");
         inputName.setPromptText("Vorname");
         inputSalary.setPromptText("Jahreslohn");
@@ -317,7 +292,42 @@ public class ControllerInterfaceView implements Initializable {
         inputInsuranceNumber.setPromptText("Versicherungsnummer");
         inputSex.setValue(inputSexList.get(0));
         inputLevel.setValue(inputLevelList.get(9));
+        databaseTyp.setItems(dbTypeList);
+        databaseTyp.setValue(dbTypeList.get(0));
+        databaseURL.setText(SqlLiteURL);
+        inputSex.setItems(inputSexList);
+        inputLevel.setItems(inputLevelList);
 
+    }
+
+    private LinkedList setContributionRatesBVG (){
+        InputCoordinatedSalaryBVG.setText("24885");
+        LinkedList<ContributionRates> contributionRatesListBVG = new LinkedList<ContributionRates>();
+        ContributionRates contributionRatesBVG22until34 = new ContributionRates(3.5,3.5,0.5,0.75,6.8,"22-34");
+        InputSavingContributionANGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getSavingContributionAN()));
+        InputSavingContributionAGGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getSavingContributionAG()));
+        InputRiskContributionANGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getRiskContributionAN()));
+        InputRiskContributionAGGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getRiskContributionAG()));
+        contributionRatesListBVG.add(0,contributionRatesBVG22until34);
+        ContributionRates contributionRatesBVG34until44 = new ContributionRates(5.0,5.0,0.5,0.75,6.8,"34-44");
+        InputSavingContributionANGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getSavingContributionAN()));
+        InputSavingContributionAGGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getSavingContributionAG()));
+        InputRiskContributionANGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getRiskContributionAN()));
+        InputRiskContributionAGGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getRiskContributionAG()));
+        contributionRatesListBVG.add(1,contributionRatesBVG34until44);
+        ContributionRates contributionRatesBVG44until54 = new ContributionRates(7.0,7.0,0.5,0.75,6.8,"44-54");
+        InputSavingContributionANGroup3BVG.setText(String.valueOf(contributionRatesBVG44until54.getSavingContributionAN()));
+        InputSavingContributionAGGroup3BVG.setText(String.valueOf(contributionRatesBVG44until54.getSavingContributionAG()));
+        InputRiskContributionANGroup3BVG.setText(String.valueOf(contributionRatesBVG44until54.getRiskContributionAN()));
+        InputRiskContributionAGGroup3BVG.setText(String.valueOf(contributionRatesBVG44until54.getRiskContributionAG()));
+        contributionRatesListBVG.add(2,contributionRatesBVG44until54);
+        ContributionRates contributionRatesBVG54until65 = new ContributionRates(9.0,9.0,0.5,0.75,6.8,"54-65");
+        InputSavingContributionANGroup4BVG.setText(String.valueOf(contributionRatesBVG54until65.getSavingContributionAN()));
+        InputSavingContributionAGGroup4BVG.setText(String.valueOf(contributionRatesBVG54until65.getSavingContributionAG()));
+        InputRiskContributionANGroup4BVG.setText(String.valueOf(contributionRatesBVG54until65.getRiskContributionAN()));
+        InputRiskContributionAGGroup4BVG.setText(String.valueOf(contributionRatesBVG54until65.getRiskContributionAG()));
+        contributionRatesListBVG.add(3,contributionRatesBVG54until65);
+        return contributionRatesListBVG;
     }
 
     @FXML
