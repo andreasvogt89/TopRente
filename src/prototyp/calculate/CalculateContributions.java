@@ -1,5 +1,14 @@
 package calculate;
 
+/**
+ * Class for calculate Contribution and Coordination Salary
+ *
+ *
+ * @version 1.0
+ * @autor Andreas Vogt
+ * @date 19.08.2019
+ */
+
 public class CalculateContributions {
     private Double calculatetDetuction;
 

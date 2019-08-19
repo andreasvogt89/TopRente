@@ -35,7 +35,7 @@ public class DatabaseManager {
 
             try {
                 Connection connection = DriverManager.getConnection(url);
-                createDatabase(connection);
+                createCustumerTable(connection);
                 DatabaseManager.connection = connection;
                 System.out.println("Successfully connection to the database");
             } catch (SQLException connectionException) {
@@ -52,7 +52,7 @@ public class DatabaseManager {
          System.out.println("Database disconnected");
     }
 
-    private static void createDatabase(Connection connection){
+    private static void createCustumerTable(Connection connection){
             try {
                 statement = connection.createStatement();
                 String SQLstring = "CREATE TABLE IF NOT EXISTS " +
@@ -71,7 +71,6 @@ public class DatabaseManager {
                 e.printStackTrace();
             }
         }
-
 
     public Statement getStatement () {
             return statement;
@@ -122,6 +121,5 @@ public class DatabaseManager {
         statement.close();
         return list;
     }
-
 
 }

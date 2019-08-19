@@ -5,6 +5,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * @version 1.0
+ * @autor Andreas Vogt
+ * @date 19.08.2019
+ */
+
 public class Main extends Application {
 
 
