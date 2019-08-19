@@ -20,8 +20,6 @@ import personView.PersonViewModel;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -137,37 +135,29 @@ public class ControllerInterfaceView implements Initializable {
     @FXML
     private Label InputRiskContributionAGGroup4BVG;
     @FXML
-    private TextField InputConversionRateManGroup60;
+    private TextField InputConversionRateGroup60;
     @FXML
-    private TextField InputConversionRateWomanGroup60;
+    private TextField InputConversionRateGroup61;
     @FXML
-    private TextField InputConversionRateManGroup61;
+    private TextField InputConversionRateGroup62;
     @FXML
-    private TextField InputConversionRateWomanGroup61;
+    private TextField InputConversionRateGroup63M;
     @FXML
-    private TextField InputConversionRateManGroup62;
+    private TextField InputConversionRateGroup63W;
     @FXML
-    private TextField InputConversionRateWomanGroup62;
+    private TextField InputConversionRateGroup64M;
     @FXML
-    private TextField InputConversionRateManGroup63;
+    private TextField InputConversionRateGroup64W;
     @FXML
-    private TextField InputConversionRateWomanGroup63;
-    @FXML
-    private TextField InputConversionRateManGroup64;
-    @FXML
-    private TextField InputConversionRateWomanGroup64;
-    @FXML
-    private TextField InputConversionRateManGroup65;
-    @FXML
-    private TextField InputConversionRateWomanGroup65;
+    private TextField InputConversionRateGroup65;
     @FXML
     private Label InputConversionRateMin;
     @FXML
-    private Label InputCoordinatedSalaryBVG;
+    private Label InputCoordinatedDetuctionBVG;
     @FXML
-    private TextField InputCoordinatedSalary;
-
-
+    private TextField InputCoordinatedSalaryRate;
+    @FXML
+    private Label InputInterestRate;
 
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
     private String SqlLiteURL = "jdbc:sqlite:C:\\Users\\admin\\IdeaProjects\\TopRente\\src\\";
@@ -179,19 +169,17 @@ public class ControllerInterfaceView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setContributionRatesBVG();
         InitializeInput();
+        setBVGRates();
+        setRates();
         CostumerTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
-                PersonViewModel personViewModel = new PersonViewModel(person,setContributionRatesBVG(),setContributionRatesBVG());
+                PersonViewModel personViewModel = new PersonViewModel(person,createAllContributionRates());
                 ControllerPersonView controllerPersonView = new ControllerPersonView();
                 controllerPersonView.loadView(controllerPersonView,personViewModel);
             }
-
-
-
 
         });
     }
@@ -216,7 +204,13 @@ public class ControllerInterfaceView implements Initializable {
     }
 
     public void actionCancleButton() {
-        InitializeInput();
+        SavePerson.setDisable(true);
+        inputLastName.clear();
+        inputName.clear();
+        inputSalary.clear();
+        inputCredit.clear();
+        inputBirthDate.getEditor().clear();
+        inputInsuranceNumber.clear();
     }
 
     public void actionSaveButton() throws SQLException {
@@ -300,35 +294,110 @@ public class ControllerInterfaceView implements Initializable {
 
     }
 
-    private LinkedList setContributionRatesBVG (){
-        InputCoordinatedSalaryBVG.setText("24885");
-        LinkedList<ContributionRates> contributionRatesListBVG = new LinkedList<ContributionRates>();
-        ContributionRates contributionRatesBVG22until34 = new ContributionRates(3.5,3.5,0.5,0.75,6.8,"22-34");
-        InputSavingContributionANGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getSavingContributionAN()));
-        InputSavingContributionAGGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getSavingContributionAG()));
-        InputRiskContributionANGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getRiskContributionAN()));
-        InputRiskContributionAGGroup1BVG.setText(String.valueOf(contributionRatesBVG22until34.getRiskContributionAG()));
-        contributionRatesListBVG.add(0,contributionRatesBVG22until34);
-        ContributionRates contributionRatesBVG34until44 = new ContributionRates(5.0,5.0,0.5,0.75,6.8,"34-44");
-        InputSavingContributionANGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getSavingContributionAN()));
-        InputSavingContributionAGGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getSavingContributionAG()));
-        InputRiskContributionANGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getRiskContributionAN()));
-        InputRiskContributionAGGroup2BVG.setText(String.valueOf(contributionRatesBVG34until44.getRiskContributionAG()));
-        contributionRatesListBVG.add(1,contributionRatesBVG34until44);
-        ContributionRates contributionRatesBVG44until54 = new ContributionRates(7.0,7.0,0.5,0.75,6.8,"44-54");
-        InputSavingContributionANGroup3BVG.setText(String.valueOf(contributionRatesBVG44until54.getSavingContributionAN()));
-        InputSavingContributionAGGroup3BVG.setText(String.valueOf(contributionRatesBVG44until54.getSavingContributionAG()));
-        InputRiskContributionANGroup3BVG.setText(String.valueOf(contributionRatesBVG44until54.getRiskContributionAN()));
-        InputRiskContributionAGGroup3BVG.setText(String.valueOf(contributionRatesBVG44until54.getRiskContributionAG()));
-        contributionRatesListBVG.add(2,contributionRatesBVG44until54);
-        ContributionRates contributionRatesBVG54until65 = new ContributionRates(9.0,9.0,0.5,0.75,6.8,"54-65");
-        InputSavingContributionANGroup4BVG.setText(String.valueOf(contributionRatesBVG54until65.getSavingContributionAN()));
-        InputSavingContributionAGGroup4BVG.setText(String.valueOf(contributionRatesBVG54until65.getSavingContributionAG()));
-        InputRiskContributionANGroup4BVG.setText(String.valueOf(contributionRatesBVG54until65.getRiskContributionAN()));
-        InputRiskContributionAGGroup4BVG.setText(String.valueOf(contributionRatesBVG54until65.getRiskContributionAG()));
-        contributionRatesListBVG.add(3,contributionRatesBVG54until65);
-        return contributionRatesListBVG;
+    private ContributionRates createAllContributionRates(){
+
+        ContributionRates contributionRates = new ContributionRates(
+                Double.valueOf(InputSavingContributionANGroup1.getText()),
+                Double.valueOf(InputSavingContributionAGGroup1.getText()),
+                Double.valueOf(InputRiskContributionANGroup1.getText()),
+                Double.valueOf(InputRiskContributionAGGroup1.getText()),
+                Double.valueOf(InputSavingContributionANGroup2.getText()),
+                Double.valueOf(InputSavingContributionAGGroup2.getText()),
+                Double.valueOf(InputRiskContributionANGroup2.getText()),
+                Double.valueOf(InputRiskContributionAGGroup2.getText()),
+                Double.valueOf(InputSavingContributionANGroup3.getText()),
+                Double.valueOf(InputSavingContributionAGGroup3.getText()),
+                Double.valueOf(InputRiskContributionANGroup3.getText()),
+                Double.valueOf(InputRiskContributionAGGroup3.getText()),
+                Double.valueOf(InputSavingContributionANGroup4.getText()),
+                Double.valueOf(InputSavingContributionAGGroup4.getText()),
+                Double.valueOf(InputRiskContributionANGroup4.getText()),
+                Double.valueOf(InputRiskContributionAGGroup4.getText()),
+                Double.valueOf(InputSavingContributionANGroup1BVG.getText()),
+                Double.valueOf(InputSavingContributionAGGroup1BVG.getText()),
+                Double.valueOf(InputRiskContributionANGroup1BVG.getText()),
+                Double.valueOf(InputRiskContributionAGGroup1BVG.getText()),
+                Double.valueOf(InputSavingContributionANGroup2BVG.getText()),
+                Double.valueOf(InputSavingContributionAGGroup2BVG.getText()),
+                Double.valueOf(InputRiskContributionANGroup2BVG.getText()),
+                Double.valueOf(InputRiskContributionAGGroup2BVG.getText()),
+                Double.valueOf(InputSavingContributionANGroup3BVG.getText()),
+                Double.valueOf(InputSavingContributionAGGroup3BVG.getText()),
+                Double.valueOf(InputRiskContributionANGroup3BVG.getText()),
+                Double.valueOf(InputRiskContributionAGGroup3BVG.getText()),
+                Double.valueOf(InputSavingContributionANGroup4BVG.getText()),
+                Double.valueOf(InputSavingContributionAGGroup4BVG.getText()),
+                Double.valueOf(InputRiskContributionANGroup4BVG.getText()),
+                Double.valueOf(InputRiskContributionAGGroup4BVG.getText()),
+                Double.valueOf(InputConversionRateMin.getText()),
+                Double.valueOf(InputConversionRateGroup60.getText()),
+                Double.valueOf(InputConversionRateGroup61.getText()),
+                Double.valueOf(InputConversionRateGroup62.getText()),
+                Double.valueOf(InputConversionRateGroup63M.getText()),
+                Double.valueOf(InputConversionRateGroup63W.getText()),
+                Double.valueOf(InputConversionRateGroup64M.getText()),
+                Double.valueOf(InputConversionRateGroup64W.getText()),
+                Double.valueOf(InputConversionRateGroup65.getText()),
+                Double.valueOf(InputCoordinatedSalaryRate.getText()),
+                Double.valueOf(InputCoordinatedDetuctionBVG.getText()),
+                Double.valueOf(InputInterestRate.getText()),
+                Double.valueOf(3555.0),
+                Double.valueOf(85320.0)
+        );
+        return contributionRates;
     }
+
+    private void setBVGRates (){
+        InputCoordinatedDetuctionBVG.setText("24885");
+        InputSavingContributionANGroup1BVG.setText("3.5");
+        InputSavingContributionAGGroup1BVG.setText("3.5");
+        InputRiskContributionANGroup1BVG.setText("0.5");
+        InputRiskContributionAGGroup1BVG.setText("0.75");
+        InputSavingContributionANGroup2BVG.setText("5.0");
+        InputSavingContributionAGGroup2BVG.setText("5.0");
+        InputRiskContributionANGroup2BVG.setText("0.5");
+        InputRiskContributionAGGroup2BVG.setText("0.75");
+        InputSavingContributionANGroup3BVG.setText("7.5");
+        InputSavingContributionAGGroup3BVG.setText("7.5");
+        InputRiskContributionANGroup3BVG.setText("0.5");
+        InputRiskContributionAGGroup3BVG.setText("0.75");
+        InputSavingContributionANGroup4BVG.setText("9.0");
+        InputSavingContributionAGGroup4BVG.setText("9.0");
+        InputRiskContributionANGroup4BVG.setText("0.5");
+        InputRiskContributionAGGroup4BVG.setText("0.75");
+        InputConversionRateMin.setText("6.8");
+        InputInterestRate.setText("1");
+    }
+
+    private void setRates (){
+        InputCoordinatedSalaryRate.setText("40");
+        InputSavingContributionANGroup1.setText("3.5");
+        InputSavingContributionAGGroup1.setText("3.5");
+        InputRiskContributionANGroup1.setText("0.5");
+        InputRiskContributionAGGroup1.setText("0.75");
+        InputSavingContributionANGroup2.setText("5.0");
+        InputSavingContributionAGGroup2.setText("5.0");
+        InputRiskContributionANGroup2.setText("0.5");
+        InputRiskContributionAGGroup2.setText("0.75");
+        InputSavingContributionANGroup3.setText("7.5");
+        InputSavingContributionAGGroup3.setText("7.5");
+        InputRiskContributionANGroup3.setText("0.5");
+        InputRiskContributionAGGroup3.setText("0.75");
+        InputSavingContributionANGroup4.setText("9.0");
+        InputSavingContributionAGGroup4.setText("9.0");
+        InputRiskContributionANGroup4.setText("0.5");
+        InputRiskContributionAGGroup4.setText("0.75");
+        InputConversionRateGroup60.setText("4.47");
+        InputConversionRateGroup61.setText("4.58");
+        InputConversionRateGroup62.setText("4.7");
+        InputConversionRateGroup63M.setText("4.83");
+        InputConversionRateGroup63W.setText("4.9");
+        InputConversionRateGroup64M.setText("4.96");
+        InputConversionRateGroup64W.setText("5.09");
+        InputConversionRateGroup65.setText("5.09");
+
+    }
+
 
     @FXML
     public void  keyReleasedProperty(KeyEvent event) {

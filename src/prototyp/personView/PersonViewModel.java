@@ -4,38 +4,52 @@ package personView;
 import ContributionRates.ContributionRates;
 import calculate.CalculateContributions;
 import contractPerson.ContractPerson;
-import javafx.collections.ObservableList;
 
-import java.util.LinkedList;
-import java.util.List;
 
 public class PersonViewModel {
 
 
     private ContractPerson person;
-    private List contributionRates;
-    private LinkedList contributionRatesBVG;
+    private ContributionRates contributionRates;
     private CalculateContributions calculateContributions = new CalculateContributions();
+    private Double calculatedDetuction;
+    private Double coordinatedSalaryBVG;
+    private Double coordinatedSalary;
 
 
-    public PersonViewModel(ContractPerson person, LinkedList contributionRatesBVG, List contributionRates){
+    public PersonViewModel(ContractPerson person, ContributionRates contributionRates){
         this.person = person;
         this.contributionRates = contributionRates;
-        this.contributionRatesBVG = contributionRatesBVG;
+        calculateDetuction();
+        this.coordinatedSalaryBVG = calculateContributions.calculateCoordinatedSalaryBVG(contributionRates.getCoordinatedDetuctionBVG(),person.getSalary(),contributionRates.getMinCoordinatedSalaryBVG(),contributionRates.getMaxCoordinatedSalaryBVG());
+        this.coordinatedSalary = calculateContributions.calculateCoordinatedSalary(calculatedDetuction, person.getSalary());
+
 
     }
 
-    public ContractPerson getPerson() {
+    private void calculateDetuction(){
+        this.calculatedDetuction = calculateContributions.calculateCoordinationDeduction(contributionRates.getCoordinatedSalaryRate(),contributionRates.getCoordinatedDetuctionBVG(), person.getSalary());
+    }
+
+    ContractPerson getPerson() {
         return person;
     }
 
-    public String setCoordinatedSalaryBVG (){
-       return String.valueOf(calculateContributions.calculateCoordinatedSalaryBVG(24844,person.getSalary()));
-
+    String getCoordinatedSalaryContributionBVG(){
+        return String.valueOf(contributionRates.getCoordinatedDetuctionBVG());
     }
 
-    /*public String setSavingContributionAN (){
+    String getCoordinatedSalaryContribution(){
+        return String.valueOf(calculateContributions.calculateCoordinationDeduction(contributionRates.getCoordinatedSalaryRate(),contributionRates.getCoordinatedDetuctionBVG(), person.getSalary()));
+    }
 
-        return  String.valueOf(calculateContributions.calculatesavingContributionAN(,person.getSalary()));
-    }*/
+    String getCoordinatedSalaryBVG(){
+       return String.valueOf(coordinatedSalaryBVG);
+    }
+
+    String getCoordinatedSalary(){
+        return String.valueOf(coordinatedSalary);
+    }
+
+
 }

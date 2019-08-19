@@ -1,42 +1,37 @@
 package calculate;
 
-import contractPerson.ContractPerson;
-
 public class CalculateContributions {
-
-    private Integer coordinatedSalaryBVG;
-    private Double coordinatedSalary;
-    private Integer salary;
-    private Integer coordinationDeduction;
-    private Integer savingContributionAN;
-    private Integer savingContributionAG;
-    private Integer riskContributionAN;
-    private Integer riskContributionAG;
+    private Double calculatetDetuction;
 
 
-public Integer calculateCoordinatedSalaryBVG(Integer coordinationDeduction, Integer salary){
-    coordinatedSalaryBVG = salary - coordinationDeduction;
-    return coordinatedSalaryBVG;
+public Double calculateCoordinationDeduction(Double coordinationDeductionRate, Double coordinationDeductionBVG, Integer salary){
+        Double coordinationDeductioncalc = (coordinationDeductionRate/100) * Double.valueOf(salary);
+        if (coordinationDeductioncalc > coordinationDeductionBVG){
+            return coordinationDeductionBVG;
+        }else {
+            return coordinationDeductioncalc;
+        }
+
+    }
+
+public Double calculateCoordinatedSalary(Double coordinationDeduction, Integer salary){
+        Double coordinatedSalary = salary - coordinationDeduction;
+        return coordinatedSalary;
+    }
+
+public Double calculateCoordinatedSalaryBVG(Double coordinationDeduction, Integer salary, Double minCoordinatedSalary, Double maxCoordinatedSalary){
+        Double coordinatedSalary = salary - coordinationDeduction;
+        if (coordinatedSalary <= minCoordinatedSalary){
+            return minCoordinatedSalary;
+        }else if (coordinatedSalary >= maxCoordinatedSalary) {
+            return maxCoordinatedSalary;
+        } else return coordinatedSalary;
+
+    }
+
+public Double calculateContribution(Double ContributionRate, Double coordinatedSalary){
+   Double contribution = (coordinatedSalary * (ContributionRate / 100)) / 12;
+    return contribution;
 }
-
-public Double calculateCoordinatedSalary(Double coordinationContribution, Integer salary){
-       Double calc = coordinationContribution * salary;
-       Double calcCo = Double.valueOf(coordinationDeduction);
-       if (calc > coordinationDeduction){
-           return coordinatedSalary = calcCo;
-       }else {
-           return coordinatedSalary = calc;
-       }
-
-
-}
-
-
-public Double calculatesavingContributionAN(Double savingContributionANRate, Integer salary){
-   Double savingContributionAN = (salary * (savingContributionANRate / 100)) / 12;
-
-    return savingContributionAN;
-}
-
 
 }

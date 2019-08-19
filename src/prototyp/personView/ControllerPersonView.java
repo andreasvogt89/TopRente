@@ -1,18 +1,14 @@
 package personView;
 
 
-import calculate.CalculateContributions;
-import contractPerson.ContractPerson;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,17 +17,73 @@ public class ControllerPersonView implements Initializable {
     @FXML
     private Label fullNameView;
     @FXML
-    private Label coordinatedSalaryBVG;
+    private Label levelBVG;
     @FXML
-    private Label contributionANBVG;
+    private  Label salaryBVG;
     @FXML
-    private Label contributionAGBVG;
+    private  Label coordinatedSalaryContributionBVG;
     @FXML
-    private Label riskContributionANBVG;
+    private  Label coordinatedSalaryBVG;
     @FXML
-    private Label riskContributionAGBVG;
-
-
+    private Label ageBVG;
+    @FXML
+    private  Label savingContributionANBVG;
+    @FXML
+    private  Label savingContributionAGBVG;
+    @FXML
+    private  Label riskContributionANBVG;
+    @FXML
+    private  Label riskContributionAGBVG;
+    @FXML
+    private  Label interestRateBVG;
+    @FXML
+    private  Label creditBVG;
+    @FXML
+    private  Label CalculatedCreditBVG;
+    @FXML
+    private  Label CalculatedInvalidCreditBVG;
+    @FXML
+    private  Label pensionBVG;
+    @FXML
+    private  Label pensionInvalidBVG;
+    @FXML
+    private  Label pensionPartnerBVG;
+    @FXML
+    private  Label pensionChildrenBVG;
+    @FXML
+    private Label level;
+    @FXML
+    private  Label salary;
+    @FXML
+    private  Label coordinatedSalaryContribution;
+    @FXML
+    private  Label coordinatedSalary;
+    @FXML
+    private Label age;
+    @FXML
+    private  Label savingContributionAN;
+    @FXML
+    private  Label savingContributionAG;
+    @FXML
+    private  Label riskContributionAN;
+    @FXML
+    private  Label riskContributionAG;
+    @FXML
+    private  Label interestRate;
+    @FXML
+    private  Label credit;
+    @FXML
+    private  Label CalculatedCredit;
+    @FXML
+    private  Label CalculatedInvalidCredit;
+    @FXML
+    private  Label pension;
+    @FXML
+    private  Label pensionInvalid;
+    @FXML
+    private  Label pensionPartner;
+    @FXML
+    private  Label pensionChildren;
 
     PersonViewModel personViewModel;
 
@@ -54,17 +106,28 @@ public class ControllerPersonView implements Initializable {
 
         }
 
-        fullNameView.setText(personViewModel.getPerson().getName() + " " + personViewModel.getPerson().getLastname());
-        coordinatedSalaryBVG.setText(personViewModel.setCoordinatedSalaryBVG());
+
+    }
+
+    private void loadPensionCertificatePerson(){
+        fullNameView.setText(personViewModel.getPerson().getName() + " " + personViewModel.getPerson().getLastname() + " " + "Versicherungsnr. " + personViewModel.getPerson().getInsurance());
+        levelBVG.setText(personViewModel.getPerson().getLevel());
+        level.setText(personViewModel.getPerson().getLevel());
+        salaryBVG.setText(String.valueOf(personViewModel.getPerson().getSalary()));
+        salary.setText(String.valueOf(personViewModel.getPerson().getSalary()));
+        coordinatedSalaryContributionBVG.setText(String.valueOf(personViewModel.getCoordinatedSalaryContributionBVG()));
+        coordinatedSalaryContribution.setText(String.valueOf(personViewModel.getCoordinatedSalaryContribution()));
+        coordinatedSalaryBVG.setText(personViewModel.getCoordinatedSalaryBVG());
+        coordinatedSalary.setText(personViewModel.getCoordinatedSalary());
+        ageBVG.setText(String.valueOf(personViewModel.getPerson().getAge()));
+        age.setText(String.valueOf(personViewModel.getPerson().getAge()));
 
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-
+        loadPensionCertificatePerson();
     }
 
 }
