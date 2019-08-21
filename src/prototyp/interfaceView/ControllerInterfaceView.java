@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import personView.ControllerPersonView;
-import personView.PersonViewModel;
+import personView.ModelPersonView;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -176,7 +176,7 @@ public class ControllerInterfaceView implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
-                PersonViewModel personViewModel = new PersonViewModel(person,createAllContributionRates());
+                ModelPersonView personViewModel = new ModelPersonView(person,createAllContributionRates());
                 ControllerPersonView controllerPersonView = new ControllerPersonView();
                 controllerPersonView.loadView(controllerPersonView,personViewModel);
             }
@@ -371,20 +371,20 @@ public class ControllerInterfaceView implements Initializable {
 
     private void setRates (){
         InputCoordinatedSalaryRate.setText("40");
-        InputSavingContributionANGroup1.setText("3.5");
-        InputSavingContributionAGGroup1.setText("3.5");
+        InputSavingContributionANGroup1.setText("5.85");
+        InputSavingContributionAGGroup1.setText("6.9");
         InputRiskContributionANGroup1.setText("0.5");
         InputRiskContributionAGGroup1.setText("0.75");
-        InputSavingContributionANGroup2.setText("5.0");
-        InputSavingContributionAGGroup2.setText("5.0");
+        InputSavingContributionANGroup2.setText("7.25");
+        InputSavingContributionAGGroup2.setText("9.0");
         InputRiskContributionANGroup2.setText("0.5");
         InputRiskContributionAGGroup2.setText("0.75");
-        InputSavingContributionANGroup3.setText("7.5");
-        InputSavingContributionAGGroup3.setText("7.5");
+        InputSavingContributionANGroup3.setText("9.4");
+        InputSavingContributionAGGroup3.setText("16.60");
         InputRiskContributionANGroup3.setText("0.5");
         InputRiskContributionAGGroup3.setText("0.75");
-        InputSavingContributionANGroup4.setText("9.0");
-        InputSavingContributionAGGroup4.setText("9.0");
+        InputSavingContributionANGroup4.setText("12.5");
+        InputSavingContributionAGGroup4.setText("21.75");
         InputRiskContributionANGroup4.setText("0.5");
         InputRiskContributionAGGroup4.setText("0.75");
         InputConversionRateGroup60.setText("4.47");

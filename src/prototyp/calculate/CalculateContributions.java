@@ -10,12 +10,11 @@ package calculate;
  */
 
 public class CalculateContributions {
-    private Double calculatetDetuction;
 
 
 public Double calculateCoordinationDeduction(Double coordinationDeductionRate, Double coordinationDeductionBVG, Integer salary){
         Double coordinationDeductioncalc = (coordinationDeductionRate/100) * Double.valueOf(salary);
-        if (coordinationDeductioncalc > coordinationDeductionBVG){
+        if (coordinationDeductioncalc >= coordinationDeductionBVG){
             return coordinationDeductionBVG;
         }else {
             return coordinationDeductioncalc;
@@ -24,8 +23,7 @@ public Double calculateCoordinationDeduction(Double coordinationDeductionRate, D
     }
 
 public Double calculateCoordinatedSalary(Double coordinationDeduction, Integer salary){
-        Double coordinatedSalary = salary - coordinationDeduction;
-        return coordinatedSalary;
+    return salary - coordinationDeduction;
     }
 
 public Double calculateCoordinatedSalaryBVG(Double coordinationDeduction, Integer salary, Double minCoordinatedSalary, Double maxCoordinatedSalary){
@@ -39,8 +37,17 @@ public Double calculateCoordinatedSalaryBVG(Double coordinationDeduction, Intege
     }
 
 public Double calculateContribution(Double ContributionRate, Double coordinatedSalary){
-   Double contribution = (coordinatedSalary * (ContributionRate / 100)) / 12;
-    return contribution;
+    return round((coordinatedSalary * (ContributionRate / 100))/12,2);
+
 }
+
+Double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
 
 }

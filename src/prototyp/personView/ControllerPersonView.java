@@ -85,10 +85,10 @@ public class ControllerPersonView implements Initializable {
     @FXML
     private  Label pensionChildren;
 
-    PersonViewModel personViewModel;
+    ModelPersonView personViewModel;
 
 
-    public void loadView (ControllerPersonView controllerPersonView, PersonViewModel personViewModel){
+    public void loadView (ControllerPersonView controllerPersonView, ModelPersonView personViewModel){
         this.personViewModel = personViewModel;
 
         try {
@@ -121,7 +121,18 @@ public class ControllerPersonView implements Initializable {
         coordinatedSalary.setText(personViewModel.getCoordinatedSalary());
         ageBVG.setText(String.valueOf(personViewModel.getPerson().getAge()));
         age.setText(String.valueOf(personViewModel.getPerson().getAge()));
-
+        savingContributionANBVG.setText(personViewModel.getSavingContributionANBVG());
+        savingContributionAN.setText(personViewModel.getSavingContributionAN());
+        savingContributionAGBVG.setText(personViewModel.getSavingContributionAGBVG());
+        savingContributionAG.setText(personViewModel.getSavingContributioAG());
+        riskContributionANBVG.setText(personViewModel.getRiskContributionANBVG());
+        riskContributionAN.setText(personViewModel.getRiskContributionAN());
+        riskContributionAGBVG.setText(personViewModel.getRiskContributionAGBVG());
+        riskContributionAG.setText(personViewModel.getRiskContributioAG());
+        interestRate.setText(personViewModel.getInterestRate());
+        interestRateBVG.setText(personViewModel.getInterestRate());
+        credit.setText(String.valueOf(personViewModel.getPerson().getCredit()));
+        creditBVG.setText(String.valueOf(personViewModel.getPerson().getCredit()));
 
     }
 
