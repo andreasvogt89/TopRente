@@ -41,7 +41,7 @@ public Double calculateContribution(Double ContributionRate, Double coordinatedS
 
 }
 
-Double round(double value, int places) {
+public static Double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
         long factor = (long) Math.pow(10, places);

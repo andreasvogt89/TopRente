@@ -1,15 +1,22 @@
 package calculate;
 
 
-import contractPerson.ContractPerson;
-
 public class CalculatePension {
 
-    public Double calculatePension(ContractPerson person, CalculateContributions contributions){
-        Integer startAge;
-        for (startAge = person.getAge(); startAge >= 34; startAge++){
+    public Double addUpContribution(Double contributionAN, Double contributionAG){
+        return contributionAN + contributionAG;
     }
 
-        Double win = 432324783.34343;
-return win; }
+    public Double calculateInterest(Double currentCredit, Double interestRate) {
+        return currentCredit * interestRate;
+    }
+
+    public Double addUpCredit (Double contribution, Double currentCredit){
+        return currentCredit + contribution;
+    }
 }
+
+
+
+
+

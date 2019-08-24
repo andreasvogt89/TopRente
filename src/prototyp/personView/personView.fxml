@@ -39,8 +39,8 @@
       <Label fx:id="riskContributionAGBVG" layoutX="264.0" layoutY="450.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="interestRateBVG" layoutX="264.0" layoutY="490.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="creditBVG" layoutX="264.0" layoutY="530.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
-      <Label fx:id="CalculatedCreditBVG" layoutX="264.0" layoutY="570.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
-      <Label fx:id="CalculatedInvalidCreditBVG" layoutX="264.0" layoutY="610.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="calculatedCreditBVG" layoutX="264.0" layoutY="570.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="calculatedInvalidCreditBVG" layoutX="264.0" layoutY="610.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="pensionBVG" layoutX="264.0" layoutY="650.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="pensionInvalidBVG" layoutX="264.0" layoutY="690.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="pensionPartnerBVG" layoutX="264.0" layoutY="730.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
@@ -58,8 +58,8 @@
       <Label fx:id="riskContributionAG" layoutX="473.0" layoutY="450.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="interestRate" layoutX="473.0" layoutY="490.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="credit" layoutX="473.0" layoutY="530.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
-      <Label fx:id="CalculatedCredit" layoutX="473.0" layoutY="570.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
-      <Label fx:id="CalculatedInvalidCredit" layoutX="473.0" layoutY="610.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="calculatedCredit" layoutX="473.0" layoutY="570.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="calculatedInvalidCredit" layoutX="473.0" layoutY="610.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="pension" layoutX="473.0" layoutY="650.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="pensionInvalid" layoutX="473.0" layoutY="690.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
       <Label fx:id="pensionPartner" layoutX="473.0" layoutY="730.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />

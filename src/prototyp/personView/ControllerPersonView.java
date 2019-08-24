@@ -39,7 +39,7 @@ public class ControllerPersonView implements Initializable {
     @FXML
     private  Label creditBVG;
     @FXML
-    private  Label CalculatedCreditBVG;
+    private  Label calculatedCreditBVG;
     @FXML
     private  Label CalculatedInvalidCreditBVG;
     @FXML
@@ -73,9 +73,9 @@ public class ControllerPersonView implements Initializable {
     @FXML
     private  Label credit;
     @FXML
-    private  Label CalculatedCredit;
+    private  Label calculatedCredit;
     @FXML
-    private  Label CalculatedInvalidCredit;
+    private  Label calculatedInvalidCredit;
     @FXML
     private  Label pension;
     @FXML
@@ -106,6 +106,7 @@ public class ControllerPersonView implements Initializable {
 
         }
 
+        loadPensionCertificatePerson();
 
     }
 
@@ -133,12 +134,13 @@ public class ControllerPersonView implements Initializable {
         interestRateBVG.setText(personViewModel.getInterestRate());
         credit.setText(String.valueOf(personViewModel.getPerson().getCredit()));
         creditBVG.setText(String.valueOf(personViewModel.getPerson().getCredit()));
+        calculatedCreditBVG.setText(personViewModel.getCalculatedCreditBVG());
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadPensionCertificatePerson();
+
     }
 
 }

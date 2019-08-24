@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Alert;
 
 import java.time.LocalDate;
-import java.util.FormatterClosedException;
 
 import static java.time.temporal.ChronoUnit.YEARS;
 
