@@ -86,6 +86,8 @@ public class ControllerPersonView implements Initializable {
     private  Label pensionChildren;
 
     ModelPersonView personViewModel;
+    String chf = " CHF";
+    String procent = " %";
 
     public void loadView (ControllerPersonView controllerPersonView, ModelPersonView personViewModel){
         this.personViewModel = personViewModel;
@@ -109,29 +111,29 @@ public class ControllerPersonView implements Initializable {
 
     private void loadPensionCertificatePerson(){
         fullNameView.setText(personViewModel.getPerson().getName() + " " + personViewModel.getPerson().getLastname() + " " + "Versicherungsnr. " + personViewModel.getPerson().getInsurance());
-        levelBVG.setText(personViewModel.getPerson().getLevel());
-        level.setText(personViewModel.getPerson().getLevel());
-        salaryBVG.setText(String.valueOf(personViewModel.getPerson().getSalary()));
-        salary.setText(String.valueOf(personViewModel.getPerson().getSalary()));
-        coordinatedSalaryContributionBVG.setText(String.valueOf(personViewModel.getCoordinatedSalaryContributionBVG()));
-        coordinatedSalaryContribution.setText(String.valueOf(personViewModel.getCoordinatedSalaryContribution()));
-        coordinatedSalaryBVG.setText(personViewModel.getCoordinatedSalaryBVG());
-        coordinatedSalary.setText(personViewModel.getCoordinatedSalary());
+        levelBVG.setText(personViewModel.getPerson().getLevel() + procent);
+        level.setText(personViewModel.getPerson().getLevel() + procent);
+        salaryBVG.setText(String.valueOf(personViewModel.getPerson().getSalary()) + chf);
+        salary.setText(String.valueOf(personViewModel.getPerson().getSalary()) + chf);
+        coordinatedSalaryContributionBVG.setText(String.valueOf(personViewModel.getCoordinatedSalaryContributionBVG()) + chf);
+        coordinatedSalaryContribution.setText(String.valueOf(personViewModel.getCoordinatedSalaryContribution()) + chf);
+        coordinatedSalaryBVG.setText(personViewModel.getCoordinatedSalaryBVG() + chf);
+        coordinatedSalary.setText(personViewModel.getCoordinatedSalary() + chf);
         ageBVG.setText(String.valueOf(personViewModel.getPerson().getAge()));
         age.setText(String.valueOf(personViewModel.getPerson().getAge()));
-        savingContributionANBVG.setText(personViewModel.getSavingContributionANBVG());
-        savingContributionAN.setText(personViewModel.getSavingContributionAN());
-        savingContributionAGBVG.setText(personViewModel.getSavingContributionAGBVG());
-        savingContributionAG.setText(personViewModel.getSavingContributioAG());
-        riskContributionANBVG.setText(personViewModel.getRiskContributionANBVG());
-        riskContributionAN.setText(personViewModel.getRiskContributionAN());
-        riskContributionAGBVG.setText(personViewModel.getRiskContributionAGBVG());
-        riskContributionAG.setText(personViewModel.getRiskContributioAG());
-        interestRate.setText(personViewModel.getInterestRate());
-        interestRateBVG.setText(personViewModel.getInterestRate());
-        credit.setText(String.valueOf(personViewModel.getPerson().getCredit()));
-        creditBVG.setText(String.valueOf(personViewModel.getPerson().getCredit()));
-        calculatedCreditBVG.setText(personViewModel.getCalculatedCreditBVG());
+        savingContributionANBVG.setText(personViewModel.getSavingContributionANBVG() + chf);
+        savingContributionAN.setText(personViewModel.getSavingContributionAN() + chf);
+        savingContributionAGBVG.setText(personViewModel.getSavingContributionAGBVG() + chf);
+        savingContributionAG.setText(personViewModel.getSavingContributioAG() + chf);
+        riskContributionANBVG.setText(personViewModel.getRiskContributionANBVG() + chf);
+        riskContributionAN.setText(personViewModel.getRiskContributionAN() + chf);
+        riskContributionAGBVG.setText(personViewModel.getRiskContributionAGBVG() + chf);
+        riskContributionAG.setText(personViewModel.getRiskContributioAG() + chf);
+        interestRate.setText(personViewModel.getInterestRate() + procent);
+        interestRateBVG.setText(personViewModel.getInterestRate() + procent);
+        credit.setText(String.valueOf(personViewModel.getPerson().getCredit())  + chf);
+        creditBVG.setText(String.valueOf(personViewModel.getPerson().getCredit()) + chf);
+        calculatedCreditBVG.setText(personViewModel.getCalculatedCreditBVG() + chf);
 
     }
 
