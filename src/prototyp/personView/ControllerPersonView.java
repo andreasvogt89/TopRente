@@ -87,7 +87,6 @@ public class ControllerPersonView implements Initializable {
 
     ModelPersonView personViewModel;
 
-
     public void loadView (ControllerPersonView controllerPersonView, ModelPersonView personViewModel){
         this.personViewModel = personViewModel;
 
@@ -100,13 +99,11 @@ public class ControllerPersonView implements Initializable {
             stage.setScene(scene);
             stage.setTitle(personViewModel.getPerson().getName() + " " + personViewModel.getPerson().getLastname());
             stage.show();
-
-
         } catch (Exception e) {
 
         }
 
-        loadPensionCertificatePerson();
+
 
     }
 
@@ -140,7 +137,7 @@ public class ControllerPersonView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        loadPensionCertificatePerson();
     }
 
 }

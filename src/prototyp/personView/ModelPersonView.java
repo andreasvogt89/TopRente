@@ -167,19 +167,19 @@ public class ModelPersonView {
         Double newCredit = credit;
         for (age = person.getAge();age  <= 65; age++) {
             if (ageBetween(age, 24, 34)) {
-                Double contribution = calculateAgeSetGroup1();
+                Double contribution = calculateYearGroup1();
                 Double currentCredit = calculatePension.addUpCredit(newCredit,contribution);
                 newCredit = calculatePension.calculateInterest(currentCredit,contributionRates.getInterestRate());
             } else if (ageBetween(age, 35, 44)) {
-                Double contribution = calculateAgeSetGroup2();
+                Double contribution = calculateYearGroup2();
                 Double currentCredit = calculatePension.addUpCredit(newCredit,contribution);
                 newCredit = calculatePension.calculateInterest(currentCredit,contributionRates.getInterestRate());
             } else if (ageBetween(age, 44, 54)) {
-                Double contribution = calculateAgeSetGroup3();
+                Double contribution = calculateYearGroup3();
                 Double currentCredit = calculatePension.addUpCredit(newCredit,contribution);
                 newCredit = calculatePension.calculateInterest(currentCredit,contributionRates.getInterestRate());
             } else{
-                Double contribution = calculateAgeSetGroup4();
+                Double contribution = calculateYearGroup4();
                 Double currentCredit = calculatePension.addUpCredit(newCredit,contribution);
                 newCredit = calculatePension.calculateInterest(currentCredit,contributionRates.getInterestRate());
             }
@@ -187,29 +187,40 @@ public class ModelPersonView {
         return String.valueOf(CalculateContributions.round((newCredit),2));
     }
 
-    private Double calculateAgeSetGroup1 (){
-        Double x = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup1BVG(), coordinatedSalary);
-        Double y = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup1BVG(), coordinatedSalary);
+    private Double calculateYearGroup1(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup1BVG(), coordinatedSalary);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1BVG(), coordinatedSalary);
+        Double group1c = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup1BVG(), coordinatedSalary);
+        Double group1d = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup1BVG(), coordinatedSalary);
 
-        return calculatePension.addUpContribution(x,y);
+        return calculatePension.addUpContribution(group1a,group1b,group1c,group1d) * 12;
     }
 
-    private Double calculateAgeSetGroup2 (){
-        Double x = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup2BVG(), coordinatedSalary);
-        Double y = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup2BVG(), coordinatedSalary);
+    private Double calculateYearGroup2(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup2BVG(), coordinatedSalary);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup2BVG(), coordinatedSalary);
+        Double group1c = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup2BVG(), coordinatedSalary);
+        Double group1d = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup2BVG(), coordinatedSalary);
 
-        return calculatePension.addUpContribution(x,y);}
+        return calculatePension.addUpContribution(group1a,group1b,group1c,group1d) * 12;
+    }
 
-    private Double calculateAgeSetGroup3 (){
-        Double x = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup3BVG(), coordinatedSalary);
-        Double y = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup3BVG(), coordinatedSalary);
+    private Double calculateYearGroup3(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup3BVG(), coordinatedSalary);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup3BVG(), coordinatedSalary);
+        Double group1c = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup3BVG(), coordinatedSalary);
+        Double group1d = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup3BVG(), coordinatedSalary);
 
-        return calculatePension.addUpContribution(x,y);}
+        return calculatePension.addUpContribution(group1a,group1b,group1c,group1d) * 12;
+    }
 
-    private Double calculateAgeSetGroup4 (){
-        Double x = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup4BVG(), coordinatedSalary);
-        Double y = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup4BVG(), coordinatedSalary);
+    private Double calculateYearGroup4(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup4BVG(), coordinatedSalary);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4BVG(), coordinatedSalary);
+        Double group1c = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup4BVG(), coordinatedSalary);
+        Double group1d = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup4BVG(), coordinatedSalary);
 
-        return calculatePension.addUpContribution(x,y);}
+        return calculatePension.addUpContribution(group1a,group1b,group1c,group1d) * 12;
+    }
 
 }
