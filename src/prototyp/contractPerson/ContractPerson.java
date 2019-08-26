@@ -8,6 +8,15 @@ import java.time.LocalDate;
 
 import static java.time.temporal.ChronoUnit.YEARS;
 
+/**
+ * Object for contract persons
+ * is Part of the model to the mcv construct interface
+ *
+ * @version 1.0
+ * @autor Andreas Vogt
+ * @date 19.08.2019
+ */
+
 public class ContractPerson {
 
     private SimpleStringProperty lastname;

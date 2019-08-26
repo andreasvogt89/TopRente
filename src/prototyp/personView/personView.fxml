@@ -3,6 +3,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
+
+
+
+
 <AnchorPane id="personView" prefHeight="612.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="fullNameView" layoutX="243.0" layoutY="23.0" prefHeight="27.0" prefWidth="541.0" text="Spare" />

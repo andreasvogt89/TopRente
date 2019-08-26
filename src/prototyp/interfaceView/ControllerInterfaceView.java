@@ -2,8 +2,8 @@ package interfaceView;
 
 
 import ContributionRates.ContributionRates;
-import Database.DatabaseManager;
 import contractPerson.ContractPerson;
+import database.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -21,7 +21,14 @@ import personView.ModelPersonView;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
+/**
+ * Controller for the interface
+ *
+ *
+ * @version 1.0
+ * @autor Andreas Vogt
+ * @date 19.08.2019
+ */
 
 public class ControllerInterfaceView implements Initializable {
 

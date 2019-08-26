@@ -2,7 +2,7 @@ package calculate;
 
 /**
  * Class for calculate Contribution and Coordination Salary
- *
+ * is Part of the model to the mcv construct interface person view
  *
  * @version 1.0
  * @autor Andreas Vogt

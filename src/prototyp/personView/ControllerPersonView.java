@@ -89,6 +89,7 @@ public class ControllerPersonView implements Initializable {
     String chf = " CHF";
     String procent = " %";
 
+
     public void loadView (ControllerPersonView controllerPersonView, ModelPersonView personViewModel){
         this.personViewModel = personViewModel;
 

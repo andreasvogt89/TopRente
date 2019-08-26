@@ -1,5 +1,12 @@
 package calculate;
-
+/**
+ * Class for calculate all Pension
+ * is Part of the model to the mcv construct interface person view
+ *
+ * @version 1.0
+ * @autor Andreas Vogt
+ * @date 19.08.2019
+ */
 
 public class CalculatePension {
 

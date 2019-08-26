@@ -1,5 +1,16 @@
 package ContributionRates;
 
+/**
+ * Object for contribution Rates
+ * no functions
+ * is Part of the model to the mcv construct interface
+ *
+ *
+ * @version 1.0
+ * @autor Andreas Vogt
+ * @date 19.08.2019
+ */
+
 public class ContributionRates {
     private Double savingContributionANGroup1;
     private Double savingContributionAGGroup1;

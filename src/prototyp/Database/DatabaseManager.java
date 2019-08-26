@@ -1,10 +1,17 @@
-package Database;
+package database;
 import contractPerson.ContractPerson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import java.sql.*;
-
+/**
+ * This class handel all connections and statement to SQL
+ * is Part of the model to the mcv construct interface
+ *
+ * @version 1.0
+ * @autor Andreas Vogt
+ * @date 19.08.2019
+ */
 
 public class DatabaseManager {
 
