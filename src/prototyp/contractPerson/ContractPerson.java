@@ -4,7 +4,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Alert;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 import static java.time.temporal.ChronoUnit.YEARS;
 
@@ -27,8 +31,11 @@ public class ContractPerson {
     private SimpleIntegerProperty  credit;
     private SimpleStringProperty  sex;
     private SimpleIntegerProperty  insurance;
+    private SimpleStringProperty entrydate;
 
-    public ContractPerson(String lastname, String name, String birthday, Integer salary, String level, Integer credit,Integer insurance,String sex) {
+
+
+    public ContractPerson(String lastname, String name, String birthday, Integer salary, String level, Integer credit,Integer insurance,String sex, String entrydate) {
         this.lastname = new SimpleStringProperty(lastname);
         this.name = new SimpleStringProperty(name);
         this.credit = new SimpleIntegerProperty(credit);
@@ -37,6 +44,7 @@ public class ContractPerson {
         this.level = new SimpleStringProperty(level);
         this.insurance = new SimpleIntegerProperty(insurance);
         this.sex = new SimpleStringProperty(sex);
+        this.entrydate = new SimpleStringProperty(entrydate);
     }
 
     public String getLastname(){
@@ -71,14 +79,8 @@ public class ContractPerson {
         return insurance.getValue();
     }
 
-    public boolean checkAge(String birthday) {
-        LocalDate currentDate = LocalDate.now();
-        LocalDate birthdayDate = LocalDate.parse(birthday);
-        Integer age = Integer.valueOf((int) YEARS.between(birthdayDate, currentDate));
-        if (age <= 23) {
-        new Alert(Alert.AlertType.ERROR, "Person ist nicht 24").showAndWait();
-        return false;}
-        else return true;
+    public String getEntrydate(){
+        return entrydate.getValue();
     }
 
     public Integer getAge (){
@@ -87,6 +89,7 @@ public class ContractPerson {
         Integer age = Integer.valueOf((int) YEARS.between(birthdayDate, currentDate));
         return age;
     }
+
 }
 
 

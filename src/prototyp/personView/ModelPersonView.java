@@ -6,6 +6,14 @@ import calculate.CalculateContributions;
 import calculate.CalculatePension;
 import contractPerson.ContractPerson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+
+import static java.time.temporal.ChronoUnit.YEARS;
+
 
 public class ModelPersonView {
 
@@ -40,6 +48,18 @@ public class ModelPersonView {
             return true;
         else
             return false;
+    }
+
+    String getPensionDate(Integer pensionAge, String birthday) throws ParseException {
+        Date thisBirthday =new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(thisBirthday);
+        calendar.add(Calendar.YEAR,pensionAge);
+        int lastDayOfMoth = calendar.getActualMaximum(calendar.DAY_OF_MONTH);
+        calendar.set(Calendar.DAY_OF_MONTH,lastDayOfMoth);
+        Date pensiondate = calendar.getTime();
+        return pensiondate.toString();
+
     }
 
     ContractPerson getPerson() {
@@ -162,7 +182,7 @@ public class ModelPersonView {
         return String.valueOf(contributionRates.getInterestRate());
     }
 
-    String getCalculatedCreditBVG (){
+    String getCalculatedCreditBVG(){
         Integer age;
         Double newCredit = credit;
         for (age = person.getAge();age  <= 65; age++) {
@@ -187,40 +207,35 @@ public class ModelPersonView {
         return String.valueOf(CalculateContributions.round((newCredit),2));
     }
 
+    String getPensionDate() throws ParseException {
+        if(person.getSex().matches( "Männlich")){
+            return getPensionDate(65,person.getBirthday());
+        }
+        return getPensionDate(64,person.getBirthday());
+    }
+
     private Double calculateYearGroup1(){
         Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup1BVG(), coordinatedSalary);
-        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1BVG(), coordinatedSalary);
-        Double group1c = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup1BVG(), coordinatedSalary);
-        Double group1d = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup1BVG(), coordinatedSalary);
-
-        return calculatePension.addUpContribution(group1a,group1b,group1c,group1d) * 12;
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1BVG(), coordinatedSalary);;
+        return calculatePension.addUpContribution(group1a,group1b) * 12;
     }
 
     private Double calculateYearGroup2(){
         Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup2BVG(), coordinatedSalary);
         Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup2BVG(), coordinatedSalary);
-        Double group1c = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup2BVG(), coordinatedSalary);
-        Double group1d = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup2BVG(), coordinatedSalary);
-
-        return calculatePension.addUpContribution(group1a,group1b,group1c,group1d) * 12;
+        return calculatePension.addUpContribution(group1a,group1b) * 12;
     }
 
     private Double calculateYearGroup3(){
         Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup3BVG(), coordinatedSalary);
         Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup3BVG(), coordinatedSalary);
-        Double group1c = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup3BVG(), coordinatedSalary);
-        Double group1d = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup3BVG(), coordinatedSalary);
-
-        return calculatePension.addUpContribution(group1a,group1b,group1c,group1d) * 12;
+        return calculatePension.addUpContribution(group1a,group1b) * 12;
     }
 
     private Double calculateYearGroup4(){
         Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup4BVG(), coordinatedSalary);
         Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4BVG(), coordinatedSalary);
-        Double group1c = calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup4BVG(), coordinatedSalary);
-        Double group1d = calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup4BVG(), coordinatedSalary);
-
-        return calculatePension.addUpContribution(group1a,group1b,group1c,group1d) * 12;
+        return calculatePension.addUpContribution(group1a,group1b) * 12;
     }
 
 }

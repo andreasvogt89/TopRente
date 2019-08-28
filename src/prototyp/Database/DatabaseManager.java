@@ -1,4 +1,4 @@
-package database;
+package Database;
 import contractPerson.ContractPerson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +25,7 @@ public class DatabaseManager {
     private static final String COLUMN_CREDIT = "Alterguthaben";
     private static final String COLUMN_INSURNCE = "Versicherungsnummer";
     private static final String COLUMN_SEX = "Geschlächt";
+    private static final String COLUMN_ENTRYDATE = "Eintrittsdatum";
 
     private static Statement statement;
     private static Connection connection;
@@ -71,7 +72,8 @@ public class DatabaseManager {
                         COLUMN_EMPLOYMENDLEVEL + " VARCHAR, " +
                         COLUMN_CREDIT + " INTEGER, " +
                         COLUMN_INSURNCE + " INTEGER, " +
-                        COLUMN_SEX + " VARCHAR " + ")";
+                        COLUMN_SEX + " VARCHAR, " +
+                        COLUMN_ENTRYDATE + "VARCHAR"+ ")";
                 statement.execute(SQLstring);
                 System.out.println(SQLstring);
             } catch (SQLException e) {
@@ -102,7 +104,8 @@ public class DatabaseManager {
                 "'" + contractPerson.getLevel() + "', " +
                 "'" + contractPerson.getCredit() + "', " +
                 "'" + contractPerson.getInsurance() + "', " +
-                "'" + contractPerson.getSex() + "');";
+                "'" + contractPerson.getSex() + "', " +
+                "'" + contractPerson.getEntrydate() + "');";
         statement.execute(sqlLocalStatemant);
         System.out.println(sqlLocalStatemant);
 
@@ -122,7 +125,8 @@ public class DatabaseManager {
             Integer credit = resultSet.getInt(6);
             Integer insurance = resultSet.getInt(7);
             String sex = resultSet.getString(8);
-            list.add(new ContractPerson(lastname,name,birthday,salary,level,credit,insurance,sex));
+            String entrydate = resultSet.getString(9);
+            list.add(new ContractPerson(lastname,name,birthday,salary,level,credit,insurance,sex,entrydate));
 
         }
         statement.close();

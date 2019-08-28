@@ -10,8 +10,8 @@ package calculate;
 
 public class CalculatePension {
 
-    public Double addUpContribution(Double saveingAN, Double savingAG, Double riskAN, Double riskAG){
-        return saveingAN + savingAG +riskAN + riskAG;
+    public Double addUpContribution(Double saveingAN, Double savingAG){
+        return saveingAN + savingAG;
     }
 
     public Double calculateInterest(Double currentCredit, Double interestRate) {

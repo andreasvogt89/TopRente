@@ -3,7 +3,7 @@ package interfaceView;
 
 import ContributionRates.ContributionRates;
 import contractPerson.ContractPerson;
-import database.DatabaseManager;
+import Database.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -20,6 +20,7 @@ import personView.ModelPersonView;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 /**
  * Controller for the interface
@@ -30,7 +31,7 @@ import java.util.ResourceBundle;
  * @date 19.08.2019
  */
 
-public class ControllerInterfaceView implements Initializable {
+public class ControllerInterface implements Initializable {
 
 
     @FXML
@@ -49,6 +50,8 @@ public class ControllerInterfaceView implements Initializable {
     private ChoiceBox inputLevel;
     @FXML
     private TextField inputInsuranceNumber;
+    @FXML
+    private DatePicker inputEntrydate;
     @FXML
     public TextField databaseURL;
     @FXML
@@ -169,10 +172,10 @@ public class ControllerInterfaceView implements Initializable {
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
     private String SqlLiteURL = "jdbc:sqlite:C:\\Users\\admin\\IdeaProjects\\TopRente\\src\\";
     private ObservableList<ContractPerson> persons;
-    final static DatabaseManager databaseManager = new DatabaseManager();
+    private static final DatabaseManager databaseManager = new DatabaseManager();
     private ObservableList<String> inputSexList = FXCollections.observableArrayList("Männlich","Weiblich");
     private ObservableList<String> inputLevelList = FXCollections.observableArrayList("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%");
-
+    private InterfaceModel interfaceModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -185,7 +188,11 @@ public class ControllerInterfaceView implements Initializable {
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
                 ModelPersonView personViewModel = new ModelPersonView(person,createAllContributionRates());
                 ControllerPersonView controllerPersonView = new ControllerPersonView();
-                controllerPersonView.loadView(controllerPersonView,personViewModel);
+                try {
+                    controllerPersonView.loadView(controllerPersonView,personViewModel);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
 
         });
@@ -217,12 +224,15 @@ public class ControllerInterfaceView implements Initializable {
         inputSalary.clear();
         inputCredit.clear();
         inputBirthDate.getEditor().clear();
+        inputEntrydate.getEditor().clear();
         inputInsuranceNumber.clear();
     }
 
     public void actionSaveButton() throws SQLException {
-        if (createNewPerson().checkAge(createNewPerson().getBirthday())){
-            databaseManager.createPerson(databaseManager.getStatement(), createNewPerson());
+        InterfaceModel interfaceModel = new InterfaceModel();
+        this.interfaceModel = interfaceModel;
+        if (interfaceModel.checkSalary(Integer.valueOf(inputSalary.getText())) && interfaceModel.checkAge(String.valueOf(inputBirthDate.getValue()))) {
+            DatabaseManager.createPerson(databaseManager.getStatement(), createNewPerson());
             loadContent();}
     }
 
@@ -246,10 +256,11 @@ public class ControllerInterfaceView implements Initializable {
         Integer credit = Integer.valueOf(inputCredit.getText());
         Integer insurance = Integer.valueOf(inputInsuranceNumber.getText());
         String sex = String.valueOf(inputSex.getValue());
+        String entrydate = String.valueOf(inputEntrydate.getValue());
         isInt(inputSalary, inputSalary.getText());
         isInt(inputCredit, inputCredit.getText());
         isInt(inputInsuranceNumber,inputInsuranceNumber.getText());
-        ContractPerson newContractPerson = new ContractPerson(lastName, name, birthday, salary, level, credit,insurance,sex);
+        ContractPerson newContractPerson = new ContractPerson(lastName, name, birthday, salary, level, credit,insurance,sex,entrydate);
         return newContractPerson;
     }
 
@@ -291,6 +302,7 @@ public class ControllerInterfaceView implements Initializable {
         inputCredit.setPromptText("Altersguthaben");
         inputBirthDate.setPromptText("Geburtsdatum");
         inputInsuranceNumber.setPromptText("Versicherungsnummer");
+        inputEntrydate.setPromptText("Eintrittsdatum");
         inputSex.setValue(inputSexList.get(0));
         inputLevel.setValue(inputLevelList.get(9));
         databaseTyp.setItems(dbTypeList);
@@ -405,7 +417,6 @@ public class ControllerInterfaceView implements Initializable {
 
     }
 
-
     @FXML
     public void  keyReleasedProperty(KeyEvent event) {
         String fString = inputLastName.getText();
@@ -416,12 +427,14 @@ public class ControllerInterfaceView implements Initializable {
         String gString = String.valueOf(inputLevel.getValue());
         String lString = String.valueOf(inputSex.getValue());
         String xString = inputInsuranceNumber.getText();
+        String zString = inputEntrydate.toString();
 
 
         boolean createButtonDisable = (fString.isEmpty() || fString.trim().isEmpty())||
                 (sString.isEmpty() || sString.trim().isEmpty()) || (saString.isEmpty() || saString.trim().isEmpty()) ||
                 (eString.isEmpty() || eString.trim().isEmpty()) || (wString.isEmpty() || wString.trim().isEmpty()) ||
-                (xString.isEmpty() || xString.trim().isEmpty()) || gString.matches("null") || lString.matches("null");
+                (xString.isEmpty() || xString.trim().isEmpty()) || gString.matches("null") ||
+                lString.matches("null") || zString.matches("null");
 
         if (!createButtonDisable) {
             SavePerson.setDisable(false);
