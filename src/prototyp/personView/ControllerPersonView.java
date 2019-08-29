@@ -93,7 +93,7 @@ public class ControllerPersonView implements Initializable {
     private String procent = " %";
 
 
-    public void loadView (ControllerPersonView controllerPersonView, ModelPersonView personViewModel) throws ParseException {
+    public void loadView (ControllerPersonView controllerPersonView, ModelPersonView personViewModel) {
         this.modelPersonView = personViewModel;
 
         try {
@@ -109,7 +109,7 @@ public class ControllerPersonView implements Initializable {
 
         }
 
-        loadPensionCertificatePerson();
+
 
     }
 
@@ -145,6 +145,11 @@ public class ControllerPersonView implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        try {
+            loadPensionCertificatePerson();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 }

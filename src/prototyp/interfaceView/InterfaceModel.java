@@ -25,5 +25,4 @@ class InterfaceModel {
         return true;
     }
 
-
 }

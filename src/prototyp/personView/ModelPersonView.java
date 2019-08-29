@@ -8,11 +8,8 @@ import contractPerson.ContractPerson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
-
-import static java.time.temporal.ChronoUnit.YEARS;
 
 
 public class ModelPersonView {
@@ -26,7 +23,7 @@ public class ModelPersonView {
     private Double coordinatedSalaryBVG;
     private Double coordinatedSalary;
     private Double credit;
-
+    private Calendar pensionDateCalendar;
 
     public ModelPersonView(ContractPerson person, ContributionRates contributionRates) {
         this.person = person;
@@ -36,30 +33,72 @@ public class ModelPersonView {
         this.coordinatedSalary = calculateContributions.calculateCoordinatedSalary(calculatedDetuction, person.getSalary());
         this.credit = Double.valueOf(person.getCredit());
 
-
-    }
+        try {
+           this.pensionDateCalendar = calculatePensionDate(getPensionAge(),person.getBirthday());
+        } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
 
     private void calculateDetuction() {
         this.calculatedDetuction = calculateContributions.calculateCoordinationDeduction(contributionRates.getCoordinatedSalaryRate(), contributionRates.getCoordinatedDetuctionBVG(), person.getSalary());
     }
 
-    boolean ageBetween(Integer age, Integer minAge, Integer maxAge) {
+    private boolean ageBetween(Integer age, Integer minAge, Integer maxAge) {
         if (age >= minAge && age <= maxAge)
             return true;
         else
             return false;
     }
 
-    String getPensionDate(Integer pensionAge, String birthday) throws ParseException {
+    private Integer getPensionAge(){
+        if(person.getSex().matches("Männlich")){
+            return 65;}
+        return 64;
+
+    }
+
+    private Double entryCreditWithInterest (Double credit, Double interestRate, String entryDate) throws Exception{
+        Date thisEnteryDate =new SimpleDateFormat("yyyy-MM-dd").parse(entryDate);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(thisEnteryDate);
+        double month = calendar.get(Calendar.MONTH);
+        double monthRate = month / 12;
+        return credit + ((credit*(interestRate/100))* monthRate) + ((calculateEntryContributionBVG() * (1 -monthRate)));
+
+    }
+
+    private Double exitCredit (Double exitCreditbeforeLastYear, Double interestRate){
+        double moth = pensionDateCalendar.get(Calendar.MONTH) + 1;
+        double monthRate = moth / 12;
+        double untilDone = exitCreditbeforeLastYear + (calculateYearGroup4BVG()* monthRate);
+       return  untilDone + ((untilDone * (interestRate/100) * monthRate));
+    }
+
+    private Double calculateEntryContributionBVG(){
+        Integer age = person.getAge();
+        if (ageBetween(age, 24, 34)) {
+            return calculateYearGroup1BVG();
+        } else if (ageBetween(age, 35, 44)) {
+            return calculateYearGroup2BVG();
+        } else if (ageBetween(age, 44, 54)) {
+            return calculateYearGroup3BVG();
+        } else
+            return calculateYearGroup4BVG();
+    }
+
+    String getPensionDate() {
+        return pensionDateCalendar.getTime().toString();
+    }
+
+    private Calendar calculatePensionDate(Integer pensionAge, String birthday) throws ParseException {
         Date thisBirthday =new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(thisBirthday);
         calendar.add(Calendar.YEAR,pensionAge);
         int lastDayOfMoth = calendar.getActualMaximum(calendar.DAY_OF_MONTH);
         calendar.set(Calendar.DAY_OF_MONTH,lastDayOfMoth);
-        Date pensiondate = calendar.getTime();
-        return pensiondate.toString();
-
+        return calendar;
     }
 
     ContractPerson getPerson() {
@@ -182,59 +221,57 @@ public class ModelPersonView {
         return String.valueOf(contributionRates.getInterestRate());
     }
 
-    String getCalculatedCreditBVG(){
-        Integer age;
-        Double newCredit = credit;
-        for (age = person.getAge();age  <= 65; age++) {
-            if (ageBetween(age, 24, 34)) {
-                Double contribution = calculateYearGroup1();
-                Double currentCredit = calculatePension.addUpCredit(newCredit,contribution);
-                newCredit = calculatePension.calculateInterest(currentCredit,contributionRates.getInterestRate());
-            } else if (ageBetween(age, 35, 44)) {
-                Double contribution = calculateYearGroup2();
-                Double currentCredit = calculatePension.addUpCredit(newCredit,contribution);
-                newCredit = calculatePension.calculateInterest(currentCredit,contributionRates.getInterestRate());
-            } else if (ageBetween(age, 44, 54)) {
-                Double contribution = calculateYearGroup3();
-                Double currentCredit = calculatePension.addUpCredit(newCredit,contribution);
-                newCredit = calculatePension.calculateInterest(currentCredit,contributionRates.getInterestRate());
-            } else{
-                Double contribution = calculateYearGroup4();
-                Double currentCredit = calculatePension.addUpCredit(newCredit,contribution);
-                newCredit = calculatePension.calculateInterest(currentCredit,contributionRates.getInterestRate());
-            }
-    }
-        return String.valueOf(CalculateContributions.round((newCredit),2));
-    }
-
-    String getPensionDate() throws ParseException {
-        if(person.getSex().matches( "Männlich")){
-            return getPensionDate(65,person.getBirthday());
+    String getCalculatedCreditBVG() {
+        double newCredit = 0;
+        double interest = contributionRates.getInterestRate();
+        try {
+           newCredit = entryCreditWithInterest(credit,interest,person.getEntrydate());
+           System.out.println(newCredit);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return getPensionDate(64,person.getBirthday());
+        for (Integer age = person.getAge() + 1;age  <= getPensionAge() - 1; age++) {
+            if (ageBetween(age, 24, 34)) {
+                Double contribution = calculateYearGroup1BVG();
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),contribution);
+            } else if (ageBetween(age, 35, 44)) {
+                Double contribution = calculateYearGroup2BVG();
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),contribution);
+            } else if (ageBetween(age, 44, 54)) {
+                Double contribution = calculateYearGroup3BVG();
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),contribution);
+            } else{
+                Double contribution = calculateYearGroup4BVG();
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),contribution);
+            }
+            System.out.println(newCredit);
+
+    }
+        System.out.println(newCredit);
+        return String.valueOf(CalculateContributions.round((exitCredit(newCredit,interest)),2));
     }
 
-    private Double calculateYearGroup1(){
-        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup1BVG(), coordinatedSalary);
-        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1BVG(), coordinatedSalary);;
+    private Double calculateYearGroup1BVG(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup1BVG(), coordinatedSalaryBVG);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1BVG(), coordinatedSalaryBVG);
         return calculatePension.addUpContribution(group1a,group1b) * 12;
     }
 
-    private Double calculateYearGroup2(){
-        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup2BVG(), coordinatedSalary);
-        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup2BVG(), coordinatedSalary);
+    private Double calculateYearGroup2BVG(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup2BVG(), coordinatedSalaryBVG);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup2BVG(), coordinatedSalaryBVG);
         return calculatePension.addUpContribution(group1a,group1b) * 12;
     }
 
-    private Double calculateYearGroup3(){
-        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup3BVG(), coordinatedSalary);
-        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup3BVG(), coordinatedSalary);
+    private Double calculateYearGroup3BVG(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup3BVG(), coordinatedSalaryBVG);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup3BVG(), coordinatedSalaryBVG);
         return calculatePension.addUpContribution(group1a,group1b) * 12;
     }
 
-    private Double calculateYearGroup4(){
-        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup4BVG(), coordinatedSalary);
-        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4BVG(), coordinatedSalary);
+    private Double calculateYearGroup4BVG(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup4BVG(), coordinatedSalaryBVG);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4BVG(), coordinatedSalaryBVG);
         return calculatePension.addUpContribution(group1a,group1b) * 12;
     }
 

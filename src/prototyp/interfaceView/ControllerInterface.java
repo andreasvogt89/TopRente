@@ -188,11 +188,9 @@ public class ControllerInterface implements Initializable {
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
                 ModelPersonView personViewModel = new ModelPersonView(person,createAllContributionRates());
                 ControllerPersonView controllerPersonView = new ControllerPersonView();
-                try {
+
                     controllerPersonView.loadView(controllerPersonView,personViewModel);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+
             }
 
         });

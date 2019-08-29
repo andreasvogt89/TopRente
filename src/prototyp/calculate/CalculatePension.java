@@ -15,7 +15,7 @@ public class CalculatePension {
     }
 
     public Double calculateInterest(Double currentCredit, Double interestRate) {
-        return currentCredit * interestRate;
+        return (currentCredit * (interestRate/100)) +currentCredit;
     }
 
     public Double addUpCredit (Double contribution, Double currentCredit){
