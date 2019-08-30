@@ -113,15 +113,15 @@ public class ControllerPersonView implements Initializable {
 
     }
 
-    private void loadPensionCertificatePerson() throws ParseException {
+    private void loadPensionCertificatePerson() {
         fullNameView.setText(modelPersonView.getPerson().getName() + " " + modelPersonView.getPerson().getLastname() + " " + "Versicherungsnr. " + modelPersonView.getPerson().getInsurance());
         pensionDate.setText(modelPersonView.getPensionDate());
         levelBVG.setText(modelPersonView.getPerson().getLevel() + procent);
         level.setText(modelPersonView.getPerson().getLevel() + procent);
-        salaryBVG.setText(String.valueOf(modelPersonView.getPerson().getSalary()) + chf);
-        salary.setText(String.valueOf(modelPersonView.getPerson().getSalary()) + chf);
-        coordinatedSalaryContributionBVG.setText(String.valueOf(modelPersonView.getCoordinatedSalaryContributionBVG()) + chf);
-        coordinatedSalaryContribution.setText(String.valueOf(modelPersonView.getCoordinatedSalaryContribution()) + chf);
+        salaryBVG.setText(modelPersonView.getPerson().getSalary() + chf);
+        salary.setText(modelPersonView.getPerson().getSalary() + chf);
+        coordinatedSalaryContributionBVG.setText(modelPersonView.getCoordinatedSalaryContributionBVG() + chf);
+        coordinatedSalaryContribution.setText(modelPersonView.getCoordinatedSalaryContribution() + chf);
         coordinatedSalaryBVG.setText(modelPersonView.getCoordinatedSalaryBVG() + chf);
         coordinatedSalary.setText(modelPersonView.getCoordinatedSalary() + chf);
         ageBVG.setText(String.valueOf(modelPersonView.getPerson().getAge()));
@@ -134,22 +134,22 @@ public class ControllerPersonView implements Initializable {
         riskContributionAN.setText(modelPersonView.getRiskContributionAN() + chf);
         riskContributionAGBVG.setText(modelPersonView.getRiskContributionAGBVG() + chf);
         riskContributionAG.setText(modelPersonView.getRiskContributioAG() + chf);
-        interestRate.setText(modelPersonView.getInterestRate() + procent);
-        interestRateBVG.setText(modelPersonView.getInterestRate() + procent);
-        credit.setText(String.valueOf(modelPersonView.getPerson().getCredit())  + chf);
-        creditBVG.setText(String.valueOf(modelPersonView.getPerson().getCredit()) + chf);
+        interestRate.setText(modelPersonView.getContributionRates().getInterestRate() + procent);
+        interestRateBVG.setText(modelPersonView.getContributionRates().getInterestRate() + procent);
+        credit.setText(modelPersonView.getPerson().getCredit() + chf);
+        creditBVG.setText(modelPersonView.getPerson().getCredit() + chf);
         calculatedCreditBVG.setText(modelPersonView.getCalculatedCreditBVG() + chf);
+        calculatedCredit.setText(modelPersonView.getCalculatedCredit() + chf);
+        pension.setText(modelPersonView.getPension() + chf);
+        pensionBVG.setText(modelPersonView.getPensionBVG() + chf);
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        try {
             loadPensionCertificatePerson();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
     }
 
 }

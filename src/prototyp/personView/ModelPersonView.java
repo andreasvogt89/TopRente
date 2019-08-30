@@ -25,6 +25,7 @@ public class ModelPersonView {
     private Double credit;
     private Calendar pensionDateCalendar;
 
+
     public ModelPersonView(ContractPerson person, ContributionRates contributionRates) {
         this.person = person;
         this.contributionRates = contributionRates;
@@ -58,20 +59,20 @@ public class ModelPersonView {
 
     }
 
-    private Double entryCreditWithInterest (Double credit, Double interestRate, String entryDate) throws Exception{
+    private Double entryCreditWithInterest (Double credit, Double interestRate, String entryDate,Double calculatedEntryContribution) throws Exception{
         Date thisEnteryDate =new SimpleDateFormat("yyyy-MM-dd").parse(entryDate);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(thisEnteryDate);
         double month = calendar.get(Calendar.MONTH);
         double monthRate = month / 12;
-        return credit + ((credit*(interestRate/100))* monthRate) + ((calculateEntryContributionBVG() * (1 -monthRate)));
+        return credit + ((credit*(interestRate/100))* monthRate) + ((calculatedEntryContribution * (1 -monthRate)));
 
     }
 
-    private Double exitCredit (Double exitCreditbeforeLastYear, Double interestRate){
+    private Double exitCredit (Double exitCreditbeforeLastYear, Double interestRate, Double calculatedExitContribution){
         double moth = pensionDateCalendar.get(Calendar.MONTH) + 1;
         double monthRate = moth / 12;
-        double untilDone = exitCreditbeforeLastYear + (calculateYearGroup4BVG()* monthRate);
+        double untilDone = exitCreditbeforeLastYear + (calculatedExitContribution* monthRate);
        return  untilDone + ((untilDone * (interestRate/100) * monthRate));
     }
 
@@ -85,6 +86,18 @@ public class ModelPersonView {
             return calculateYearGroup3BVG();
         } else
             return calculateYearGroup4BVG();
+    }
+
+    private Double calculateEntryContribution(){
+        Integer age = person.getAge();
+        if (ageBetween(age, 24, 34)) {
+            return calculateYearGroup1();
+        } else if (ageBetween(age, 35, 44)) {
+            return calculateYearGroup2();
+        } else if (ageBetween(age, 44, 54)) {
+            return calculateYearGroup3();
+        } else
+            return calculateYearGroup4();
     }
 
     String getPensionDate() {
@@ -105,150 +118,178 @@ public class ModelPersonView {
         return person;
     }
 
-    String getCoordinatedSalaryContributionBVG() {
-        return String.valueOf(contributionRates.getCoordinatedDetuctionBVG());
+    ContributionRates getContributionRates (){
+        return this.contributionRates;
     }
 
-    String getCoordinatedSalaryContribution() {
-        return String.valueOf(calculatedDetuction);
+    Double getCoordinatedSalaryContributionBVG() {
+        return contributionRates.getCoordinatedDetuctionBVG();
     }
 
-    String getCoordinatedSalaryBVG() {
-        return String.valueOf(coordinatedSalaryBVG);
+    Double getCoordinatedSalaryContribution() {
+        return calculatedDetuction;
     }
 
-    String getCoordinatedSalary() {
-        return String.valueOf(coordinatedSalary);
+    Double getCoordinatedSalaryBVG() {
+        return coordinatedSalaryBVG;
     }
 
-    String getSavingContributionANBVG() {
+    Double getCoordinatedSalary() {
+        return coordinatedSalary;
+    }
+
+    Double getSavingContributionANBVG() {
         Integer age = person.getAge();
         if (ageBetween(age, 24, 34)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1BVG(), coordinatedSalaryBVG);
         } else if (ageBetween(age, 35, 44)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup2BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup2BVG(), coordinatedSalaryBVG);
         } else if (ageBetween(age, 44, 54)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup3BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup3BVG(), coordinatedSalaryBVG);
         } else
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4BVG(), coordinatedSalaryBVG);
     }
 
-    String getSavingContributionAN() {
+    Double getSavingContributionAN() {
         Integer age = person.getAge();
         if (ageBetween(age, 24, 34)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1(), coordinatedSalary);
         } else if (ageBetween(age, 35, 44)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup2(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup2(), coordinatedSalary);
         } else if (ageBetween(age, 44, 54)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup3(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup3(), coordinatedSalary);
         } else
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4(), coordinatedSalary);
     }
 
-    String getSavingContributionAGBVG() {
+    Double getSavingContributionAGBVG() {
         Integer age = person.getAge();
         if (ageBetween(age, 24, 34)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup1BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup1BVG(), coordinatedSalaryBVG);
         } else if (ageBetween(age, 35, 44)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup2BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup2BVG(), coordinatedSalaryBVG);
         } else if (ageBetween(age, 44, 54)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup3BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup3BVG(), coordinatedSalaryBVG);
         } else
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup4BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup4BVG(), coordinatedSalaryBVG);
     }
 
-    String getSavingContributioAG() {
+    Double getSavingContributioAG() {
         Integer age = person.getAge();
         if (ageBetween(age, 24, 34)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup1(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup1(), coordinatedSalary);
         } else if (ageBetween(age, 35, 44)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup2(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup2(), coordinatedSalary);
         } else if (ageBetween(age, 44, 54)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup3(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup3(), coordinatedSalary);
         } else
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup4(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup4(), coordinatedSalary);
     }
 
-    String getRiskContributionANBVG() {
+    Double getRiskContributionANBVG() {
         Integer age = person.getAge();
         if (ageBetween(age, 24, 34)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup1BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup1BVG(), coordinatedSalaryBVG);
         } else if (ageBetween(age, 35, 44)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup2BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup2BVG(), coordinatedSalaryBVG);
         } else if (ageBetween(age, 44, 54)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup3BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup3BVG(), coordinatedSalaryBVG);
         } else
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup4BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup4BVG(), coordinatedSalaryBVG);
     }
 
-    String getRiskContributionAN() {
+    Double getRiskContributionAN() {
         Integer age = person.getAge();
         if (ageBetween(age, 24, 34)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup1(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup1(), coordinatedSalary);
         } else if (ageBetween(age, 35, 44)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup2(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup2(), coordinatedSalary);
         } else if (ageBetween(age, 44, 54)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup3(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup3(), coordinatedSalary);
         } else
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup4(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionANGroup4(), coordinatedSalary);
     }
 
-    String getRiskContributionAGBVG() {
+    Double getRiskContributionAGBVG() {
         Integer age = person.getAge();
         if (ageBetween(age, 24, 34)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup1BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup1BVG(), coordinatedSalaryBVG);
         } else if (ageBetween(age, 35, 44)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup2BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup2BVG(), coordinatedSalaryBVG);
         } else if (ageBetween(age, 44, 54)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup3BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup3BVG(), coordinatedSalaryBVG);
         } else
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup4BVG(), coordinatedSalaryBVG));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup4BVG(), coordinatedSalaryBVG);
     }
 
-    String getRiskContributioAG() {
+    Double getRiskContributioAG() {
         Integer age = person.getAge();
         if (ageBetween(age, 24, 34)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup1(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup1(), coordinatedSalary);
         } else if (ageBetween(age, 35, 44)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup2(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup2(), coordinatedSalary);
         } else if (ageBetween(age, 44, 54)) {
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup3(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup3(), coordinatedSalary);
         } else
-            return String.valueOf(calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup4(), coordinatedSalary));
+            return calculateContributions.calculateContribution(contributionRates.getRiskContributionAGGroup4(), coordinatedSalary);
     }
 
-    String getInterestRate(){
-        return String.valueOf(contributionRates.getInterestRate());
-    }
-
-    String getCalculatedCreditBVG() {
+    Double getCalculatedCreditBVG() {
         double newCredit = 0;
         double interest = contributionRates.getInterestRate();
         try {
-           newCredit = entryCreditWithInterest(credit,interest,person.getEntrydate());
+           newCredit = entryCreditWithInterest(credit,interest,person.getEntrydate(),calculateEntryContributionBVG());
            System.out.println(newCredit);
         } catch (Exception e) {
             e.printStackTrace();
         }
         for (Integer age = person.getAge() + 1;age  <= getPensionAge() - 1; age++) {
             if (ageBetween(age, 24, 34)) {
-                Double contribution = calculateYearGroup1BVG();
-                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),contribution);
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit, interest), calculateYearGroup1BVG());
             } else if (ageBetween(age, 35, 44)) {
-                Double contribution = calculateYearGroup2BVG();
-                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),contribution);
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit, interest), calculateYearGroup2BVG());
             } else if (ageBetween(age, 44, 54)) {
-                Double contribution = calculateYearGroup3BVG();
-                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),contribution);
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit, interest), calculateYearGroup3BVG());
+            } else {
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit, interest), calculateYearGroup4BVG());
+            }
+        }
+        System.out.println(newCredit);
+        return CalculateContributions.round(exitCredit(newCredit,interest,calculateYearGroup4BVG()),2);
+    }
+
+    Double getCalculatedCredit() {
+        double newCredit = 0;
+        double interest = contributionRates.getInterestRate();
+        try {
+            newCredit = entryCreditWithInterest(credit,interest,person.getEntrydate(),calculateEntryContribution());
+            System.out.println(newCredit);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        for (Integer age = person.getAge() + 1;age  <= getPensionAge() - 1; age++) {
+            if (ageBetween(age, 24, 34)) {
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),calculateYearGroup1());
+            } else if (ageBetween(age, 35, 44)) {
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),calculateYearGroup2());
+            } else if (ageBetween(age, 44, 54)) {
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),calculateYearGroup3());
             } else{
-                Double contribution = calculateYearGroup4BVG();
-                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),contribution);
+                newCredit = calculatePension.addUpCredit(calculatePension.calculateInterest(newCredit,interest),calculateYearGroup4());
             }
             System.out.println(newCredit);
-
+        }
+        return CalculateContributions.round(exitCredit(newCredit,interest,calculateYearGroup4()),2);
     }
-        System.out.println(newCredit);
-        return String.valueOf(CalculateContributions.round((exitCredit(newCredit,interest)),2));
+
+    Double getPension (){
+        Double conversionByAge = calculatePension.calculateConversionAge(person.getSex(),getPensionAge(),contributionRates.getConversionRate60(),contributionRates.getConversionRate61(),contributionRates.getConversionRate62(),contributionRates.getConversionRate63M(),contributionRates.getConversionRate63W(),contributionRates.getConversionRate64M(),contributionRates.getConversionRate64W(),contributionRates.getConversionRate65());
+        return CalculateContributions.round(calculatePension.calculatePension(getCalculatedCredit(),conversionByAge),2);
+    }
+
+    Double getPensionBVG (){
+
+        return CalculateContributions.round(calculatePension.calculatePension(getCalculatedCreditBVG(),contributionRates.getConversionRateMinBVG()),2);
     }
 
     private Double calculateYearGroup1BVG(){
@@ -274,5 +315,31 @@ public class ModelPersonView {
         Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4BVG(), coordinatedSalaryBVG);
         return calculatePension.addUpContribution(group1a,group1b) * 12;
     }
+
+    private Double calculateYearGroup1(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup1(), coordinatedSalary);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup1(), coordinatedSalary);
+        return calculatePension.addUpContribution(group1a,group1b) * 12;
+    }
+
+    private Double calculateYearGroup2(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup2(), coordinatedSalary);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup2(), coordinatedSalary);
+
+        return calculatePension.addUpContribution(group1a,group1b) * 12;
+    }
+
+    private Double calculateYearGroup3(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup3(), coordinatedSalary);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup3(), coordinatedSalary);
+        return calculatePension.addUpContribution(group1a,group1b) * 12;
+    }
+
+    private Double calculateYearGroup4(){
+        Double group1a = calculateContributions.calculateContribution(contributionRates.getSavingContributionAGGroup4(), coordinatedSalary);
+        Double group1b = calculateContributions.calculateContribution(contributionRates.getSavingContributionANGroup4(), coordinatedSalary);
+        return calculatePension.addUpContribution(group1a,group1b) * 12;
+    }
+
 
 }
