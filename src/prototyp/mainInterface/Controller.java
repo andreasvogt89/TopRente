@@ -1,9 +1,9 @@
-package interfaceView;
+package mainInterface;
 
 
-import ContributionRates.ContributionRates;
+import contributionRates.ContributionRates;
 import contractPerson.ContractPerson;
-import Database.DatabaseManager;
+import database.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -15,12 +15,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import personView.ControllerPersonView;
-import personView.ModelPersonView;
+import pensionCertificate.Model;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ResourceBundle;
 /**
  * Controller for the interface
@@ -31,7 +29,7 @@ import java.util.ResourceBundle;
  * @date 19.08.2019
  */
 
-public class ControllerInterface implements Initializable {
+public class Controller implements Initializable {
 
 
     @FXML
@@ -175,10 +173,12 @@ public class ControllerInterface implements Initializable {
     private static final DatabaseManager databaseManager = new DatabaseManager();
     private ObservableList<String> inputSexList = FXCollections.observableArrayList("Männlich","Weiblich");
     private ObservableList<String> inputLevelList = FXCollections.observableArrayList("10%","20%","30%","40%","50%","60%","70%","80%","90%","100%");
-    private InterfaceModel interfaceModel;
+    private mainInterface.Model model;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        mainInterface.Model model = new mainInterface.Model();
+        this.model = model;
         InitializeInput();
         setBVGRates();
         setRates();
@@ -186,8 +186,8 @@ public class ControllerInterface implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
-                ModelPersonView personViewModel = new ModelPersonView(person,createAllContributionRates());
-                ControllerPersonView controllerPersonView = new ControllerPersonView();
+                Model personViewModel = new Model(person,createAllContributionRates());
+                pensionCertificate.Controller controllerPersonView = new pensionCertificate.Controller();
 
                     controllerPersonView.loadView(controllerPersonView,personViewModel);
 
@@ -227,22 +227,9 @@ public class ControllerInterface implements Initializable {
     }
 
     public void actionSaveButton() throws SQLException {
-        InterfaceModel interfaceModel = new InterfaceModel();
-        this.interfaceModel = interfaceModel;
-        if (interfaceModel.checkSalary(Integer.valueOf(inputSalary.getText())) && interfaceModel.checkAge(String.valueOf(inputBirthDate.getValue()))) {
+        if (model.checkSalary(Integer.valueOf(inputSalary.getText())) && model.checkAge(String.valueOf(inputBirthDate.getValue()))) {
             DatabaseManager.createPerson(databaseManager.getStatement(), createNewPerson());
             loadContent();}
-    }
-
-    private boolean isInt(TextField input, String message) {
-        try {
-            int value = Integer.parseInt((input.getText()));
-            System.out.println(value + "is a number");
-            return true;
-        } catch (NumberFormatException e) {
-            System.out.println("Error " + message + " is not a number");
-            return false;
-        }
     }
 
     private ContractPerson createNewPerson() {
@@ -255,9 +242,9 @@ public class ControllerInterface implements Initializable {
         Integer insurance = Integer.valueOf(inputInsuranceNumber.getText());
         String sex = String.valueOf(inputSex.getValue());
         String entrydate = String.valueOf(inputEntrydate.getValue());
-        isInt(inputSalary, inputSalary.getText());
-        isInt(inputCredit, inputCredit.getText());
-        isInt(inputInsuranceNumber,inputInsuranceNumber.getText());
+        model.isInt(inputSalary, inputSalary.getText());
+        model.isInt(inputCredit, inputCredit.getText());
+        model.isInt(inputInsuranceNumber,inputInsuranceNumber.getText());
         ContractPerson newContractPerson = new ContractPerson(lastName, name, birthday, salary, level, credit,insurance,sex,entrydate);
         return newContractPerson;
     }

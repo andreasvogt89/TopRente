@@ -1,4 +1,4 @@
-package ContributionRates;
+package contributionRates;
 
 /**
  * Object for contribution Rates

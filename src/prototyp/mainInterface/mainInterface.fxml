@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<TabPane prefHeight="654.0" prefWidth="1300.0" stylesheets="@../style" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceView.ControllerInterface">
+<TabPane prefHeight="654.0" prefWidth="1300.0" stylesheets="@../stylesheets/mainInterfaceStyle" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainInterface.Controller">
    <tabs>
       <Tab text="Kunden">
          <content>
@@ -82,14 +82,14 @@
                <children>
                   <Label layoutX="9.0" layoutY="21.0" prefHeight="21.0" prefWidth="427.0" text="Überobligatorische Beitragssätze" textAlignment="CENTER">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold Italic" size="18.0" />
                      </font></Label>
                   <Label layoutX="84.0" layoutY="58.0" prefHeight="21.0" prefWidth="102.0" text="Sparbeitrag AN" />
                   <Label layoutX="186.0" layoutY="58.0" prefHeight="21.0" prefWidth="102.0" text="Sparbeitrag AG" />
                   <Label layoutX="288.0" layoutY="58.0" prefHeight="21.0" prefWidth="102.0" text="Risikobeitrag AN" />
                   <Label layoutX="393.0" layoutY="58.0" prefHeight="21.0" prefWidth="102.0" text="Risikobeitrag AG" />
-                  <Label layoutX="14.0" layoutY="60.0" prefHeight="21.0" prefWidth="70.0" text="Alter" />
-                  <Label layoutX="14.0" layoutY="80.0" prefHeight="19.0" prefWidth="70.0" text="22-34" />
+                  <Label layoutX="14.0" layoutY="58.0" prefHeight="21.0" prefWidth="70.0" text="Alter" />
+                  <Label layoutX="14.0" layoutY="83.0" prefHeight="19.0" prefWidth="70.0" text="22-34" />
                   <Label layoutX="14.0" layoutY="110.0" prefHeight="19.0" prefWidth="70.0" text="35-44" />
                   <Label layoutX="14.0" layoutY="140.0" prefHeight="19.0" prefWidth="70.0" text="45-54" />
                   <Label layoutX="14.0" layoutY="170.0" prefHeight="19.0" prefWidth="70.0" text="55-65" />
@@ -111,13 +111,13 @@
                   <TextField fx:id="InputRiskContributionAGGroup4" layoutX="393.0" layoutY="170.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
                   <Label layoutX="16.0" layoutY="271.0" prefHeight="21.0" prefWidth="443.0" text="Beitragssätze nach BVG" textAlignment="CENTER">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold Italic" size="18.0" />
                      </font></Label>
                   <Label layoutX="85.0" layoutY="302.0" prefHeight="21.0" prefWidth="102.0" text="Sparbeitrag AN" />
                   <Label layoutX="187.0" layoutY="302.0" prefHeight="21.0" prefWidth="102.0" text="Sparbeitrag AG" />
                   <Label layoutX="289.0" layoutY="302.0" prefHeight="21.0" prefWidth="102.0" text="Risikobeitrag AN" />
                   <Label layoutX="394.0" layoutY="302.0" prefHeight="21.0" prefWidth="102.0" text="Risikobeitrag AG" />
-                  <Label layoutX="14.0" layoutY="300.0" prefHeight="21.0" prefWidth="70.0" text="Alter" />
+                  <Label layoutX="14.0" layoutY="302.0" prefHeight="21.0" prefWidth="70.0" text="Alter" />
                   <Label layoutX="14.0" layoutY="330.0" prefHeight="19.0" prefWidth="70.0" text="22-34" />
                   <Label layoutX="14.0" layoutY="360.0" prefHeight="19.0" prefWidth="70.0" text="35-44" />
                   <Label layoutX="14.0" layoutY="390.0" prefHeight="19.0" prefWidth="70.0" text="45-54" />
@@ -138,10 +138,10 @@
                   <Label fx:id="InputSavingContributionAGGroup4BVG" layoutX="186.0" layoutY="420.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
                   <Label fx:id="InputRiskContributionANGroup4BVG" layoutX="288.0" layoutY="420.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
                   <Label fx:id="InputRiskContributionAGGroup4BVG" layoutX="393.0" layoutY="420.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" text="spare" />
-                  <Label layoutX="16.0" layoutY="534.0" prefHeight="21.0" prefWidth="276.0" text="Alle Angaben in %" />
+                  <Label layoutX="1163.0" layoutY="12.0" prefHeight="21.0" prefWidth="108.0" text="Alle Angaben in %" />
                   <Label layoutX="736.0" layoutY="22.0" prefHeight="21.0" prefWidth="427.0" text="Überobligatorische Umwandlungssätze" textAlignment="CENTER">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
                   <Label layoutX="806.0" layoutY="62.0" prefHeight="21.0" prefWidth="102.0" text="Männer" textAlignment="CENTER" />
@@ -161,14 +161,14 @@
                   <TextField fx:id="InputConversionRateGroup64M" layoutX="806.0" layoutY="206.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
                   <TextField fx:id="InputConversionRateGroup64W" layoutX="908.0" layoutY="206.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
                   <TextField fx:id="InputConversionRateGroup65" layoutX="806.0" layoutY="236.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
-                  <Label layoutX="743.0" layoutY="330.0" prefHeight="27.0" prefWidth="158.0" text="Umwandlungssatz nach BVG" textAlignment="CENTER" />
-                  <Label fx:id="InputConversionRateMin" layoutX="902.0" layoutY="334.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
-                  <Label layoutX="743.0" layoutY="356.0" prefHeight="27.0" prefWidth="158.0" text="Koordinationsabzug BVG" textAlignment="CENTER" />
-                  <Label fx:id="InputCoordinatedDetuctionBVG" layoutX="902.0" layoutY="360.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
-                  <Label layoutX="736.0" layoutY="282.0" prefHeight="19.0" prefWidth="158.0" text="Koordinierter Lohn" />
-                  <TextField fx:id="InputCoordinatedSalaryRate" layoutX="854.0" layoutY="279.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
-                  <Label layoutX="740.0" layoutY="377.0" prefHeight="27.0" prefWidth="158.0" text="Zinssatz" textAlignment="CENTER" />
-                  <Label fx:id="InputInterestRate" layoutX="899.0" layoutY="381.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label layoutX="738.0" layoutY="317.0" prefHeight="27.0" prefWidth="158.0" text="Minimum nach BVG" textAlignment="CENTER" />
+                  <Label fx:id="InputConversionRateMin" layoutX="950.0" layoutY="321.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label layoutX="738.0" layoutY="356.0" prefHeight="27.0" prefWidth="158.0" text="Koordinationsabzug BVG" textAlignment="CENTER" />
+                  <Label fx:id="InputCoordinatedDetuctionBVG" layoutX="950.0" layoutY="360.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label layoutX="736.0" layoutY="282.0" prefHeight="19.0" prefWidth="225.0" text="Koordinierter Lohn Überobligatorium" />
+                  <TextField fx:id="InputCoordinatedSalaryRate" layoutX="950.0" layoutY="279.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
+                  <Label layoutX="738.0" layoutY="396.0" prefHeight="27.0" prefWidth="158.0" text="Zinssatz" textAlignment="CENTER" />
+                  <Label fx:id="InputInterestRate" layoutX="940.0" layoutY="393.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
                </children>
             </AnchorPane>
         </content>

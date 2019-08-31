@@ -1,0 +1,7 @@
+.AnchorPane {
+-fx-base: rgb(119,136,153);
+-fx-background: rgb(119,136,153);
+-fx-control-inner-background: rgb(119,136,153);
+}
+
+

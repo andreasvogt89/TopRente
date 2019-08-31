@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="personView" prefHeight="829.0" prefWidth="866.0" style="@../stylesheets/pensionCertificateStyle" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="fullNameView" alignment="CENTER" layoutX="1.0" layoutY="58.0" prefHeight="27.0" prefWidth="866.0" text="Spare" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="14.0" prefHeight="44.0" prefWidth="866.0" text="Vorsorgeausweis" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" wrapText="true">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="95.0" prefHeight="44.0" prefWidth="124.0" text="Pensionsdatum:" />
+      <Label layoutX="44.0" layoutY="128.0" prefHeight="44.0" prefWidth="171.0" text="Berechung">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="168.0" prefHeight="44.0" prefWidth="171.0" text="Beschäftigungsgrad">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="208.0" prefHeight="44.0" prefWidth="171.0" text="Massgeblicher Jahreslohn">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="248.0" prefHeight="44.0" prefWidth="171.0" text="Koordinationsabzug">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="288.0" prefHeight="44.0" prefWidth="171.0" text="Koordinierter Lohn">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="328.0" prefHeight="44.0" prefWidth="111.0" text="Alter">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="368.0" prefHeight="44.0" prefWidth="171.0" text="Monatlicher Sparbeitrag AN">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="408.0" prefHeight="44.0" prefWidth="171.0" text="Monatlicher Sparbeitrag AG">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="448.0" prefHeight="44.0" prefWidth="171.0" text="Monatlicher Risikobeitrag AN">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="488.0" prefHeight="44.0" prefWidth="171.0" text="Monatlicher Risikobeitrag AG">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="528.0" prefHeight="44.0" prefWidth="111.0" text="Zinssatz">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="568.0" prefHeight="44.0" prefWidth="171.0" text="Altersguthaben">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="608.0" prefHeight="44.0" prefWidth="171.0" text="Projiziertes Altersguthaben">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="648.0" prefHeight="44.0" prefWidth="171.0" text="Projiziertes Invalidenguthaben">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="688.0" prefHeight="44.0" prefWidth="171.0" text="Altersrente bei Pensionierung">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="728.0" prefHeight="44.0" prefWidth="111.0" text="Invalidenrente">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="768.0" prefHeight="44.0" prefWidth="111.0" text="Partnerrente">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="44.0" layoutY="808.0" prefHeight="44.0" prefWidth="111.0" text="Kinderrente">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+
+
+      <Label layoutX="264.0" layoutY="127.0" prefHeight="44.0" prefWidth="171.0" text="BVG">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="pensionDate" layoutX="263.0" layoutY="100.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="levelBVG" layoutX="264.0" layoutY="170.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="salaryBVG" layoutX="264.0" layoutY="210.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="coordinatedSalaryContributionBVG" layoutX="264.0" layoutY="250.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="coordinatedSalaryBVG" layoutX="264.0" layoutY="290.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="ageBVG" layoutX="264.0" layoutY="330.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="savingContributionANBVG" layoutX="264.0" layoutY="370.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="savingContributionAGBVG" layoutX="264.0" layoutY="410.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="riskContributionANBVG" layoutX="264.0" layoutY="450.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="riskContributionAGBVG" layoutX="264.0" layoutY="490.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="interestRateBVG" layoutX="264.0" layoutY="530.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="creditBVG" layoutX="264.0" layoutY="570.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="calculatedCreditBVG" layoutX="264.0" layoutY="610.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="calculatedInvalidCreditBVG" layoutX="264.0" layoutY="650.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="pensionBVG" layoutX="264.0" layoutY="690.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="pensionInvalidBVG" layoutX="264.0" layoutY="730.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="pensionPartnerBVG" layoutX="264.0" layoutY="770.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="pensionChildrenBVG" layoutX="264.0" layoutY="810.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+
+      <Label layoutX="473.0" layoutY="127.0" prefHeight="44.0" prefWidth="171.0" text="Überobligatorium">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="level" layoutX="473.0" layoutY="170.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="salary" layoutX="473.0" layoutY="210.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="coordinatedSalaryContribution" layoutX="473.0" layoutY="250.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="coordinatedSalary" layoutX="473.0" layoutY="290.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="age" layoutX="473.0" layoutY="330.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="savingContributionAN" layoutX="473.0" layoutY="370.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="savingContributionAG" layoutX="473.0" layoutY="410.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="riskContributionAN" layoutX="473.0" layoutY="450.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="riskContributionAG" layoutX="473.0" layoutY="490.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="interestRate" layoutX="473.0" layoutY="530.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="credit" layoutX="473.0" layoutY="570.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="calculatedCredit" layoutX="473.0" layoutY="610.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="calculatedInvalidCredit" layoutX="473.0" layoutY="650.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="pension" layoutX="473.0" layoutY="690.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="pensionInvalid" layoutX="473.0" layoutY="730.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="pensionPartner" layoutX="473.0" layoutY="770.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+      <Label fx:id="pensionChildren" layoutX="473.0" layoutY="810.0" prefHeight="33.0" prefWidth="171.0" text="Spare" />
+
+   </children>
+</AnchorPane>

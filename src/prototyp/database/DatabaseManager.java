@@ -1,4 +1,4 @@
-package Database;
+package database;
 import contractPerson.ContractPerson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

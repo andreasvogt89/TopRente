@@ -1,0 +1,41 @@
+.root {
+-fx-base: rgb(211,211,211);
+-fx-background: rgb(211,211,211);
+-fx-control-inner-background:  rgb(220,220,220);
+}
+
+.tab {
+-fx-background-color: linear-gradient(to top, -fx-base, derive(-fx-base,30%));
+}
+
+.menu-bar {
+-fx-background-color: linear-gradient(to bottom, -fx-base, derive(-fx-base,30%));
+}
+
+.text-field {
+    -fx-prompt-text-fill: rgb(176,196,222);
+}
+
+.button {
+-fx-background-color:  rgb(119,136,153);
+}
+
+.button:hover {
+-fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+-fx-color: -fx-hover-base;
+}
+
+.table-view {
+-fx-table-cell-border-color:derive(-fx-base,+10%);
+-fx-table-header-border-color:derive(-fx-base,+20%);
+}
+
+.split-pane:horizontal > * > .split-pane-divider {
+-fx-border-color: transparent -fx-base transparent -fx-base;
+-fx-background-color: transparent, derive(-fx-base,20%);
+-fx-background-insets: 0, 0 1 0 1;
+}
+
+.separator-label {
+-fx-text-fill: rgb(119,136,153);
+}

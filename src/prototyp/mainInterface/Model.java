@@ -1,12 +1,14 @@
-package interfaceView;
+package mainInterface;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+
 import java.time.LocalDate;
 
 
 import static java.time.temporal.ChronoUnit.YEARS;
 
-class InterfaceModel {
+class Model {
 
     boolean checkAge(String birthday) {
         LocalDate currentDate = LocalDate.now();
@@ -23,6 +25,17 @@ class InterfaceModel {
             new Alert(Alert.AlertType.ERROR, "Zu wenig Einkommen").showAndWait();
             return false;}
         return true;
+    }
+
+    boolean isInt(TextField input, String message) {
+        try {
+            int value = Integer.parseInt((input.getText()));
+            System.out.println(value + "is a number");
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Error " + message + " is not a number");
+            return false;
+        }
     }
 
 }
