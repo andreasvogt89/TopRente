@@ -168,7 +168,8 @@
                   <Label layoutX="736.0" layoutY="282.0" prefHeight="19.0" prefWidth="225.0" text="Koordinierter Lohn Überobligatorium" />
                   <TextField fx:id="InputCoordinatedSalaryRate" layoutX="950.0" layoutY="279.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
                   <Label layoutX="738.0" layoutY="396.0" prefHeight="27.0" prefWidth="158.0" text="Zinssatz" textAlignment="CENTER" />
-                  <Label fx:id="InputInterestRate" layoutX="940.0" layoutY="393.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label fx:id="InputInterestRate" layoutX="950.0" layoutY="393.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label fx:id="InputCoordinatedDetuctionBVG1" layoutX="1004.0" layoutY="360.0" prefHeight="19.0" prefWidth="70.0" text="CHF" />
                </children>
             </AnchorPane>
         </content>
