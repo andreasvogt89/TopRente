@@ -279,7 +279,6 @@ public class Model {
         return calculate.round(calculate.pension(getCalculatedCreditBVG(),contributionRates.getConversionRateMinBVG()),2);
     }
 
-
     private Double calculateYearGroup1BVG(){
         Double group1a = calculate.contribution(contributionRates.getSavingContributionAGGroup1BVG(), coordinatedSalaryBVG);
         Double group1b = calculate.contribution(contributionRates.getSavingContributionANGroup1BVG(), coordinatedSalaryBVG);
@@ -383,19 +382,19 @@ public class Model {
     }
 
     Double getChildrenPension (){
-        return getInvalidPension() * 0.2;
+        return calculate.round((getInvalidPension() * 0.2),2);
     }
 
     Double getChildrenPensionBVG (){
-        return getInvalidPension() * 0.2;
+        return calculate.round((getInvalidPension() * 0.2),2);
     }
 
     Double getPartnerPension (){
-        return getInvalidPension() * 0.6;
+        return calculate.round((getInvalidPension() * 0.6),2);
     }
 
     Double getPartnerPensionBVG (){
-        return getInvalidPension() * 0.6;
+        return calculate.round((getInvalidPension() * 0.6),2);
     }
 
 

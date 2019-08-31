@@ -188,8 +188,7 @@ public class Controller implements Initializable {
                 ContractPerson person = CostumerTable.getSelectionModel().getSelectedItem();
                 Model personViewModel = new Model(person,createAllContributionRates());
                 pensionCertificate.Controller controllerPersonView = new pensionCertificate.Controller();
-
-                    controllerPersonView.loadView(controllerPersonView,personViewModel);
+                controllerPersonView.loadView(controllerPersonView,personViewModel);
 
             }
 
@@ -401,7 +400,6 @@ public class Controller implements Initializable {
         InputConversionRateGroup65.setText("5.09");
 
     }
-
     @FXML
     public void  keyReleasedProperty(KeyEvent event) {
         String fString = inputLastName.getText();
