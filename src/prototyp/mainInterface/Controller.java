@@ -166,6 +166,12 @@ public class Controller implements Initializable {
     private TextField InputCoordinatedSalaryRate;
     @FXML
     private Label InputInterestRate;
+    @FXML
+    private Label InputMaxCoordinatedSalary;
+    @FXML
+    private Label InputMinCoordinatedSalary;
+    @FXML
+    private Label InputMinSalary;
 
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
     private String SqlLiteURL = "jdbc:sqlite:C:\\Users\\admin\\IdeaProjects\\TopRente\\src\\";
@@ -226,7 +232,7 @@ public class Controller implements Initializable {
     }
 
     public void actionSaveButton() throws SQLException {
-        if (model.checkSalary(Integer.valueOf(inputSalary.getText())) && model.checkAge(String.valueOf(inputBirthDate.getValue()))) {
+        if (model.checkSalary(Integer.valueOf(inputSalary.getText()),Double.valueOf(InputMinSalary.getText())) && model.checkAge(String.valueOf(inputBirthDate.getValue()))) {
             DatabaseManager.createPerson(databaseManager.getStatement(), createNewPerson());
             loadContent();}
     }
@@ -344,8 +350,9 @@ public class Controller implements Initializable {
                 Double.valueOf(InputCoordinatedSalaryRate.getText()),
                 Double.valueOf(InputCoordinatedDetuctionBVG.getText()),
                 Double.valueOf(InputInterestRate.getText()),
-                Double.valueOf(3555.0),
-                Double.valueOf(85320.0)
+                Double.valueOf(InputMaxCoordinatedSalary.getText()),
+                Double.valueOf(InputMinCoordinatedSalary.getText()),
+                Double.valueOf(InputMinSalary.getText())
         );
         return contributionRates;
     }
@@ -370,6 +377,9 @@ public class Controller implements Initializable {
         InputRiskContributionAGGroup4BVG.setText("0.75");
         InputConversionRateMin.setText("6.8");
         InputInterestRate.setText("1");
+        InputMaxCoordinatedSalary.setText("85320.0");
+        InputMinCoordinatedSalary.setText("3555.0");
+        InputMinSalary.setText("21330.0");
     }
 
     private void setRates (){

@@ -58,8 +58,9 @@ public class ContributionRates {
     private Double interestRate;
     private Double minCoordinatedSalaryBVG;
     private Double maxCoordinatedSalaryBVG;
+    private Double minSalary;
 
-    public ContributionRates(Double savingContributionANGroup1, Double savingContributionAGGroup1, Double riskContributionANGroup1, Double riskContributionAGGroup1, Double savingContributionANGroup2, Double savingContributionAGGroup2, Double riskContributionANGroup2, Double riskContributionAGGroup2, Double savingContributionANGroup3, Double savingContributionAGGroup3, Double riskContributionANGroup3, Double riskContributionAGGroup3, Double savingContributionANGroup4, Double savingContributionAGGroup4, Double riskContributionANGroup4, Double riskContributionAGGroup4, Double savingContributionANGroup1BVG, Double savingContributionAGGroup1BVG, Double riskContributionANGroup1BVG, Double riskContributionAGGroup1BVG, Double savingContributionANGroup2BVG, Double savingContributionAGGroup2BVG, Double riskContributionANGroup2BVG, Double riskContributionAGGroup2BVG, Double savingContributionANGroup3BVG, Double savingContributionAGGroup3BVG, Double riskContributionANGroup3BVG, Double riskContributionAGGroup3BVG, Double savingContributionANGroup4BVG, Double savingContributionAGGroup4BVG, Double riskContributionANGroup4BVG, Double riskContributionAGGroup4BVG, Double conversionRateMinBVG, Double conversionRate60, Double conversionRate61, Double conversionRate62, Double conversionRate63M, Double conversionRate63W, Double conversionRate64M, Double conversionRate64W, Double conversionRate65, Double coordinatedSalaryRate, Double coordinatedDetuctionRateBVG, Double interestRate, Double minCoordinatedSalaryBVG, Double maxCoordinatedSalaryBVG) {
+    public ContributionRates(Double savingContributionANGroup1, Double savingContributionAGGroup1, Double riskContributionANGroup1, Double riskContributionAGGroup1, Double savingContributionANGroup2, Double savingContributionAGGroup2, Double riskContributionANGroup2, Double riskContributionAGGroup2, Double savingContributionANGroup3, Double savingContributionAGGroup3, Double riskContributionANGroup3, Double riskContributionAGGroup3, Double savingContributionANGroup4, Double savingContributionAGGroup4, Double riskContributionANGroup4, Double riskContributionAGGroup4, Double savingContributionANGroup1BVG, Double savingContributionAGGroup1BVG, Double riskContributionANGroup1BVG, Double riskContributionAGGroup1BVG, Double savingContributionANGroup2BVG, Double savingContributionAGGroup2BVG, Double riskContributionANGroup2BVG, Double riskContributionAGGroup2BVG, Double savingContributionANGroup3BVG, Double savingContributionAGGroup3BVG, Double riskContributionANGroup3BVG, Double riskContributionAGGroup3BVG, Double savingContributionANGroup4BVG, Double savingContributionAGGroup4BVG, Double riskContributionANGroup4BVG, Double riskContributionAGGroup4BVG, Double conversionRateMinBVG, Double conversionRate60, Double conversionRate61, Double conversionRate62, Double conversionRate63M, Double conversionRate63W, Double conversionRate64M, Double conversionRate64W, Double conversionRate65, Double coordinatedSalaryRate, Double coordinatedDetuctionRateBVG, Double interestRate, Double minCoordinatedSalaryBVG, Double maxCoordinatedSalaryBVG, Double minSalary) {
         this.savingContributionANGroup1 = savingContributionANGroup1;
         this.savingContributionAGGroup1 = savingContributionAGGroup1;
         this.riskContributionANGroup1 = riskContributionANGroup1;
@@ -106,6 +107,7 @@ public class ContributionRates {
         this.interestRate = interestRate;
         this.minCoordinatedSalaryBVG = minCoordinatedSalaryBVG;
         this.maxCoordinatedSalaryBVG = maxCoordinatedSalaryBVG;
+        this.minSalary = minSalary;
 
     }
 
@@ -475,5 +477,13 @@ public class ContributionRates {
 
     public void setMaxCoordinatedSalaryBVG(Double maxCoordinatedSalaryBVG) {
         this.maxCoordinatedSalaryBVG = maxCoordinatedSalaryBVG;
+    }
+
+    public Double getMinSalary() {
+        return minSalary;
+    }
+
+    public void setMinSalary(Double minSalary) {
+        this.minSalary = minSalary;
     }
 }

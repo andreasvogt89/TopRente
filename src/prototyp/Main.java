@@ -21,7 +21,7 @@ public class Main extends Application {
         primaryStage.setTitle("Top Rente");
         primaryStage.setScene(new Scene(root, 1300, 700));
         primaryStage.show();
-        primaryStage.getIcons().add(new Image("file:retirement.png"));
+        primaryStage.getIcons().add(new Image("retirement.png"));
 
     }
 

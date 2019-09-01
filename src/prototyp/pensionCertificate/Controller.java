@@ -87,6 +87,7 @@ public class Controller implements Initializable {
     @FXML
     private Label pensionDate;
 
+
     private Model model;
     private String chf = " CHF";
     private String percent = " %";

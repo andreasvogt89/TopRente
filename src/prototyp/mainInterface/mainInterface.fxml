@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<TabPane prefHeight="654.0" prefWidth="1300.0" stylesheets="@../stylesheets/mainInterfaceStyle" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainInterface.Controller">
+<TabPane prefHeight="654.0" prefWidth="1300.0" stylesheets="@../stylesheets/mainInterfaceStyle" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainInterface.Controller">
    <tabs>
       <Tab text="Kunden">
          <content>
@@ -161,15 +161,24 @@
                   <TextField fx:id="InputConversionRateGroup64M" layoutX="806.0" layoutY="206.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
                   <TextField fx:id="InputConversionRateGroup64W" layoutX="908.0" layoutY="206.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
                   <TextField fx:id="InputConversionRateGroup65" layoutX="806.0" layoutY="236.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
-                  <Label layoutX="738.0" layoutY="317.0" prefHeight="27.0" prefWidth="158.0" text="Minimum nach BVG" textAlignment="CENTER" />
+                  <Label layoutX="738.0" layoutY="317.0" prefHeight="27.0" prefWidth="201.0" text="Minimaler Umwandlungsatz BVG" textAlignment="CENTER" />
                   <Label fx:id="InputConversionRateMin" layoutX="950.0" layoutY="321.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
                   <Label layoutX="738.0" layoutY="356.0" prefHeight="27.0" prefWidth="158.0" text="Koordinationsabzug BVG" textAlignment="CENTER" />
                   <Label fx:id="InputCoordinatedDetuctionBVG" layoutX="950.0" layoutY="360.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
                   <Label layoutX="736.0" layoutY="282.0" prefHeight="19.0" prefWidth="225.0" text="Koordinierter Lohn Überobligatorium" />
                   <TextField fx:id="InputCoordinatedSalaryRate" layoutX="950.0" layoutY="279.0" onKeyReleased="#keyReleasedProperty" prefHeight="25.0" prefWidth="96.0" />
-                  <Label layoutX="738.0" layoutY="396.0" prefHeight="27.0" prefWidth="158.0" text="Zinssatz" textAlignment="CENTER" />
-                  <Label fx:id="InputInterestRate" layoutX="950.0" layoutY="393.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label layoutX="738.0" layoutY="493.0" prefHeight="27.0" prefWidth="158.0" text="Zinssatz" textAlignment="CENTER" />
+                  <Label fx:id="InputInterestRate" layoutX="950.0" layoutY="497.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
                   <Label fx:id="InputCoordinatedDetuctionBVG1" layoutX="1004.0" layoutY="360.0" prefHeight="19.0" prefWidth="70.0" text="CHF" />
+                  <Label fx:id="InputMinSalary" layoutX="950.0" layoutY="393.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label fx:id="InputCoordinatedDetuctionBVG11" layoutX="1004.0" layoutY="393.0" prefHeight="19.0" prefWidth="70.0" text="CHF" />
+                  <Label fx:id="InputCoordinatedDetuctionBVG111" layoutX="1004.0" layoutY="430.0" prefHeight="19.0" prefWidth="70.0" text="CHF" />
+                  <Label fx:id="InputMinCoordinatedSalary" layoutX="950.0" layoutY="430.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label layoutX="738.0" layoutY="389.0" prefHeight="27.0" prefWidth="158.0" text="Minimales Jahreseinkommen" textAlignment="CENTER" />
+                  <Label layoutX="738.0" layoutY="426.0" prefHeight="27.0" prefWidth="211.0" text="Minimaler Kordinierter Lohn BVG" textAlignment="CENTER" />
+                  <Label layoutX="738.0" layoutY="460.0" prefHeight="27.0" prefWidth="211.0" text="Maximaler Kordinierter Lohn BVG" textAlignment="CENTER" />
+                  <Label fx:id="InputMaxCoordinatedSalary" layoutX="950.0" layoutY="464.0" prefHeight="19.0" prefWidth="70.0" text="Spare" />
+                  <Label fx:id="InputCoordinatedDetuctionBVG112" layoutX="1004.0" layoutY="460.0" prefHeight="19.0" prefWidth="70.0" text="CHF" />
                </children>
             </AnchorPane>
         </content>

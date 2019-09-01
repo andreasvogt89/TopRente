@@ -20,8 +20,8 @@ class Model {
         return true;
     }
 
-    boolean checkSalary(Integer salary) {
-        if (salary <= 21330) {
+    boolean checkSalary(Integer salary, Double minSalary) {
+        if (salary <= minSalary) {
             new Alert(Alert.AlertType.ERROR, "Zu wenig Einkommen").showAndWait();
             return false;}
         return true;

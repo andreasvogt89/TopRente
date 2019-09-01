@@ -9,6 +9,7 @@ import java.util.Date;
 
 /**
  * Class to calculate the pension certificate
+ * is part of de mvc pensionCertificate
  *
  *
  * @version 1.0
@@ -61,8 +62,8 @@ public boolean ageBetween(Integer age, Integer minAge, Integer maxAge) {
 
     }
 
-public Double addUpContribution(Double saveingAN, Double savingAG){
-        return saveingAN + savingAG;
+public Double addUpContribution(Double savingAN, Double savingAG){
+        return savingAN + savingAG;
     }
 
 public Double payInterestOn(Double currentCredit, Double interestRate) {
